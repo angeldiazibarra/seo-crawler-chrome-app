@@ -1,9 +1,9 @@
 {
-  "name": "angularjs-chrome-app-template",
+  "name": "seo-crawler-chrome-app",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git://github.com/angeldiazibarra/angularjs-chrome-app-template.git"
+    "url": "git://github.com/angeldiazibarra/seo-crawler-chrome-app.git"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "AngularJS Chrome App Template",
-  "description": "A Chrome App which uses AngularJS as an MVC Framework",
+  "name": "SEO Crawler Chrome App",
+  "description": "A SEO Crawler for Google Chrome. App built with NodeJS and AngularJS.",
   "version": "1.0.0",
   "permissions": [
     "https://*/*",
