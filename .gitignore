@@ -1,0 +1,6 @@
+/nbproject/
+*.scssc
+node_modules
+.sass-cache
+.tmp
+temp
