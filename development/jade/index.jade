@@ -9,7 +9,11 @@ html(data-ng-app="myApp" data-ng-csp="")
       .container
         .row
           .col-xs-12.col-sm-3
-            p Hello World
+            .input-group
+              input(type="text").form-control
+              span.input-group-btn
+                button.btn.btn-default(type="button") Analizar
+
     footer
     
     // script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")

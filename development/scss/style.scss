@@ -7,6 +7,10 @@ body{
 	font-weight: $normal;
 }
 
+b, strong{
+    font-weight: $bold;
+}
+
 .container{
-    color:blue;
+    color:#333;
 }
