@@ -16,7 +16,7 @@
           var robotsArray = data.match(/[^\r\n]+/g);
           web.robotsurl = url;
           web.robotstxt = robotsArray;
-          console.log(web.robotstxt);
+          // console.log(web.robotstxt);
         })
         .error(function(data, status, headers, config) {
           // console.log(data);
