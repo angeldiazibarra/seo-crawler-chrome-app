@@ -21,7 +21,7 @@
                   <li><a ng-click="SelectProtocol('https://')" class="protocol-select">https://</a></li>
                 </ul></span>
               <input type="text" placeholder="www.example.com" ng-model="crawl.website.hostname" ng-keyup="CheckUrl()" class="form-control"><span class="input-group-btn">
-                <button type="button" ng-disabled="crawl.website.invalidurl" ng-class="{'disabled': crawl.website.invalidurl}" class="btn btn-default">Analizar</button></span>
+                <button type="button" ng-disabled="crawl.website.invalidurl" ng-class="{'disabled': crawl.website.invalidurl}" ng-click="DoCrawl()" class="btn btn-default btn-primary">Analizar</button></span>
             </div>
           </div>
         </div>
