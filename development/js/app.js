@@ -74,6 +74,6 @@
       protocol: 'http://',
       invalidurl: true,
       robotstxt: null
-  }
+  };
   
 })();
