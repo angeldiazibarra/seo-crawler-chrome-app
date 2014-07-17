@@ -72,6 +72,12 @@
       }
     };
     
+    $scope.CodeComment = function(line){
+      if (line.indexOf("#") > -1) {
+        return('codecomment');
+      }
+    };
+    
     $scope.DoCrawl = function(){
       // console.log(web);
       var url = web.protocol + web.hostname;

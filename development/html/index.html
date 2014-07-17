@@ -32,7 +32,7 @@
         </div>
         <div ng-show="ShowRobots()" class="row">
           <div class="col-xs-12 col-md-6 col-md-offset-3">
-            <pre><span ng-repeat="value in crawl.website.robotstxt track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
+            <pre><span ng-repeat="value in crawl.website.robotstxt track by $index" ng-class="CodeComment(value)" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
           </div>
         </div>
       </div>
