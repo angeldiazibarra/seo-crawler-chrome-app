@@ -14,6 +14,7 @@
           // console.log(headers);
           // console.log(config);
           var robotsArray = data.match(/[^\r\n]+/g);
+          web.robotsurl = url;
           web.robotstxt = robotsArray;
           console.log(web.robotstxt);
         })
@@ -22,6 +23,7 @@
           // console.log(status);
           // console.log(headers);
           // console.log(config);
+          web.robotsurl = null;
           web.robotstxt = null;
         });
       }
@@ -62,6 +64,14 @@
       web.protocol = protocol;
     };
     
+    $scope.ShowRobots = function(){
+      if(web.robotsurl === null){
+        return('false');
+      }else{
+        return('true');
+      }
+    };
+    
     $scope.DoCrawl = function(){
       // console.log(web);
       var url = web.protocol + web.hostname;
@@ -75,6 +85,7 @@
       hostname: null,
       protocol: 'http://',
       invalidurl: true,
+      robotsurl: null,
       robotstxt: null
   };
   
