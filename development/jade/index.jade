@@ -24,10 +24,10 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               span.input-group-btn
                 button(type="button",ng-disabled="crawl.website.invalidurl",ng-class="{'disabled': crawl.website.invalidurl}",ng-click="DoCrawl()").btn.btn-default.btn-primary Analizar
         .row.mtop(ng-show="ShowRobots()")
-          .col-xs-12.col-md-6.col-md-offset-3
+          .col-xs-12
             p {{crawl.website.robotsurl}}
         .row(ng-show="ShowRobots()")
-          .col-xs-12.col-md-6.col-md-offset-3
+          .col-xs-12
             pre
               span(ng-repeat="value in crawl.website.robotstxt track by $index",ng-class="CodeComment(value)").nomar {{value}}
                 span(ng-show=" ! $last ")
