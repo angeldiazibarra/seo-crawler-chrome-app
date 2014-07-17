@@ -8,18 +8,18 @@
       getUrlData: function(url) {       
         $http.get(url)
         .success(function(data, status, headers, config) {
-          console.log('success');
           console.log(data);
           console.log(status);
-          console.log(headers);
-          console.log(config);
+          // console.log(headers);
+          // console.log(config);
+          web.robotstxt = data;
         })
         .error(function(data, status, headers, config) {
-          console.log('error');
           console.log(data);
           console.log(status);
-          console.log(headers);
-          console.log(config);
+          // console.log(headers);
+          // console.log(config);
+          web.robotstxt = null;
         });
       }
     }
@@ -63,7 +63,7 @@
       // console.log(web);
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
-      getUrl.getUrlData(url);
+      getUrl.getUrlData(robotsUrl);
     };
     
   });
@@ -71,7 +71,8 @@
   var web = {
       hostname: null,
       protocol: 'http://',
-      invalidurl: true
+      invalidurl: true,
+      robotstxt: null
   }
   
 })();
