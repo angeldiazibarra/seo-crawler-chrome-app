@@ -9,15 +9,17 @@
       getUrlData: function(url) {       
         $http.get(url)
         .success(function(data, status, headers, config) {
-          console.log(data);
-          console.log(status);
+          // console.log(data);
+          // console.log(status);
           // console.log(headers);
           // console.log(config);
-          web.robotstxt = data;
+          var robotsArray = data.match(/[^\r\n]+/g);
+          web.robotstxt = robotsArray;
+          console.log(web.robotstxt);
         })
         .error(function(data, status, headers, config) {
-          console.log(data);
-          console.log(status);
+          // console.log(data);
+          // console.log(status);
           // console.log(headers);
           // console.log(config);
           web.robotstxt = null;
