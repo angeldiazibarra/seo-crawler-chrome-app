@@ -13,7 +13,13 @@
       <div class="container">
         <div class="row mtop">
           <div class="col-xs-12 col-md-6 col-md-offset-3">
-            <div class="input-group">
+            <div class="input-group"><span class="input-group-btn">
+                <button type="button" disabled id="protocol" class="btn btn-default dropdown-toggle">{{crawl.website.protocol}}</button>
+                <button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button>
+                <ul role="menu" class="dropdown-menu">
+                  <li><a ng-click="SelectProtocol('http://')" class="protocol-select">http://</a></li>
+                  <li><a ng-click="SelectProtocol('https://')" class="protocol-select">https://</a></li>
+                </ul></span>
               <input type="text" placeholder="www.example.com" ng-model="crawl.website.hostname" ng-keyup="CheckUrl()" class="form-control"><span class="input-group-btn">
                 <button type="button" ng-disabled="crawl.website.invalidurl" ng-class="{'disabled': crawl.website.invalidurl}" class="btn btn-default">Analizar</button></span>
             </div>
@@ -27,8 +33,8 @@
       </div>
     </section>
     <footer></footer>
-    <!-- script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")-->
-    <!-- script(src="http://getbootstrap.com/dist/js/bootstrap.min.js")-->
+    <script src="../resources/js/vendor/jquery.min.js"></script>
+    <script src="../resources/js/vendor/bootstrap.min.js"></script>
     <script src="../resources/js/vendor/angular.min.js"></script>
     <script src="../resources/js/vendor/angular-route.min.js"></script>
     <script src="../resources/js/app.js"></script>

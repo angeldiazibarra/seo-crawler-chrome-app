@@ -8,7 +8,12 @@
     "http://*/*"
   ],
   "background": {
-    "scripts": ["resources/js/vendor/angular.min.js"]
+    "scripts": [
+        "resources/js/vendor/jquery.min.js",
+        "resources/js/vendor/bootstrap.min.js",
+        "resources/js/vendor/angular.min.js",
+        "resources/js/vendor/angular-route.min.js"
+    ]
   },
   "content_security_policy": "script-src 'self'; object-src 'self'",
   "app": {

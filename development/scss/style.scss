@@ -11,7 +11,7 @@ b, strong{
     font-weight: $bold;
 }
 
-span.input-group-btn button.btn-default{
+button{
     height:34px;
 }
 
@@ -21,4 +21,8 @@ span.input-group-btn button.btn-default{
 
 .mtop{
     margin-top: 30px;
+}
+
+.protocol-select{
+    cursor: pointer;
 }

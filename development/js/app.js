@@ -11,13 +11,18 @@
     $scope.CheckUrl = function(){
       var checkUrl = web.hostname;
       console.log(checkUrl);
-      if(checkUrl.match(/^(https?:\/\/)?([a-z0-9]+\.*-*)+(\.[a-z]{2,4})$/i)){
+      if(checkUrl.match(/^(https?:\/\/)?([a-z0-9]+\.*-*)+(\.[a-z]{2,6})$/i)){
         console.log('valid');
         web.invalidurl = false;
       }else{
         console.log('invalid');
         web.invalidurl = true;
       }
+    };
+    
+    $scope.SelectProtocol = function(protocol){
+      console.log(protocol);
+      web.protocol = protocol;
     };
     
   });
