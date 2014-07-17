@@ -1,4 +1,5 @@
 (function(){ 
+  "use strict";
     
   var app = angular.module('myCrawler', [ ]);
   // console.log('app.js load');
@@ -22,7 +23,7 @@
           web.robotstxt = null;
         });
       }
-    }
+    };
   });
 
   app.controller('CrawlerController', function($scope, getUrl){
