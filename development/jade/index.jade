@@ -32,6 +32,12 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               span(ng-repeat="value in crawl.website.robotstxt track by $index",ng-class="CodeComment(value)").nomar {{value}}
                 span(ng-show=" ! $last ")
                   br
+        .row.mtop(ng-show="ShowSitemaps()")
+          .col-xs-12
+            p
+              span(ng-repeat="value in crawl.website.sitemaps track by $index").nomar {{value}}
+                span(ng-show=" ! $last ")
+                  br
 
     footer
     

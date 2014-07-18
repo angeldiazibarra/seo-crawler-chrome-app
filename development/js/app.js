@@ -16,6 +16,12 @@
           var robotsArray = data.match(/[^\r\n]+/g);
           web.robotsurl = url;
           web.robotstxt = robotsArray;
+          for (var i in robotsArray){
+              if(robotsArray[i].match(/sitemap:/i)){
+                  var sitemap = robotsArray[i].replace(/sitemap\:/i,'').trim();
+                  web.sitemaps.push(sitemap);
+              };
+          }
           // console.log(web.robotstxt);
         })
         .error(function(data, status, headers, config) {
@@ -72,6 +78,22 @@
       }
     };
     
+    $scope.ShowSitemaps = function(){
+      web.sitemaps = $scope.ArrayUnique(web.sitemaps);
+      if(web.sitemaps.length === 0){
+        return('false');
+      }else{
+        return('true');
+      }
+    };
+    
+    $scope.ArrayUnique = function(a) {
+      return a.reduce(function(p, c) {
+        if (p.indexOf(c) < 0) p.push(c);
+        return p;
+      }, []);
+    };
+    
     $scope.CodeComment = function(line){
       if (line.indexOf("#") > -1) {
         return('codecomment');
@@ -82,7 +104,9 @@
       // console.log(web);
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
+      var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
       getUrl.getUrlData(robotsUrl);
+      web.sitemaps.push(sitemapUrl);
     };
     
   });
@@ -92,7 +116,8 @@
       protocol: 'http://',
       invalidurl: true,
       robotsurl: null,
-      robotstxt: null
+      robotstxt: null,
+      sitemaps: []
   };
   
 })();

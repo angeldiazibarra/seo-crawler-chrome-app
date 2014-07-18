@@ -35,6 +35,11 @@
             <pre><span ng-repeat="value in crawl.website.robotstxt track by $index" ng-class="CodeComment(value)" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
           </div>
         </div>
+        <div ng-show="ShowSitemaps()" class="row mtop">
+          <div class="col-xs-12">
+            <p><span ng-repeat="value in crawl.website.sitemaps track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></p>
+          </div>
+        </div>
       </div>
     </section>
     <footer></footer>
