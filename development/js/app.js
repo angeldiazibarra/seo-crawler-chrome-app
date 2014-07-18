@@ -102,6 +102,7 @@
     
     $scope.DoCrawl = function(){
       // console.log(web);
+      web.sitemaps = [];
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
