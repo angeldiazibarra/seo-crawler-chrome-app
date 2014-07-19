@@ -40,6 +40,11 @@
             <p><span ng-repeat="value in crawl.website.sitemaps track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></p>
           </div>
         </div>
+        <div ng-show="ShowSitemaps()" class="row">
+          <div class="col-xs-12">
+            <pre><span ng-repeat="value in crawl.website.urls track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
+          </div>
+        </div>
       </div>
     </section>
     <footer></footer>

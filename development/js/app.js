@@ -34,17 +34,15 @@
         $http.get(url)
         .success(function(data, status, headers, config) {
           var urlsArray = data.match(/[^\r\n]+/g);
-          web.urls = urlsArray;
           for (var i in urlsArray){
             var item = urlsArray[i].trim();
+            // console.log(item);
             if(item.match(/(\<loc\>)(.*)(\<\/loc\>)/i)){
               var unit = item.replace(/\<\/?loc\>/gi,'').trim();
-              console.log(unit);
               web.urls.push(unit);                
             }
             if(item.match(/(\<link\>)(.*)(\<\/link\>)/i)){
               var unit = item.replace(/\<\/?link\>/gi,'').trim();
-              console.log(unit);
               web.urls.push(unit);                
             }
           }
@@ -119,6 +117,7 @@
     
     $scope.DoCrawl = function(){
       // console.log(web);
+      web.urls = [];
       web.sitemaps = [];
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';

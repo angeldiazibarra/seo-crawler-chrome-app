@@ -38,6 +38,12 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               span(ng-repeat="value in crawl.website.sitemaps track by $index").nomar {{value}}
                 span(ng-show=" ! $last ")
                   br
+        .row(ng-show="ShowSitemaps()")
+          .col-xs-12
+            pre
+              span(ng-repeat="value in crawl.website.urls track by $index").nomar {{value}}
+                span(ng-show=" ! $last ")
+                  br
 
     footer
     
