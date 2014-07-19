@@ -4,15 +4,11 @@
   var app = angular.module('myCrawler', [ ]);
   // console.log('app.js load');
   
-  app.factory('getUrl', function($http) {
+  app.factory('getRobots', function($http,getSitemap) {
     return {
-      getUrlData: function(url) {       
+      getRobotsData: function(url) {       
         $http.get(url)
         .success(function(data, status, headers, config) {
-          // console.log(data);
-          // console.log(status);
-          // console.log(headers);
-          // console.log(config);
           var robotsArray = data.match(/[^\r\n]+/g);
           web.robotsurl = url;
           web.robotstxt = robotsArray;
@@ -20,23 +16,44 @@
               if(robotsArray[i].match(/sitemap:/i)){
                   var sitemap = robotsArray[i].replace(/sitemap\:/i,'').trim();
                   web.sitemaps.push(sitemap);
+                  getSitemap.getSitemapData(sitemap);
               };
           }
-          // console.log(web.robotstxt);
         })
         .error(function(data, status, headers, config) {
-          // console.log(data);
-          // console.log(status);
-          // console.log(headers);
-          // console.log(config);
           web.robotsurl = null;
           web.robotstxt = null;
         });
       }
     };
   });
+  
+  app.factory('getSitemap', function($http) {
+    return {
+      getSitemapData: function(url) { 
+        $http.get(url)
+        .success(function(data, status, headers, config) {
+          var urlsArray = data.match(/[^\r\n]+/g);
+          web.urls = urlsArray;
+          for (var i in urlsArray){
+            var item = urlsArray[i].trim();
+            if(item.match(/(\<loc\>)(.*)(\<\/loc\>)/i)){
+              var unit = item.replace(/\<\/?loc\>/gi,'').trim();
+              console.log(unit);
+              web.urls.push(unit);                
+            }
+            if(item.match(/(\<link\>)(.*)(\<\/link\>)/i)){
+              var unit = item.replace(/\<\/?link\>/gi,'').trim();
+              console.log(unit);
+              web.urls.push(unit);                
+            }
+          }
+        });
+      }
+    };
+  });
 
-  app.controller('CrawlerController', function($scope, getUrl){
+  app.controller('CrawlerController', function($scope,getRobots,getSitemap){
     // console.log('CrawlerController load');
     
     this.website = web;
@@ -106,7 +123,7 @@
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
-      getUrl.getUrlData(robotsUrl);
+      getRobots.getRobotsData(robotsUrl);
       web.sitemaps.push(sitemapUrl);
     };
     
@@ -118,7 +135,8 @@
       invalidurl: true,
       robotsurl: null,
       robotstxt: null,
-      sitemaps: []
+      sitemaps: [],
+      urls: []
   };
   
 })();
