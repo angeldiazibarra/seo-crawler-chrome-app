@@ -4,58 +4,25 @@
   var app = angular.module('myCrawler', [ ]);
   // console.log('app.js load');
   
-  app.factory('getUrl', function($http) {
-    var sitemaps = [];
-    var obj = {};   
-    
-    obj.getRobotsData = function(url) {       
+  app.factory('urlData', function($http,$q) {
+    return{
+      getData:function(url){
+        var deferred = $q.defer();
         $http.get(url)
         .success(function(data, status, headers, config) {
-          var robotsArray = data.match(/[^\r\n]+/g);
-          web.robotsurl = url;
-          web.robotstxt = robotsArray;
-          for (var i in robotsArray){
-              if(robotsArray[i].match(/sitemap:/i)){
-                  var sitemap = robotsArray[i].replace(/sitemap\:/i,'').trim();
-                  web.sitemaps.push(sitemap);
-                  // this.getSitemapData(sitemap);
-              };
-          }
+          deferred.resolve(data);
         })
         .error(function(data, status, headers, config) {
-          web.robotsurl = null;
-          web.robotstxt = null;
+          deferred.reject(status);
         });
+        return deferred.promise;
+      }
     };
-    
-    obj.getSitemapData = function(url) { 
-        $http.get(url)
-        .success(function(data, status, headers, config) {
-          var urlsArray1 = data.match(/(\<loc\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/loc\>)/gi);
-          var urlsArray2 = data.match(/(\<link\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/link\>)/gi);
-          for (var i in urlsArray1){
-              var item = urlsArray1[i].trim();
-              var unit = item.replace(/\<\/?loc\>/gi,'').trim();
-              if(unit.match(/(\.xml)$/i)){
-                web.sitemaps.push(unit); 
-                // this.getSitemapData(unit);
-              }else{
-                web.urls.push(unit);                    
-              }
-          }
-          for (var i in urlsArray2){
-              var item = urlsArray2[i].trim();
-              var unit = item.replace(/\<\/?link\>/gi,'').trim();
-              web.urls.push(unit);   
-          }
-        });
-    };
-      
-      return obj;
-
   });
 
-  app.controller('CrawlerController', function($scope,getUrl){
+
+
+  app.controller('CrawlerController', function($scope,urlData){
     // console.log('CrawlerController load');
     
     this.website = web;
@@ -119,6 +86,38 @@
       }
     };
     
+    $scope.parseRobots = function(data){
+        var robotsArray = data.match(/[^\r\n]+/g);
+        web.robotstxt = robotsArray;
+        for (var i in robotsArray){
+            if(robotsArray[i].match(/sitemap:/i)){
+                var sitemap = robotsArray[i].replace(/sitemap\:/i,'').trim();
+                web.sitemaps.push(sitemap);
+                // this.getSitemapData(sitemap);
+            };
+        }
+    };
+    
+    $scope.parseSitemap = function(data){
+        var urlsArray1 = data.match(/(\<loc\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/loc\>)/gi);
+        var urlsArray2 = data.match(/(\<link\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/link\>)/gi);
+        for (var i in urlsArray1){
+            var item = urlsArray1[i].trim();
+            var unit = item.replace(/\<\/?loc\>/gi,'').trim();
+            if(unit.match(/(\.xml)$/i)){
+              web.sitemaps.push(unit); 
+              // this.getSitemapData(unit);
+            }else{
+              web.urls.push(unit);                    
+            }
+        }
+        for (var i in urlsArray2){
+            var item = urlsArray2[i].trim();
+            var unit = item.replace(/\<\/?link\>/gi,'').trim();
+            web.urls.push(unit);   
+        }
+    };
+    
     $scope.DoCrawl = function(){
       // console.log(web);
       web.urls = [];
@@ -126,10 +125,26 @@
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
-      getUrl.getRobotsData(robotsUrl);
       web.sitemaps.push(sitemapUrl);
-      getUrl.getSitemapData(sitemapUrl);
-      // $scope.$digest();
+      
+      urlData.getData(robotsUrl).then(function(data){
+        web.robotsurl = url;
+        $scope.parseRobots(data);
+      }).then(function(){
+        for (var i in web.sitemaps){
+          urlData.getData(web.sitemaps[i]).then(function(data){
+            $scope.parseSitemap(data);
+            for (var j in web.sitemaps){
+                urlData.getData(web.sitemaps[j]).then(function(data){
+                    $scope.parseSitemap(data);
+                    // $scope.$digest();
+                });
+            }
+          });
+        }
+      }).then(function(){
+        // console.log('execute2');
+      });
     };
     
     $scope.$watch("web",function(n,o) {
