@@ -33,12 +33,16 @@
       getSitemapData: function(url) { 
         $http.get(url)
         .success(function(data, status, headers, config) {
-          var urlsArray1 = data.match(/(\<loc\>)([a-z0-9:\/\-\.\?\=\#])*(\<\/loc\>)/gi);
-          var urlsArray2 = data.match(/(\<link\>)([a-z0-9:\/\-\.\?\=\#])*(\<\/link\>)/gi);
+          var urlsArray1 = data.match(/(\<loc\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/loc\>)/gi);
+          var urlsArray2 = data.match(/(\<link\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/link\>)/gi);
           for (var i in urlsArray1){
               var item = urlsArray1[i].trim();
               var unit = item.replace(/\<\/?loc\>/gi,'').trim();
-              web.urls.push(unit);   
+              if(unit.match(/(\.xml)$/i)){
+                web.sitemaps.push(unit);                
+              }else{
+                web.urls.push(unit);                    
+              }
           }
           for (var i in urlsArray2){
               var item = urlsArray2[i].trim();
@@ -123,6 +127,7 @@
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
       getRobots.getRobotsData(robotsUrl);
       web.sitemaps.push(sitemapUrl);
+      getSitemap.getSitemapData(sitemapUrl);
     };
     
   });
