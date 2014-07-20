@@ -92,8 +92,9 @@
         for (var i in robotsArray){
             if(robotsArray[i].match(/sitemap:/i)){
                 var sitemap = robotsArray[i].replace(/sitemap\:/i,'').trim();
-                web.sitemaps.push(sitemap);
-                // this.getSitemapData(sitemap);
+                if(web.sitemaps.indexOf(sitemap) === -1){
+                    web.sitemaps.push(sitemap);
+                }
             };
         }
     };
@@ -106,15 +107,21 @@
             var unit = item.replace(/\<\/?loc\>/gi,'').trim();
             if(unit.match(/(\.xml)$/i)){
               web.sitemaps.push(unit); 
-              // this.getSitemapData(unit);
+              if(web.sitemaps.indexOf(unit) === -1){
+                web.sitemaps.push(unit);
+              }
             }else{
-              web.urls.push(unit);                    
+              if(web.urls.indexOf(unit) === -1){
+                web.urls.push(unit);
+              }
             }
         }
         for (var i in urlsArray2){
             var item = urlsArray2[i].trim();
             var unit = item.replace(/\<\/?link\>/gi,'').trim();
-            web.urls.push(unit);   
+            if(web.urls.indexOf(unit) === -1){
+              web.urls.push(unit);
+            }
         }
     };
     
