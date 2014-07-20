@@ -1,26 +1,28 @@
 {
   "manifest_version": 2,
-  "name": "SEO Crawler Chrome App",
+  "name": "MetricSpot SEO Crawler",
   "description": "A SEO Crawler for Google Chrome. App built with NodeJS and AngularJS.",
   "version": "1.0.0",
   "permissions": [
     "https://*/*",
     "http://*/*"
   ],
+   "browser_action": {
+      "default_icon": {
+         "19": "resources/img/icon19.png",
+         "38": "resources/img/icon38.png"
+      }
+   },
   "background": {
     "scripts": [
         "resources/js/vendor/jquery.min.js",
         "resources/js/vendor/bootstrap.min.js",
         "resources/js/vendor/angular.min.js",
-        "resources/js/vendor/angular-route.min.js"
+        "resources/js/vendor/angular-route.min.js",
+        "resources/js/background.js"
     ]
   },
   "content_security_policy": "script-src 'self'; object-src 'self'",
-  "app": {
-    "launch": {
-        "local_path": "views/index.html"
-    }
-  },
   "update_url": "http://clients2.google.com/service/update2/crx",
   "icons": {
     "128": "resources/img/icon.png"
