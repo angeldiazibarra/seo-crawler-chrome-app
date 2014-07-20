@@ -33,18 +33,17 @@
       getSitemapData: function(url) { 
         $http.get(url)
         .success(function(data, status, headers, config) {
-          var urlsArray = data.match(/[^\r\n]+/g);
-          for (var i in urlsArray){
-            var item = urlsArray[i].trim();
-            // console.log(item);
-            if(item.match(/(\<loc\>)(.*)(\<\/loc\>)/i)){
+          var urlsArray1 = data.match(/(\<loc\>)([a-z0-9:\/\-\.\?\=\#])*(\<\/loc\>)/gi);
+          var urlsArray2 = data.match(/(\<link\>)([a-z0-9:\/\-\.\?\=\#])*(\<\/link\>)/gi);
+          for (var i in urlsArray1){
+              var item = urlsArray1[i].trim();
               var unit = item.replace(/\<\/?loc\>/gi,'').trim();
-              web.urls.push(unit);                
-            }
-            if(item.match(/(\<link\>)(.*)(\<\/link\>)/i)){
+              web.urls.push(unit);   
+          }
+          for (var i in urlsArray2){
+              var item = urlsArray2[i].trim();
               var unit = item.replace(/\<\/?link\>/gi,'').trim();
-              web.urls.push(unit);                
-            }
+              web.urls.push(unit);   
           }
         });
       }
