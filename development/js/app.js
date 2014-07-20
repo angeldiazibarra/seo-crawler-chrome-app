@@ -4,9 +4,11 @@
   var app = angular.module('myCrawler', [ ]);
   // console.log('app.js load');
   
-  app.factory('getRobots', function($http,getSitemap) {
-    return {
-      getRobotsData: function(url) {       
+  app.factory('getUrl', function($http) {
+    var sitemaps = [];
+    var obj = {};   
+    
+    obj.getRobotsData = function(url) {       
         $http.get(url)
         .success(function(data, status, headers, config) {
           var robotsArray = data.match(/[^\r\n]+/g);
@@ -16,7 +18,7 @@
               if(robotsArray[i].match(/sitemap:/i)){
                   var sitemap = robotsArray[i].replace(/sitemap\:/i,'').trim();
                   web.sitemaps.push(sitemap);
-                  getSitemap.getSitemapData(sitemap);
+                  this.getSitemapData(sitemap);
               };
           }
         })
@@ -24,13 +26,9 @@
           web.robotsurl = null;
           web.robotstxt = null;
         });
-      }
     };
-  });
-  
-  app.factory('getSitemap', function($http) {
-    return {
-      getSitemapData: function(url) { 
+    
+    obj.getSitemapData = function(url) { 
         $http.get(url)
         .success(function(data, status, headers, config) {
           var urlsArray1 = data.match(/(\<loc\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/loc\>)/gi);
@@ -39,7 +37,8 @@
               var item = urlsArray1[i].trim();
               var unit = item.replace(/\<\/?loc\>/gi,'').trim();
               if(unit.match(/(\.xml)$/i)){
-                web.sitemaps.push(unit);                
+                web.sitemaps.push(unit); 
+                // this.getSitemapData(unit);
               }else{
                 web.urls.push(unit);                    
               }
@@ -50,11 +49,13 @@
               web.urls.push(unit);   
           }
         });
-      }
-    };
+      };
+      
+      return obj;
+
   });
 
-  app.controller('CrawlerController', function($scope,getRobots,getSitemap){
+  app.controller('CrawlerController', function($scope,getUrl){
     // console.log('CrawlerController load');
     
     this.website = web;
@@ -125,9 +126,9 @@
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
-      getRobots.getRobotsData(robotsUrl);
+      getUrl.getRobotsData(robotsUrl);
       web.sitemaps.push(sitemapUrl);
-      getSitemap.getSitemapData(sitemapUrl);
+      getUrl.getSitemapData(sitemapUrl);
     };
     
   });
