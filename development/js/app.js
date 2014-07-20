@@ -49,7 +49,7 @@
               web.urls.push(unit);   
           }
         });
-      };
+    };
       
       return obj;
 
@@ -130,6 +130,10 @@
       web.sitemaps.push(sitemapUrl);
       getUrl.getSitemapData(sitemapUrl);
     };
+    
+    $scope.$watch(web,function() {
+      console.log(web.sitemaps);
+    },true);
     
   });
   
