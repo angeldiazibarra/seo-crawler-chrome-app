@@ -18,7 +18,7 @@
               if(robotsArray[i].match(/sitemap:/i)){
                   var sitemap = robotsArray[i].replace(/sitemap\:/i,'').trim();
                   web.sitemaps.push(sitemap);
-                  this.getSitemapData(sitemap);
+                  // this.getSitemapData(sitemap);
               };
           }
         })
@@ -129,9 +129,10 @@
       getUrl.getRobotsData(robotsUrl);
       web.sitemaps.push(sitemapUrl);
       getUrl.getSitemapData(sitemapUrl);
+      // $scope.$digest();
     };
     
-    $scope.$watch(web,function() {
+    $scope.$watch("web",function(n,o) {
       console.log(web.sitemaps);
     },true);
     
