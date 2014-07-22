@@ -135,7 +135,7 @@
       web.sitemaps.push(sitemapUrl);
       
       urlData.getData(robotsUrl).then(function(data){
-        web.robotsurl = url;
+        web.robotsurl = robotsUrl;
         $scope.parseRobots(data);
       }).then(function(){
         for (var i in web.sitemaps){
