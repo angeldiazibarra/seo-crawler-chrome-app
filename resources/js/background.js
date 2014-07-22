@@ -1,1 +1,1 @@
-var extension_id="nlapmchppjchhlogaaonmpeomchiplje",extension_url="chrome-extension://"+extension_id+"/views/index.html";chrome.browserAction.onClicked.addListener(function(){chrome.tabs.create({url:extension_url})});
+chrome.browserAction.onClicked.addListener(function(){chrome.tabs.create({url:"views/index.html"})});
