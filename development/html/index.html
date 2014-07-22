@@ -12,6 +12,18 @@
     <section>
       <div class="container">
         <div class="row mtop">
+          <div class="col-xs-12">
+            <ul role="tablist" class="nav nav-tabs nav-justified">
+              <li class="active"><a>Inicio</a></li>
+              <li class="disabled"><a>Robots</a></li>
+              <li class="disabled"><a>Sitemap</a></li>
+              <li class="disabled"><a>Pages</a></li>
+              <li class="disabled"><a>Images</a></li>
+              <li class="disabled"><a>Links</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row mtop">
           <div class="col-xs-12 col-md-6 col-md-offset-3">
             <div class="input-group"><span class="input-group-btn">
                 <button type="button" disabled id="protocol" class="btn btn-default dropdown-toggle">{{crawl.website.protocol}}</button>
@@ -21,7 +33,7 @@
                   <li><a ng-click="SelectProtocol('https://')" class="protocol-select">https://</a></li>
                 </ul></span>
               <input type="text" placeholder="www.example.com" ng-model="crawl.website.hostname" ng-keyup="CheckUrl()" class="form-control"><span class="input-group-btn">
-                <button type="button" ng-disabled="crawl.website.invalidurl" ng-class="{'disabled': crawl.website.invalidurl}" ng-click="DoCrawl()" class="btn btn-default btn-primary">Analizar</button></span>
+                <button type="button" ng-disabled="crawl.website.invalidurl" ng-class="{'disabled': crawl.website.invalidurl}" ng-click="DoCrawl()" class="btn btn-default btn-primary">Analizar      </button></span>
             </div>
           </div>
         </div>
