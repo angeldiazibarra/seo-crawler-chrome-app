@@ -9,7 +9,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
       .container
         .row.mtop
           .col-xs-12
-            ul.nav.nav-tabs.nav-justified(role="tablist")
+            ul#navTab.nav.nav-tabs.nav-justified(role="tablist")
               li.active
                 a Inicio
               li(ng-class="{true:'', false:'disabled'}[ShowRobots()]")
@@ -66,4 +66,5 @@ html(data-ng-app="myCrawler" data-ng-csp="")
     script(src="../resources/js/vendor/bootstrap.min.js")
     script(src="../resources/js/vendor/angular.min.js")
     script(src="../resources/js/vendor/angular-route.min.js")
+    script(src="../resources/js/functions.js")
     script(src="../resources/js/app.js")

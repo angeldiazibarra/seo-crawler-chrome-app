@@ -1,0 +1,1 @@
+$("#navTab a").click(function(e){e.preventDefault(),$(this).parent().hasClass("disabled")||$(this).tab("show")});
