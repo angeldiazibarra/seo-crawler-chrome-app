@@ -10,7 +10,6 @@ module.exports = function(grunt) {
       my_target: {
         files: {
           'resources/js/app.js': ['development/js/app.js'],
-          'resources/js/functions.js': ['development/js/functions.js'],
           'resources/js/background.js': ['development/js/background.js']
         }
       }

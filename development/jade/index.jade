@@ -11,17 +11,17 @@ html(data-ng-app="myCrawler" data-ng-csp="")
           .col-xs-12
             ul#navTab.nav.nav-tabs.nav-justified(role="tablist")
               li.active
-                a Inicio
+                a(show-tab) Inicio
               li(ng-class="{true:'', false:'disabled'}[ShowRobots()]")
-                a Robots
+                a(show-tab) Robots
               li(ng-class="{true:'', false:'disabled'}[ShowSitemaps()]")
-                a Sitemap
+                a(show-tab) Sitemap
               li.disabled
-                a Pages
+                a(show-tab) Pages
               li.disabled
-                a Images
+                a(show-tab) Images
               li.disabled
-                a Links
+                a(show-tab) Links
         .row.mtop
           .col-xs-12.col-md-6.col-md-offset-3
             .input-group
@@ -66,5 +66,4 @@ html(data-ng-app="myCrawler" data-ng-csp="")
     script(src="../resources/js/vendor/bootstrap.min.js")
     script(src="../resources/js/vendor/angular.min.js")
     script(src="../resources/js/vendor/angular-route.min.js")
-    script(src="../resources/js/functions.js")
     script(src="../resources/js/app.js")

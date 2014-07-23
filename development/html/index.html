@@ -14,12 +14,12 @@
         <div class="row mtop">
           <div class="col-xs-12">
             <ul id="navTab" role="tablist" class="nav nav-tabs nav-justified">
-              <li class="active"><a>Inicio</a></li>
-              <li ng-class="{true:'', false:'disabled'}[ShowRobots()]"><a>Robots</a></li>
-              <li ng-class="{true:'', false:'disabled'}[ShowSitemaps()]"><a>Sitemap</a></li>
-              <li class="disabled"><a>Pages</a></li>
-              <li class="disabled"><a>Images</a></li>
-              <li class="disabled"><a>Links</a></li>
+              <li class="active"><a show-tab>Inicio</a></li>
+              <li ng-class="{true:'', false:'disabled'}[ShowRobots()]"><a show-tab>Robots</a></li>
+              <li ng-class="{true:'', false:'disabled'}[ShowSitemaps()]"><a show-tab>Sitemap</a></li>
+              <li class="disabled"><a show-tab>Pages</a></li>
+              <li class="disabled"><a show-tab>Images</a></li>
+              <li class="disabled"><a show-tab>Links</a></li>
             </ul>
           </div>
         </div>
@@ -64,7 +64,6 @@
     <script src="../resources/js/vendor/bootstrap.min.js"></script>
     <script src="../resources/js/vendor/angular.min.js"></script>
     <script src="../resources/js/vendor/angular-route.min.js"></script>
-    <script src="../resources/js/functions.js"></script>
     <script src="../resources/js/app.js"></script>
   </body>
 </html>

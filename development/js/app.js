@@ -19,10 +19,21 @@
       }
     };
   });
+  
+  app.directive('showTab', function () {
+    return {
+      link: function (scope, element, attrs) {
+        element.click(function(e) {
+          e.preventDefault();
+          $(element).tab('show');
+        });
+      }
+    };
+  });
 
 
 
-  app.controller('CrawlerController', function($scope,urlData){
+  app.controller('CrawlerController', function($scope,urlData,showTab){
     // console.log('CrawlerController load');
     
     this.website = web;
