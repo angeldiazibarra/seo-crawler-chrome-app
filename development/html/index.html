@@ -11,16 +11,18 @@
     <header></header>
     <section>
       <div class="container">
-        <div class="row mtop">
-          <div class="col-xs-12">
-            <ul role="tablist" class="nav nav-tabs nav-justified">
-              <li id="home" class="active"><a show-tab>Home</a></li>
-              <li id="robots" ng-class="{true:'', false:'disabled'}[ShowRobots()]"><a show-tab>Robots</a></li>
-              <li id="sitemap" ng-class="{true:'', false:'disabled'}[ShowSitemaps()]"><a show-tab>Sitemap</a></li>
-              <li id="pages" class="disabled"><a show-tab>Pages</a></li>
-              <li id="images" class="disabled"><a show-tab>Images</a></li>
-              <li id="links" class="disabled"><a show-tab>Links</a></li>
-            </ul>
+        <div id="header">
+          <div class="row mtop">
+            <div class="col-xs-12">
+              <ul role="tablist" class="nav nav-tabs nav-justified">
+                <li id="home" class="active"><a show-tab>Home</a></li>
+                <li id="robots" ng-class="{true:'', false:'disabled'}[ShowRobots()]"><a show-tab>Robots</a></li>
+                <li id="sitemap" ng-class="{true:'', false:'disabled'}[ShowSitemaps()]"><a show-tab>Sitemap</a></li>
+                <li id="pages" class="disabled"><a show-tab>Pages</a></li>
+                <li id="images" class="disabled"><a show-tab>Images</a></li>
+                <li id="links" class="disabled"><a show-tab>Links</a></li>
+              </ul>
+            </div>
           </div>
         </div>
         <div id="hometab" style="display:block" class="navtabs">

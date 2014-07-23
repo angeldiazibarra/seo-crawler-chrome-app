@@ -7,21 +7,22 @@ html(data-ng-app="myCrawler" data-ng-csp="")
     header
     section
       .container
-        .row.mtop
-          .col-xs-12
-            ul.nav.nav-tabs.nav-justified(role="tablist")
-              li#home.active
-                a(show-tab) Home
-              li#robots(ng-class="{true:'', false:'disabled'}[ShowRobots()]")
-                a(show-tab) Robots
-              li#sitemap(ng-class="{true:'', false:'disabled'}[ShowSitemaps()]")
-                a(show-tab) Sitemap
-              li#pages.disabled
-                a(show-tab) Pages
-              li#images.disabled
-                a(show-tab) Images
-              li#links.disabled
-                a(show-tab) Links
+        #header
+          .row.mtop
+            .col-xs-12
+              ul.nav.nav-tabs.nav-justified(role="tablist")
+                li#home.active
+                  a(show-tab) Home
+                li#robots(ng-class="{true:'', false:'disabled'}[ShowRobots()]")
+                  a(show-tab) Robots
+                li#sitemap(ng-class="{true:'', false:'disabled'}[ShowSitemaps()]")
+                  a(show-tab) Sitemap
+                li#pages.disabled
+                  a(show-tab) Pages
+                li#images.disabled
+                  a(show-tab) Images
+                li#links.disabled
+                  a(show-tab) Links
         #hometab.navtabs(style="display:block")
           .row.mtop
             .col-xs-12.col-md-6.col-md-offset-3
