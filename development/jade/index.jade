@@ -9,56 +9,59 @@ html(data-ng-app="myCrawler" data-ng-csp="")
       .container
         .row.mtop
           .col-xs-12
-            ul#navTab.nav.nav-tabs.nav-justified(role="tablist")
-              li.active
+            ul.nav.nav-tabs.nav-justified(role="tablist")
+              li#home.active
                 a(show-tab) Home
-              li(ng-class="{true:'', false:'disabled'}[ShowRobots()]")
+              li#robots(ng-class="{true:'', false:'disabled'}[ShowRobots()]")
                 a(show-tab) Robots
-              li(ng-class="{true:'', false:'disabled'}[ShowSitemaps()]")
+              li#sitemap(ng-class="{true:'', false:'disabled'}[ShowSitemaps()]")
                 a(show-tab) Sitemap
-              li.disabled
+              li#pages.disabled
                 a(show-tab) Pages
-              li.disabled
+              li#images.disabled
                 a(show-tab) Images
-              li.disabled
+              li#links.disabled
                 a(show-tab) Links
-        .row.mtop
-          .col-xs-12.col-md-6.col-md-offset-3
-            .input-group
-              span.input-group-btn
-                button(type="button",disabled)#protocol.btn.btn-default.dropdown-toggle {{crawl.website.protocol}}
-                button(type="button",data-toggle="dropdown").btn.btn-default.dropdown-toggle
-                  span.caret
-                  span.sr-only Toggle Dropdown
-                ul(role="menu").dropdown-menu
-                  li
-                    a(ng-click="SelectProtocol('http://')").protocol-select http://
-                  li
-                    a(ng-click="SelectProtocol('https://')").protocol-select https://
-              input(type="text",placeholder="www.example.com",ng-model="crawl.website.hostname",ng-keyup="CheckUrl()").form-control
-              span.input-group-btn
-                button(type="button",ng-disabled="crawl.website.invalidurl",ng-class="{'disabled': crawl.website.invalidurl}",ng-click="DoCrawl()").btn.btn-default.btn-primary Analizar      
-        .row.mtop(ng-show="ShowRobots()")
-          .col-xs-12
-            p {{crawl.website.robotsurl}}
-        .row(ng-show="ShowRobots()")
-          .col-xs-12
-            pre
-              span(ng-repeat="value in crawl.website.robotstxt track by $index",ng-class="CodeComment(value)").nomar {{value}}
-                span(ng-show=" ! $last ")
-                  br
-        .row.mtop(ng-show="ShowSitemaps()")
-          .col-xs-12
-            p
-              span(ng-repeat="value in crawl.website.sitemaps track by $index").nomar {{value}}
-                span(ng-show=" ! $last ")
-                  br
-        .row(ng-show="ShowSitemaps()")
-          .col-xs-12
-            pre
-              span(ng-repeat="value in crawl.website.urls track by $index").nomar {{value}}
-                span(ng-show=" ! $last ")
-                  br
+        #hometab.navtabs(style="display:block")
+          .row.mtop
+            .col-xs-12.col-md-6.col-md-offset-3
+              .input-group
+                span.input-group-btn
+                  button(type="button",disabled)#protocol.btn.btn-default.dropdown-toggle {{crawl.website.protocol}}
+                  button(type="button",data-toggle="dropdown").btn.btn-default.dropdown-toggle
+                    span.caret
+                    span.sr-only Toggle Dropdown
+                  ul(role="menu").dropdown-menu
+                    li
+                      a(ng-click="SelectProtocol('http://')").protocol-select http://
+                    li
+                      a(ng-click="SelectProtocol('https://')").protocol-select https://
+                input(type="text",placeholder="www.example.com",ng-model="crawl.website.hostname",ng-keyup="CheckUrl()").form-control
+                span.input-group-btn
+                  button(type="button",ng-disabled="crawl.website.invalidurl",ng-class="{'disabled': crawl.website.invalidurl}",ng-click="DoCrawl()").btn.btn-default.btn-primary Analizar      
+        #robotstab.navtabs
+          .row.mtop(ng-if="ShowRobots()")
+            .col-xs-12
+              p {{crawl.website.robotsurl}}
+          .row(ng-if="ShowRobots()")
+            .col-xs-12
+              pre
+                span(ng-repeat="value in crawl.website.robotstxt track by $index",ng-class="CodeComment(value)").nomar {{value}}
+                  span(ng-show=" ! $last ")
+                    br
+        #sitemaptab.navtabs
+          .row.mtop(ng-if="ShowSitemaps()")
+            .col-xs-12
+              p
+                span(ng-repeat="value in crawl.website.sitemaps track by $index").nomar {{value}}
+                  span(ng-show=" ! $last ")
+                    br
+          .row(ng-if="ShowSitemaps()")
+            .col-xs-12
+              pre
+                span(ng-repeat="value in crawl.website.urls track by $index").nomar {{value}}
+                  span(ng-show=" ! $last ")
+                    br
 
     footer
     

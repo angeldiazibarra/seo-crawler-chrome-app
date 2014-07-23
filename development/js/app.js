@@ -27,6 +27,10 @@
           e.preventDefault();
           if(!element.parent().hasClass('disabled')){
             $(element).tab('show');
+            tab = element.parent().attr('id');
+            var tabid = '#'+tab+'tab';
+            $('.navtabs').hide();
+            $(tabid).show();
           }
         });
       }
@@ -39,6 +43,7 @@
     // console.log('CrawlerController load');
     
     this.website = web;
+    this.navtab = tab;
     
     $scope.CheckUrl = function(){
       var checkUrl = web.hostname;
@@ -172,6 +177,8 @@
     },true);
     
   });
+  
+  var tab = 'home';
   
   var web = {
       hostname: null,
