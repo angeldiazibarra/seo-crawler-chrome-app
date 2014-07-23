@@ -12,9 +12,9 @@ html(data-ng-app="myCrawler" data-ng-csp="")
             ul.nav.nav-tabs.nav-justified(role="tablist")
               li.active
                 a Inicio
-              li.disabled
+              li(ng-class="{true:'', false:'disabled'}[ShowRobots()]")
                 a Robots
-              li.disabled
+              li(ng-class="{true:'', false:'disabled'}[ShowSitemaps()]")
                 a Sitemap
               li.disabled
                 a Pages

@@ -15,8 +15,8 @@
           <div class="col-xs-12">
             <ul role="tablist" class="nav nav-tabs nav-justified">
               <li class="active"><a>Inicio</a></li>
-              <li class="disabled"><a>Robots</a></li>
-              <li class="disabled"><a>Sitemap</a></li>
+              <li ng-class="{true:'', false:'disabled'}[ShowRobots()]"><a>Robots</a></li>
+              <li ng-class="{true:'', false:'disabled'}[ShowSitemaps()]"><a>Sitemap</a></li>
               <li class="disabled"><a>Pages</a></li>
               <li class="disabled"><a>Images</a></li>
               <li class="disabled"><a>Links</a></li>
