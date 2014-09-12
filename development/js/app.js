@@ -156,6 +156,8 @@
       // console.log(web);
       web.urls = [];
       web.sitemaps = [];
+      web.processed = [];
+      web.pages = [];
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
