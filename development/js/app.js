@@ -92,8 +92,8 @@
     };
     
     $scope.ShowPages = function(){
-      web.urls = $scope.ArrayUnique(web.urls);
-      if(web.urls.length === 0){
+      web.pages = $scope.ArrayUnique(web.pages);
+      if(web.pages.length === 0){
         return('false');
       }else{
         return('true');
@@ -181,10 +181,30 @@
       });
     };
     
+    $scope.IsInArray = function(value, array){
+      return array.indexOf(value) > -1;
+    };
+    
     $scope.$watch("web",function(n,o) {
-      console.log(web.sitemaps);
+      // console.log(web.sitemaps);
     },true);
     
+    setInterval(function(){
+      web.urls = $scope.ArrayUnique(web.urls);
+      if(web.urls.length !== 0){
+        web.urls.forEach(function(url){
+          if(!$scope.IsInArray(url,web.processed)){
+            web.processed.push(url); 
+            // console.log(web.processed.length);
+            var crawlurl = 'http://www.metricspot.com/api/crawlurl?url='+url;
+            urlData.getData(crawlurl).then(function(data){
+                web.pages.push(data); 
+            });
+          }
+        });
+      }
+    }, 1000);
+      
   });
   
   var tab = 'home';
@@ -196,7 +216,9 @@
       robotsurl: null,
       robotstxt: null,
       sitemaps: [],
-      urls: []
+      urls: [],
+      processed: [],
+      pages: []
   };
-  
+    
 })();

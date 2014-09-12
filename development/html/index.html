@@ -78,7 +78,7 @@
         <div id="pagestab" class="navtabs">
           <div ng-if="ShowPages()" class="row mtop">
             <div class="col-xs-12">
-              <pre ng-repeat="value in crawl.website.urls track by $index">{{value}}                </pre>
+              <pre ng-repeat="value in crawl.website.pages track by $index"><span>URL: {{value.url}}       </span><br><span>Canonical: {{value.canonical}}         </span><br><span>Author: {{value.author}}               </span><br><span>Publisher: {{value.publisher}}               </span><br><span>Encoding: {{value.encoding}}               </span><br><span>Language: {{value.language}}               </span><br><span>Title: {{value.title}}               </span><br><span>Description: {{value.metadescription}}               </span><br><span>Description Count: {{value.descriptioncount}}               </span><br><span>Headers H1: {{value.headers.h1}}               </span><br><span>Headers H2: {{value.headers.h2}}               </span><br><span>Headers H3, H4 & H5: {{value.headers.h345}}               </span></pre>
             </div>
           </div>
         </div>
