@@ -75,30 +75,34 @@ html(data-ng-app="myCrawler" data-ng-csp="")
         #pagestab.navtabs
           .row.mtop(ng-if="ShowPages()")
             .col-xs-12
-              pre(ng-repeat="value in crawl.website.pages track by $index")
-                span URL: {{value.url}}       
-                br
-                span Canonical: {{value.canonical}}         
-                br
-                span Author: {{value.author}}               
-                br
-                span Publisher: {{value.publisher}}               
-                br
-                span Encoding: {{value.encoding}}               
-                br
-                span Language: {{value.language}}               
-                br
-                span Title: {{value.title}}               
-                br
-                span Description: {{value.metadescription}}               
-                br
-                span Description Count: {{value.descriptioncount}}               
-                br
-                span Headers H1: {{value.headers.h1}}               
-                br
-                span Headers H2: {{value.headers.h2}}               
-                br
-                span Headers H3, H4 & H5: {{value.headers.h345}}               
+              .row.pagesunit(ng-repeat="value in crawl.website.pages track by $index")
+                .col-xs-12.col-md-6
+                  .serpdata
+                    a.serptit(href="{{value.url}}") {{value.title}}
+                    br
+                    span.serpurl {{value.url}}       
+                    br
+                    span.serpdesc {{value.metadescription}}               
+                    br
+                  br
+                .col-xs-12
+                  span Canonical: {{value.canonical}}         
+                  br
+                  span Author: {{value.author}}               
+                  br
+                  span Publisher: {{value.publisher}}               
+                  br
+                  span Encoding: {{value.encoding}}               
+                  br
+                  span Language: {{value.language}}               
+                  br
+                  span Description Count: {{value.descriptioncount}}               
+                  br
+                  span Headers H1: {{value.headers.h1}}               
+                  br
+                  span Headers H2: {{value.headers.h2}}               
+                  br
+                  span Headers H3, H4 & H5: {{value.headers.h345}}               
     footer
     
     script(src="../resources/js/vendor/jquery.min.js")
