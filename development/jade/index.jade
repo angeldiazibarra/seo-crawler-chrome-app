@@ -17,7 +17,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                   a(show-tab) Robots
                 li#sitemap(ng-class="{true:'', false:'disabled'}[ShowSitemaps()]")
                   a(show-tab) Sitemap
-                li#pages.disabled
+                li#pages(ng-class="{true:'', false:'disabled'}[ShowPages()]")
                   a(show-tab) Pages
                 li#images.disabled
                   a(show-tab) Images
@@ -67,6 +67,13 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                   span(ng-show=" ! $last ")
                     br
           .row(ng-if="ShowSitemaps()")
+            .col-xs-12
+              pre
+                span(ng-repeat="value in crawl.website.urls track by $index").nomar {{value}}
+                  span(ng-show=" ! $last ")
+                    br
+        #pagestab.navtabs
+          .row.mtop(ng-if="ShowPages()")
             .col-xs-12
               pre
                 span(ng-repeat="value in crawl.website.urls track by $index").nomar {{value}}

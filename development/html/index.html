@@ -18,7 +18,7 @@
                 <li id="home" class="active"><a show-tab>Home</a></li>
                 <li id="robots" ng-class="{true:'', false:'disabled'}[ShowRobots()]"><a show-tab>Robots</a></li>
                 <li id="sitemap" ng-class="{true:'', false:'disabled'}[ShowSitemaps()]"><a show-tab>Sitemap</a></li>
-                <li id="pages" class="disabled"><a show-tab>Pages</a></li>
+                <li id="pages" ng-class="{true:'', false:'disabled'}[ShowPages()]"><a show-tab>Pages</a></li>
                 <li id="images" class="disabled"><a show-tab>Images</a></li>
                 <li id="links" class="disabled"><a show-tab>Links</a></li>
               </ul>
@@ -70,6 +70,13 @@
             </div>
           </div>
           <div ng-if="ShowSitemaps()" class="row">
+            <div class="col-xs-12">
+              <pre><span ng-repeat="value in crawl.website.urls track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
+            </div>
+          </div>
+        </div>
+        <div id="pagestab" class="navtabs">
+          <div ng-if="ShowPages()" class="row mtop">
             <div class="col-xs-12">
               <pre><span ng-repeat="value in crawl.website.urls track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
             </div>

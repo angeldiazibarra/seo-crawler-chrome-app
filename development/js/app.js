@@ -91,6 +91,15 @@
       }
     };
     
+    $scope.ShowPages = function(){
+      web.urls = $scope.ArrayUnique(web.urls);
+      if(web.urls.length === 0){
+        return('false');
+      }else{
+        return('true');
+      }
+    };
+    
     $scope.ArrayUnique = function(a) {
       return a.reduce(function(p, c) {
         if (p.indexOf(c) < 0) p.push(c);
