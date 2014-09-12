@@ -78,7 +78,7 @@
         <div id="pagestab" class="navtabs">
           <div ng-if="ShowPages()" class="row mtop">
             <div class="col-xs-12">
-              <pre><span ng-repeat="value in crawl.website.urls track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
+              <pre ng-repeat="value in crawl.website.urls track by $index">{{value}}                </pre>
             </div>
           </div>
         </div>

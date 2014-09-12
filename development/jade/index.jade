@@ -75,10 +75,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
         #pagestab.navtabs
           .row.mtop(ng-if="ShowPages()")
             .col-xs-12
-              pre
-                span(ng-repeat="value in crawl.website.urls track by $index").nomar {{value}}
-                  span(ng-show=" ! $last ")
-                    br
+              pre(ng-repeat="value in crawl.website.urls track by $index") {{value}}                
 
     footer
     
