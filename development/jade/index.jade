@@ -78,7 +78,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               .row.pagesunit(ng-repeat="value in crawl.website.pages track by $index")
                 .col-xs-12.col-md-6
                   .serpdata
-                    a.serptit(href="{{value.url}}") {{value.title}}
+                    a.serptit(href="{{value.url}}",target="_blank") {{value.title}}
                     br
                     span.serpurl {{value.url}}       
                     br
