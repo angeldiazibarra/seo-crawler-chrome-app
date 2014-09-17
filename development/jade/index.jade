@@ -90,37 +90,35 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                   b Title:
                 .col-xs-8.col-md-10
                   p 
-                    span {{value.title.length}} characters
-                    br(ng-show="value.titlemessage !== false")
-                    span(ng-show="value.titlemessage !== false") {{value.titlemessage}}
+                    span(ng-show="value.title !== false") {{value.title.length}} characters
+                    br(ng-show="value.titlemessage !== false && value.title !== false")
+                    span.errormessage(ng-show="value.titlemessage !== false") {{value.titlemessage}}
                 .col-xs-4.col-md-2
                   b Description:
                 .col-xs-8.col-md-10
                   p 
-                    span {{value.metadescription.length}} characters
-                    br(ng-show="value.descriptionmessage !== false")
-                    span(ng-show="value.descriptionmessage !== false") {{value.descriptionmessage}}
+                    span(ng-show="value.metadescription !== false") {{value.metadescription.length}} characters
+                    br(ng-show="value.descriptionmessage !== false && value.metadescription !== false")
+                    span.errormessage(ng-show="value.descriptionmessage !== false") {{value.descriptionmessage}}
                 .col-xs-4.col-md-2
                   b Canonical:          
                 .col-xs-8.col-md-10
                   p 
-                    span {{value.canonical}}
-                    br(ng-show="value.canonicalmessage !== false")
-                    span(ng-show="value.canonicalmessage !== false") {{value.canonicalmessage}}
+                    span(ng-show="value.canonical !== false") {{value.canonical}}
+                    br(ng-show="value.canonicalmessage !== false && value.canonical !== false")
+                    span.errormessage(ng-show="value.canonicalmessage !== false") {{value.canonicalmessage}}
                 .col-xs-4.col-md-2
                   b Author:         
                 .col-xs-8.col-md-10
                   p 
-                    span {{value.author}}
-                    br(ng-show="value.authormessage !== false")
-                    span(ng-show="value.authormessage !== false") {{value.authormessage}}  
+                    span(ng-show="value.author !== false") {{value.author}}
+                    span.errormessage(ng-show="value.authormessage !== false") {{value.authormessage}}  
                 .col-xs-4.col-md-2
                   b Publisher:         
                 .col-xs-8.col-md-10
                   p 
-                    span {{value.publisher}}
-                    br(ng-show="value.publishermessage !== false")
-                    span(ng-show="value.publishermessage !== false") {{value.publishermessage}}     
+                    span(ng-show="value.publisher !== false") {{value.publisher}}
+                    span.errormessage(ng-show="value.publishermessage !== false") {{value.publishermessage}}     
                 .col-xs-4.col-md-2
                   b Encoding:         
                 .col-xs-8.col-md-10

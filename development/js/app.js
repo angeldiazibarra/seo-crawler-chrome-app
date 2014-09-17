@@ -203,6 +203,7 @@
                 data.displayurl = data.url.replace(/^http:\/\//i, "");
                 
                 if(data.title.length === 0 || data.title === false){
+                    data.title = false;
                     data.titlemessage = 'ERROR - Not set';
                 }else if(data.title.length > 70){
                     data.titlemessage = 'ERROR - Too long';
@@ -211,6 +212,7 @@
                 }
                 
                 if(data.metadescription.length === 0 || data.metadescription === false){
+                    data.metadescription = false;
                     data.descriptionmessage = 'ERROR - Not set';
                 }else if(data.metadescription.length > 155){
                     data.descriptionmessage = 'ERROR - Too long';
@@ -222,10 +224,12 @@
                     data.descriptionmessage = false;
                 }
                                 
-                if(data.url === data.canonical && data.title !== false){
+                if(data.url === data.canonical && data.canonical !== false){
                     data.canonicalmessage = false;
+                }else if(data.url !== data.canonical && data.canonical !== false){
+                    data.canonicalmessage = 'ERROR - URL and canonical do not match';
                 }else{
-                    data.canonicalmessage = 'ERROR';
+                    data.canonicalmessage = 'ERROR - Canonical not set';
                 }
                                 
                 if(data.author !== false){
