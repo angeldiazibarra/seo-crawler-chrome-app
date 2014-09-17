@@ -201,7 +201,7 @@
             var crawlurl = 'http://www.metricspot.com/api/crawlurl?url='+url;
             urlData.getData(crawlurl).then(function(data){
                 data.displayurl = data.url.replace(/^http:\/\//i, "");
-                console.log(data.displayurl);
+                // console.log(data.displayurl);
                 web.pages.push(data); 
             });
           }

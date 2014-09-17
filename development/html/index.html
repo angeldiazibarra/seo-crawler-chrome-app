@@ -77,12 +77,67 @@
         </div>
         <div id="pagestab" class="navtabs">
           <div ng-if="ShowPages()" class="row mtop">
-            <div class="col-xs-12">
-              <div ng-repeat="value in crawl.website.pages track by $index" class="row pagesunit">
+            <div ng-repeat="value in crawl.website.pages track by $index" class="col-xs-12 pagesunit">
+              <div class="row">
                 <div class="col-xs-12 col-md-6">
                   <div class="serpdata"><a href="{{value.url}}" target="_blank" class="serptit">{{value.title}}</a><br><span class="serpurl">{{value.displayurl}}       </span><br><span class="serpdesc">{{value.metadescription}}               </span><br></div><br>
                 </div>
-                <div class="col-xs-12"><span>Canonical: {{value.canonical}}         </span><br><span>Author: {{value.author}}               </span><br><span>Publisher: {{value.publisher}}               </span><br><span>Encoding: {{value.encoding}}               </span><br><span>Language: {{value.language}}               </span><br><span>Description Count: {{value.descriptioncount}}               </span><br><span>Headers H1: {{value.headers.h1}}               </span><br><span>Headers H2: {{value.headers.h2}}               </span><br><span>Headers H3, H4 & H5: {{value.headers.h345}}               </span></div>
+              </div>
+              <div class="row">
+                <div class="col-xs-4 col-md-2">
+                  <p>Canonical:          </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p>{{value.canonical}}</p>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                  <p>Author:         </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p>{{value.author}}    </p>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                  <p>Publisher:         </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p>{{value.publisher}}       </p>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                  <p>Encoding:         </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p>{{value.encoding}}          </p>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                  <p>Language:         </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p>{{value.language}}          </p>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                  <p>Desc. Count:         </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p>{{value.descriptioncount}}               </p>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                  <p>H1:         </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p><span ng-show="!value.headers.h1.length">-</span><span ng-repeat="value in value.headers.h1 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                  <p>H2:         </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p><span ng-show="!value.headers.h2.length">-</span><span ng-repeat="value in value.headers.h2 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
+                </div>
+                <div class="col-xs-4 col-md-2">
+                  <p>H3, H4 & H5:         </p>
+                </div>
+                <div class="col-xs-8 col-md-10">
+                  <p><span ng-show="!value.headers.h345.length">-</span><span ng-repeat="value in value.headers.h345 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
+                </div>
               </div>
             </div>
           </div>

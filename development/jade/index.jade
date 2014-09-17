@@ -74,8 +74,8 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     br
         #pagestab.navtabs
           .row.mtop(ng-if="ShowPages()")
-            .col-xs-12
-              .row.pagesunit(ng-repeat="value in crawl.website.pages track by $index")
+            .col-xs-12.pagesunit(ng-repeat="value in crawl.website.pages track by $index")
+              .row
                 .col-xs-12.col-md-6
                   .serpdata
                     a.serptit(href="{{value.url}}",target="_blank") {{value.title}}
@@ -85,24 +85,52 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     span.serpdesc {{value.metadescription}}               
                     br
                   br
-                .col-xs-12
-                  span Canonical: {{value.canonical}}         
-                  br
-                  span Author: {{value.author}}               
-                  br
-                  span Publisher: {{value.publisher}}               
-                  br
-                  span Encoding: {{value.encoding}}               
-                  br
-                  span Language: {{value.language}}               
-                  br
-                  span Description Count: {{value.descriptioncount}}               
-                  br
-                  span Headers H1: {{value.headers.h1}}               
-                  br
-                  span Headers H2: {{value.headers.h2}}               
-                  br
-                  span Headers H3, H4 & H5: {{value.headers.h345}}               
+              .row
+                .col-xs-4.col-md-2
+                  p Canonical:          
+                .col-xs-8.col-md-10
+                  p {{value.canonical}}
+                .col-xs-4.col-md-2
+                  p Author:         
+                .col-xs-8.col-md-10
+                  p {{value.author}}    
+                .col-xs-4.col-md-2
+                  p Publisher:         
+                .col-xs-8.col-md-10
+                  p {{value.publisher}}       
+                .col-xs-4.col-md-2
+                  p Encoding:         
+                .col-xs-8.col-md-10
+                  p {{value.encoding}}          
+                .col-xs-4.col-md-2
+                  p Language:         
+                .col-xs-8.col-md-10
+                  p {{value.language}}          
+                .col-xs-4.col-md-2
+                  p Desc. Count:         
+                .col-xs-8.col-md-10
+                  p {{value.descriptioncount}}               
+                .col-xs-4.col-md-2
+                  p H1:         
+                .col-xs-8.col-md-10
+                  p
+                    span(ng-show="!value.headers.h1.length") -
+                    span(ng-repeat="value in value.headers.h1 track by $index") {{value}}
+                      br(ng-show=" ! $last ")
+                .col-xs-4.col-md-2
+                  p H2:         
+                .col-xs-8.col-md-10
+                  p
+                    span(ng-show="!value.headers.h2.length") -
+                    span(ng-repeat="value in value.headers.h2 track by $index") {{value}}
+                      br(ng-show=" ! $last ")
+                .col-xs-4.col-md-2
+                  p H3, H4 & H5:         
+                .col-xs-8.col-md-10
+                  p
+                    span(ng-show="!value.headers.h345.length") -
+                    span(ng-repeat="value in value.headers.h345 track by $index") {{value}}
+                      br(ng-show=" ! $last ")
     footer
     
     script(src="../resources/js/vendor/jquery.min.js")
