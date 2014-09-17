@@ -84,57 +84,47 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-4 col-md-2">
-                  <p>Canonical:          </p>
-                </div>
+                <div class="col-xs-4 col-md-2"><b>Title:</b></div>
                 <div class="col-xs-8 col-md-10">
-                  <p>{{value.canonical}}</p>
+                  <p><span>{{value.title.length}} characters</span><br ng-show="value.titlemessage !== false"><span ng-show="value.titlemessage !== false">{{value.titlemessage}}</span></p>
                 </div>
-                <div class="col-xs-4 col-md-2">
-                  <p>Author:         </p>
-                </div>
+                <div class="col-xs-4 col-md-2"><b>Description:</b></div>
                 <div class="col-xs-8 col-md-10">
-                  <p>{{value.author}}    </p>
+                  <p><span>{{value.metadescription.length}} characters</span><br ng-show="value.descriptionmessage !== false"><span ng-show="value.descriptionmessage !== false">{{value.descriptionmessage}}</span></p>
                 </div>
-                <div class="col-xs-4 col-md-2">
-                  <p>Publisher:         </p>
-                </div>
+                <div class="col-xs-4 col-md-2"><b>Canonical:          </b></div>
                 <div class="col-xs-8 col-md-10">
-                  <p>{{value.publisher}}       </p>
+                  <p><span>{{value.canonical}}</span><br ng-show="value.canonicalmessage !== false"><span ng-show="value.canonicalmessage !== false">{{value.canonicalmessage}}</span></p>
                 </div>
-                <div class="col-xs-4 col-md-2">
-                  <p>Encoding:         </p>
+                <div class="col-xs-4 col-md-2"><b>Author:         </b></div>
+                <div class="col-xs-8 col-md-10">
+                  <p><span>{{value.author}}</span><br ng-show="value.authormessage !== false"><span ng-show="value.authormessage !== false">{{value.authormessage}}  </span></p>
                 </div>
+                <div class="col-xs-4 col-md-2"><b>Publisher:         </b></div>
+                <div class="col-xs-8 col-md-10">
+                  <p><span>{{value.publisher}}</span><br ng-show="value.publishermessage !== false"><span ng-show="value.publishermessage !== false">{{value.publishermessage}}     </span></p>
+                </div>
+                <div class="col-xs-4 col-md-2"><b>Encoding:         </b></div>
                 <div class="col-xs-8 col-md-10">
                   <p>{{value.encoding}}          </p>
                 </div>
-                <div class="col-xs-4 col-md-2">
-                  <p>Language:         </p>
-                </div>
+                <div class="col-xs-4 col-md-2"><b>Language:         </b></div>
                 <div class="col-xs-8 col-md-10">
                   <p>{{value.language}}          </p>
                 </div>
-                <div class="col-xs-4 col-md-2">
-                  <p>Desc. Count:         </p>
-                </div>
+                <div class="col-xs-4 col-md-2"><b>Desc. Count:         </b></div>
                 <div class="col-xs-8 col-md-10">
                   <p>{{value.descriptioncount}}               </p>
                 </div>
-                <div class="col-xs-4 col-md-2">
-                  <p>H1:         </p>
-                </div>
+                <div class="col-xs-4 col-md-2"><b>H1:         </b></div>
                 <div class="col-xs-8 col-md-10">
                   <p><span ng-show="!value.headers.h1.length">-</span><span ng-repeat="value in value.headers.h1 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
                 </div>
-                <div class="col-xs-4 col-md-2">
-                  <p>H2:         </p>
-                </div>
+                <div class="col-xs-4 col-md-2"><b>H2:         </b></div>
                 <div class="col-xs-8 col-md-10">
                   <p><span ng-show="!value.headers.h2.length">-</span><span ng-repeat="value in value.headers.h2 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
                 </div>
-                <div class="col-xs-4 col-md-2">
-                  <p>H3, H4 & H5:         </p>
-                </div>
+                <div class="col-xs-4 col-md-2"><b>H3, H4 & H5:         </b></div>
                 <div class="col-xs-8 col-md-10">
                   <p><span ng-show="!value.headers.h345.length">-</span><span ng-repeat="value in value.headers.h345 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
                 </div>

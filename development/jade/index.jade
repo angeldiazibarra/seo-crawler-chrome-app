@@ -87,45 +87,68 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                   br
               .row
                 .col-xs-4.col-md-2
-                  p Canonical:          
+                  b Title:
                 .col-xs-8.col-md-10
-                  p {{value.canonical}}
+                  p 
+                    span {{value.title.length}} characters
+                    br(ng-show="value.titlemessage !== false")
+                    span(ng-show="value.titlemessage !== false") {{value.titlemessage}}
                 .col-xs-4.col-md-2
-                  p Author:         
+                  b Description:
                 .col-xs-8.col-md-10
-                  p {{value.author}}    
+                  p 
+                    span {{value.metadescription.length}} characters
+                    br(ng-show="value.descriptionmessage !== false")
+                    span(ng-show="value.descriptionmessage !== false") {{value.descriptionmessage}}
                 .col-xs-4.col-md-2
-                  p Publisher:         
+                  b Canonical:          
                 .col-xs-8.col-md-10
-                  p {{value.publisher}}       
+                  p 
+                    span {{value.canonical}}
+                    br(ng-show="value.canonicalmessage !== false")
+                    span(ng-show="value.canonicalmessage !== false") {{value.canonicalmessage}}
                 .col-xs-4.col-md-2
-                  p Encoding:         
+                  b Author:         
+                .col-xs-8.col-md-10
+                  p 
+                    span {{value.author}}
+                    br(ng-show="value.authormessage !== false")
+                    span(ng-show="value.authormessage !== false") {{value.authormessage}}  
+                .col-xs-4.col-md-2
+                  b Publisher:         
+                .col-xs-8.col-md-10
+                  p 
+                    span {{value.publisher}}
+                    br(ng-show="value.publishermessage !== false")
+                    span(ng-show="value.publishermessage !== false") {{value.publishermessage}}     
+                .col-xs-4.col-md-2
+                  b Encoding:         
                 .col-xs-8.col-md-10
                   p {{value.encoding}}          
                 .col-xs-4.col-md-2
-                  p Language:         
+                  b Language:         
                 .col-xs-8.col-md-10
                   p {{value.language}}          
                 .col-xs-4.col-md-2
-                  p Desc. Count:         
+                  b Desc. Count:         
                 .col-xs-8.col-md-10
                   p {{value.descriptioncount}}               
                 .col-xs-4.col-md-2
-                  p H1:         
+                  b H1:         
                 .col-xs-8.col-md-10
                   p
                     span(ng-show="!value.headers.h1.length") -
                     span(ng-repeat="value in value.headers.h1 track by $index") {{value}}
                       br(ng-show=" ! $last ")
                 .col-xs-4.col-md-2
-                  p H2:         
+                  b H2:         
                 .col-xs-8.col-md-10
                   p
                     span(ng-show="!value.headers.h2.length") -
                     span(ng-repeat="value in value.headers.h2 track by $index") {{value}}
                       br(ng-show=" ! $last ")
                 .col-xs-4.col-md-2
-                  p H3, H4 & H5:         
+                  b H3, H4 & H5:         
                 .col-xs-8.col-md-10
                   p
                     span(ng-show="!value.headers.h345.length") -

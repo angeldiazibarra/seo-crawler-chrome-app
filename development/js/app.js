@@ -201,6 +201,45 @@
             var crawlurl = 'http://www.metricspot.com/api/crawlurl?url='+url;
             urlData.getData(crawlurl).then(function(data){
                 data.displayurl = data.url.replace(/^http:\/\//i, "");
+                
+                if(data.title.length === 0 || data.title === false){
+                    data.titlemessage = 'ERROR - Not set';
+                }else if(data.title.length > 70){
+                    data.titlemessage = 'ERROR - Too long';
+                }else{
+                    data.titlemessage = false;
+                }
+                
+                if(data.metadescription.length === 0 || data.metadescription === false){
+                    data.descriptionmessage = 'ERROR - Not set';
+                }else if(data.metadescription.length > 155){
+                    data.descriptionmessage = 'ERROR - Too long';
+                }else if(data.metadescription.length < 70){
+                    data.descriptionmessage = 'ERROR - Too short';
+                }else if(data.metadescription.length > 145 && data.metadescription.length < 156){
+                    data.descriptionmessage = 'WARNING - Possibly cut';
+                }else{
+                    data.descriptionmessage = false;
+                }
+                                
+                if(data.url === data.canonical && data.title !== false){
+                    data.canonicalmessage = false;
+                }else{
+                    data.canonicalmessage = 'ERROR';
+                }
+                                
+                if(data.author !== false){
+                    data.authormessage = false;
+                }else{
+                    data.authormessage = 'WARNING - Google+ authorship not set';
+                }
+                                
+                if(data.publisher !== false){
+                    data.publishermessage = false;
+                }else{
+                    data.publishermessage = 'WARNING - Google+ publisher not set';
+                }
+                
                 // console.log(data.displayurl);
                 web.pages.push(data); 
             });
