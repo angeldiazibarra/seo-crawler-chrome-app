@@ -73,7 +73,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
           .row(ng-if="ShowSitemaps()")
             .col-xs-12
               pre
-                span(ng-repeat="value in crawl.website.urls track by $index").nomar {{value}}
+                span(ng-repeat="value in crawl.website.mapurls track by $index").nomar {{value}}
                   span(ng-show=" ! $last ")
                     br
         #pagestab.navtabs

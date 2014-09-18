@@ -140,6 +140,7 @@
             }else{
               if(web.urls.indexOf(unit) === -1){
                 web.urls.push(unit);
+                web.mapurls.push(unit);
               }
             }
         }
@@ -148,6 +149,7 @@
             var unit = item.replace(/\<\/?link\>/gi,'').trim();
             if(web.urls.indexOf(unit) === -1){
               web.urls.push(unit);
+              web.mapurls.push(unit);
             }
         }
     };
@@ -169,6 +171,7 @@
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
       web.robotsurl = robotsUrl;
       web.sitemaps.push(sitemapUrl);
+      web.urls.push(url); 
       
       urlData.getData(robotsUrl).then(function(data){
         $scope.parseRobots(data);
@@ -199,13 +202,14 @@
     
     setInterval(function(){
       web.urls = $scope.ArrayUnique(web.urls);
-      if(web.urls.length !== 0){
+      if(web.urls.length !== 0 && web.processed.length <= 100){    
+        // console.log(web.urls.length + ' ' + web.processed.length);           
         web.urls.forEach(function(url){
           if(!$scope.IsInArray(url,web.processed)){
             web.processed.push(url); 
-            // console.log(web.processed.length);
             var crawlurl = 'http://www.metricspot.com/api/crawlurl?url='+url;
             urlData.getData(crawlurl).then(function(data){
+                web.processed.push(data.url); 
                 data.displayurl = data.url.replace(/^http:\/\//i, "");
                 
                 data.displaytitle = $scope.TrimString(data.title,70);
@@ -292,7 +296,14 @@
                     data.hscore = "pass";                    
                 }
                 
-                // console.log(data.displayurl);
+                data.links.internal.forEach(function(link){
+                    if(!$scope.IsInArray(link.url,web.processed) && !$scope.IsInArray(link.url,web.urls)){
+                        web.urls.push(link.url); 
+                    }
+                });
+                
+                web.internal.push(links.internal); 
+                web.external.push(links.external);                 
                 web.pages.push(data); 
             });
           }
@@ -312,8 +323,12 @@
       robotstxt: null,
       sitemaps: [],
       urls: [],
+      mapurls: [],
       processed: [],
-      pages: []
+      pages: [],
+      external: [],
+      internal: [],
+      images: []
   };
     
 })();
