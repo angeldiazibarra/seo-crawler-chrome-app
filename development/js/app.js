@@ -333,6 +333,7 @@
                 }
                 
                 data.links.internal.forEach(function(link){
+                    link.url = data.url;
                     web.internal.push(link); 
                     if(!$scope.IsInArray(link.url,web.processed) && !$scope.IsInArray(link.url,web.urls)){
                         web.urls.push(link.url); 
@@ -340,6 +341,7 @@
                 });
                 
                 data.links.external.forEach(function(link){
+                    link.url = data.url;
                     web.external.push(link); 
                 });
 
@@ -349,6 +351,7 @@
                 
                 imgarray.forEach(function(img){
                     delete img['anchornum'];
+                    img.url = data.url;
                     web.images.push(img); 
                 });
                 
