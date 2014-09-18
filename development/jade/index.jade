@@ -42,17 +42,20 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                   button(type="button",ng-disabled="crawl.website.invalidurl",ng-class="{'disabled': crawl.website.invalidurl}",ng-click="DoCrawl()").btn.btn-default.btn-primary Analizar      
           .row.mtop
             .col-xs-12.col-md-6.col-md-offset-3
-              p {{crawl.website.robotsurl}}
+              p
+                a(href="{{crawl.website.robotsurl}}",target="_blank") {{crawl.website.robotsurl}}
           .row.mtop
             .col-xs-12.col-md-6.col-md-offset-3
               p
-                span(ng-repeat="value in crawl.website.sitemaps track by $index").nomar {{value}}
+                span(ng-repeat="value in crawl.website.sitemaps track by $index").nomar
+                  a(href="{{value}}",target="_blank") {{value}}
                   span(ng-show=" ! $last ")
                     br
         #robotstab.navtabs
           .row.mtop(ng-if="ShowRobots()")
             .col-xs-12
-              p {{crawl.website.robotsurl}}
+              p
+                a(href="{{crawl.website.robotsurl}}",target="_blank") {{crawl.website.robotsurl}}
           .row(ng-if="ShowRobots()")
             .col-xs-12
               pre
@@ -63,7 +66,8 @@ html(data-ng-app="myCrawler" data-ng-csp="")
           .row.mtop(ng-if="ShowSitemaps()")
             .col-xs-12
               p
-                span(ng-repeat="value in crawl.website.sitemaps track by $index").nomar {{value}}
+                span(ng-repeat="value in crawl.website.sitemaps track by $index").nomar
+                  a(href="{{value}}",target="_blank") {{value}}
                   span(ng-show=" ! $last ")
                     br
           .row(ng-if="ShowSitemaps()")
