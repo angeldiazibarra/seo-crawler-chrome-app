@@ -86,35 +86,35 @@
               <div class="row">
                 <div class="col-xs-12 col-lg-6">
                   <div class="row">
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>Title:</b></div>
+                    <div ng-class="value.tscore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>Title:</b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="value.title !== false">{{value.title.length}} characters</span><br ng-show="value.titlemessage !== false &amp;&amp; value.title !== false"><span ng-show="value.titlemessage !== false" class="errormessage">{{value.titlemessage}}</span></p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>Description:</b></div>
+                    <div ng-class="value.dscore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>Description:</b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="value.metadescription !== false">{{value.metadescription.length}} characters</span><br ng-show="value.descriptionmessage !== false &amp;&amp; value.metadescription !== false"><span ng-show="value.descriptionmessage !== false" class="errormessage">{{value.descriptionmessage}}</span></p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>Desc. Count:         </b></div>
+                    <div ng-class="value.dcscore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>Desc. Count:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p>{{value.descriptioncount}}   </p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>Canonical:          </b></div>
+                    <div ng-class="value.cscore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>Canonical:          </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="value.canonical !== false"><a href="{{value.canonical}}" target="_blank">{{value.canonical}}</a></span><br ng-show="value.canonicalmessage !== false &amp;&amp; value.canonical !== false"><span ng-show="value.canonicalmessage !== false" class="errormessage">{{value.canonicalmessage}}</span></p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>Author:         </b></div>
+                    <div ng-class="value.ascore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>Author:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="value.author !== false"><a href="https://plus.google.com/{{value.author}}" target="_blank">{{value.author}}</a></span><span ng-show="value.authormessage !== false" class="errormessage">{{value.authormessage}}  </span></p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>Publisher:         </b></div>
+                    <div ng-class="value.pscore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>Publisher:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="value.publisher !== false"><a href="https://plus.google.com/{{value.publisher}}" target="_blank">{{value.publisher}}</a></span><span ng-show="value.publishermessage !== false" class="errormessage">{{value.publishermessage}}     </span></p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>Encoding:         </b></div>
+                    <div ng-class="value.escore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>Encoding:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p>{{value.encoding}}          </p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>Language:         </b></div>
+                    <div ng-class="value.lscore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>Language:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p>{{value.language}}    </p>
                     </div>
@@ -122,15 +122,15 @@
                 </div>
                 <div class="col-xs-12 col-lg-6">
                   <div class="row">
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>H1:         </b></div>
+                    <div class="col-xs-4 col-md-2 col-lg-3 listit"><b>H1:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="!value.headers.h1.length">-</span><span ng-repeat="value in value.headers.h1 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>H2:         </b></div>
+                    <div class="col-xs-4 col-md-2 col-lg-3 listit"><b>H2:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="!value.headers.h2.length">-</span><span ng-repeat="value in value.headers.h2 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
                     </div>
-                    <div class="col-xs-4 col-md-2 col-lg-3"><b>H3, H4 & H5:         </b></div>
+                    <div class="col-xs-4 col-md-2 col-lg-3 listit"><b>H3, H4 & H5:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="!value.headers.h345.length">-</span><span ng-repeat="value in value.headers.h345 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
                     </div>

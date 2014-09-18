@@ -163,13 +163,14 @@
       web.sitemaps = [];
       web.processed = [];
       web.pages = [];
+      web.robotstxt = null;
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
+      web.robotsurl = robotsUrl;
       web.sitemaps.push(sitemapUrl);
       
       urlData.getData(robotsUrl).then(function(data){
-        web.robotsurl = robotsUrl;
         $scope.parseRobots(data);
       }).then(function(){
         for (var i in web.sitemaps){
@@ -184,7 +185,7 @@
           });
         }
       }).then(function(){
-        // console.log('execute2');
+        // console.log(web);
       });
     };
     
@@ -213,43 +214,76 @@
                 if(data.title.length === 0 || data.title === false){
                     data.title = false;
                     data.titlemessage = 'ERROR - Not set';
+                    data.tscore = "error";
                 }else if(data.title.length > 70){
                     data.titlemessage = 'ERROR - Too long';
+                    data.tscore = "error";
                 }else{
                     data.titlemessage = false;
+                    data.tscore = "pass";
                 }
                 
                 if(data.metadescription.length === 0 || data.metadescription === false){
                     data.metadescription = false;
                     data.descriptionmessage = 'ERROR - Not set';
+                    data.dscore = "error";
                 }else if(data.metadescription.length > 155){
                     data.descriptionmessage = 'ERROR - Too long';
+                    data.dscore = "error";
                 }else if(data.metadescription.length < 70){
                     data.descriptionmessage = 'ERROR - Too short';
+                    data.dscore = "error";
                 }else if(data.metadescription.length > 145 && data.metadescription.length < 156){
                     data.descriptionmessage = 'WARNING - Possibly cut';
+                    data.dscore = "warning";
                 }else{
                     data.descriptionmessage = false;
+                    data.dscore = "pass";
                 }
                                 
                 if(data.url === data.canonical && data.canonical !== false){
                     data.canonicalmessage = false;
+                    data.cscore = "pass";
                 }else if(data.url !== data.canonical && data.canonical !== false){
                     data.canonicalmessage = 'ERROR - URL and canonical do not match';
+                    data.cscore = "error";
                 }else{
                     data.canonicalmessage = 'ERROR - Canonical not set';
+                    data.cscore = "error";
                 }
                                 
                 if(data.author !== false){
                     data.authormessage = false;
+                    data.ascore = "pass";
                 }else{
                     data.authormessage = 'WARNING - Google+ authorship not set';
+                    data.ascore = "warning";
                 }
                                 
                 if(data.publisher !== false){
                     data.publishermessage = false;
+                    data.pscore = "pass";
                 }else{
                     data.publishermessage = 'WARNING - Google+ publisher not set';
+                    data.pscore = "warning";
+                }
+                
+                if(data.descriptioncount === 1){                    
+                    data.dcscore = "pass";
+                }else{
+                    data.dcscore = "error";                    
+                }
+                
+                if(data.encoding === false){                    
+                    data.escore = "error";
+                }else{
+                    data.escore = "pass";                    
+                }
+                
+                if(data.language === false){                    
+                    data.lscore = "error";
+                }else{
+                    data.lscore = "pass";                    
                 }
                 
                 // console.log(data.displayurl);

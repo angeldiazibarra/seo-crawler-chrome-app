@@ -86,3 +86,18 @@ ul.nav-tabs{
 .errormessage{
     color:#FF6666;
 }
+
+.listit{
+    padding-left:36px;
+    background-repeat: no-repeat;
+    background-position: 16px 4px;
+    &.pass{
+        background-image: url("../img/ok-icon.png");    
+    }
+    &.error{
+        background-image: url("../img/no-icon.png");    
+    }
+    &.warning{
+        background-image: url("../img/no-icon.png");    
+    }
+}
