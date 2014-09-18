@@ -78,11 +78,13 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               .row
                 .col-xs-12.col-md-6
                   .serpdata
-                    a.serptit(href="{{value.url}}",target="_blank",title="{{value.title}}") {{value.displaytitle}}
+                    a.serptit(ng-hide="value.title.length > 70",href="{{value.url}}",target="_blank") {{value.displaytitle}}
+                    a.serptit(ng-show="value.title.length > 70",href="{{value.url}}",target="_blank",title="{{value.title}}") {{value.displaytitle}}
                     br
                     span.serpurl {{value.displayurl}}       
                     br
-                    span.serpdesc(title="{{value.metadescription}}") {{value.displaydescription}}               
+                    span.serpdesc(ng-hide="value.metadescription.length > 155") {{value.displaydescription}}               
+                    span.serpdesc(ng-show="value.metadescription.length > 155",title="{{value.metadescription}}") {{value.displaydescription}}               
                     br
                   br
               .row

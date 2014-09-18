@@ -80,7 +80,7 @@
             <div ng-repeat="value in crawl.website.pages track by $index" class="col-xs-12 pagesunit">
               <div class="row">
                 <div class="col-xs-12 col-md-6">
-                  <div class="serpdata"><a href="{{value.url}}" target="_blank" title="{{value.title}}" class="serptit">{{value.displaytitle}}</a><br><span class="serpurl">{{value.displayurl}}       </span><br><span title="{{value.metadescription}}" class="serpdesc">{{value.displaydescription}}               </span><br></div><br>
+                  <div class="serpdata"><a ng-hide="value.title.length &gt; 70" href="{{value.url}}" target="_blank" class="serptit">{{value.displaytitle}}</a><a ng-show="value.title.length &gt; 70" href="{{value.url}}" target="_blank" title="{{value.title}}" class="serptit">{{value.displaytitle}}</a><br><span class="serpurl">{{value.displayurl}}       </span><br><span ng-hide="value.metadescription.length &gt; 155" class="serpdesc">{{value.displaydescription}}               </span><span ng-show="value.metadescription.length &gt; 155" title="{{value.metadescription}}" class="serpdesc">{{value.displaydescription}}               </span><br></div><br>
                 </div>
               </div>
               <div class="row">
