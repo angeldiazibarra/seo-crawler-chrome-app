@@ -152,6 +152,11 @@
         }
     };
     
+    $scope.TrimString = function(string,length){
+        var trimmedString = string.length > length ? string.substring(0, length - 3) + "..." : string.substring(0, length);
+        return trimmedString;
+    };
+    
     $scope.DoCrawl = function(){
       // console.log(web);
       web.urls = [];
@@ -201,6 +206,9 @@
             var crawlurl = 'http://www.metricspot.com/api/crawlurl?url='+url;
             urlData.getData(crawlurl).then(function(data){
                 data.displayurl = data.url.replace(/^http:\/\//i, "");
+                
+                data.displaytitle = $scope.TrimString(data.title,70);
+                data.displaydescription = $scope.TrimString(data.metadescription,155);
                 
                 if(data.title.length === 0 || data.title === false){
                     data.title = false;

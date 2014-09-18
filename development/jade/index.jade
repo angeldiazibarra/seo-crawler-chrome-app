@@ -78,11 +78,11 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               .row
                 .col-xs-12.col-md-6
                   .serpdata
-                    a.serptit(href="{{value.url}}",target="_blank") {{value.title}}
+                    a.serptit(href="{{value.url}}",target="_blank",title="{{value.title}}") {{value.displaytitle}}
                     br
                     span.serpurl {{value.displayurl}}       
                     br
-                    span.serpdesc {{value.metadescription}}               
+                    span.serpdesc(title="{{value.metadescription}}") {{value.displaydescription}}               
                     br
                   br
               .row
