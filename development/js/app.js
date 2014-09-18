@@ -286,6 +286,12 @@
                     data.lscore = "pass";                    
                 }
                 
+                if(!data.headers.h1.length){                    
+                    data.hscore = "error";
+                }else{
+                    data.hscore = "pass";                    
+                }
+                
                 // console.log(data.displayurl);
                 web.pages.push(data); 
             });

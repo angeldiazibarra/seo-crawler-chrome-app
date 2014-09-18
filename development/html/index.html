@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-xs-12 col-lg-6">
                   <div class="row">
-                    <div class="col-xs-4 col-md-2 col-lg-3 listit"><b>H1:         </b></div>
+                    <div ng-class="value.hscore" class="col-xs-4 col-md-2 col-lg-3 listit"><b>H1:         </b></div>
                     <div class="col-xs-8 col-md-10 col-lg-9">
                       <p><span ng-show="!value.headers.h1.length">-</span><span ng-repeat="value in value.headers.h1 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
                     </div>
