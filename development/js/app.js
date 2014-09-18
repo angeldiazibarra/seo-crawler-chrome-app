@@ -100,6 +100,38 @@
       }
     };
     
+    $scope.ShowImages = function(){
+      if(web.images.length === 0){
+        return('false');
+      }else{
+        return('true');
+      }
+    };
+    
+    $scope.ShowLinks = function(){
+      if(web.internal.length === 0 && web.external.length === 0){
+        return('false');
+      }else{
+        return('true');
+      }
+    };
+    
+    $scope.ShowExternal = function(){
+      if(web.external.length === 0){
+        return('false');
+      }else{
+        return('true');
+      }
+    };
+    
+    $scope.ShowInternal = function(){
+      if(web.internal.length === 0){
+        return('false');
+      }else{
+        return('true');
+      }
+    };
+    
     $scope.ArrayUnique = function(a) {
       return a.reduce(function(p, c) {
         if (p.indexOf(c) < 0) p.push(c);
@@ -206,7 +238,7 @@
     
     setInterval(function(){
       web.urls = $scope.ArrayUnique(web.urls);
-      if(web.urls.length !== 0 && web.processed.length <= 100){    
+      if(web.urls.length !== 0 && web.processed.length <= 10){    
         // console.log(web.urls.length + ' ' + web.processed.length);           
         web.urls.forEach(function(url){
           if(!$scope.IsInArray(url,web.processed)){
@@ -301,13 +333,25 @@
                 }
                 
                 data.links.internal.forEach(function(link){
+                    web.internal.push(link); 
                     if(!$scope.IsInArray(link.url,web.processed) && !$scope.IsInArray(link.url,web.urls)){
                         web.urls.push(link.url); 
                     }
                 });
                 
-                web.internal.push(links.internal); 
-                web.external.push(links.external);                 
+                data.links.external.forEach(function(link){
+                    web.external.push(link); 
+                });
+
+                var imgarray = $.map(data.images, function(value, index) {
+                    return [value];
+                });
+                
+                imgarray.forEach(function(img){
+                    delete img['anchornum'];
+                    web.images.push(img); 
+                });
+                
                 web.pages.push(data); 
             });
           }

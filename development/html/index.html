@@ -19,8 +19,8 @@
                 <li id="robots" ng-class="{true:'', false:'disabled'}[ShowRobots()]"><a show-tab>Robots</a></li>
                 <li id="sitemap" ng-class="{true:'', false:'disabled'}[ShowSitemaps()]"><a show-tab>Sitemap</a></li>
                 <li id="pages" ng-class="{true:'', false:'disabled'}[ShowPages()]"><a show-tab>Pages</a></li>
-                <li id="images" class="disabled"><a show-tab>Images</a></li>
-                <li id="links" class="disabled"><a show-tab>Links</a></li>
+                <li id="images" ng-class="{true:'', false:'disabled'}[ShowImages()]"><a show-tab>Images</a></li>
+                <li id="links" ng-class="{true:'', false:'disabled'}[ShowLinks()]" class="disabled"><a show-tab>Links</a></li>
               </ul>
             </div>
           </div>
@@ -137,6 +137,25 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div id="imagestab" class="navtabs">
+          <div ng-if="ShowImages()" class="row mtop">
+            <div class="col-xs-12">
+              <pre><span ng-repeat="value in crawl.website.images track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
+            </div>
+          </div>
+        </div>
+        <div id="linkstab" class="navtabs">
+          <div ng-if="ShowExternal()" class="row mtop">
+            <div class="col-xs-12">
+              <pre><span ng-repeat="value in crawl.website.external track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
+            </div>
+          </div>
+          <div ng-if="ShowInternal()" class="row mtop">
+            <div class="col-xs-12">
+              <pre><span ng-repeat="value in crawl.website.internal track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
             </div>
           </div>
         </div>

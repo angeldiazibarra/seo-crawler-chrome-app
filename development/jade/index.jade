@@ -19,9 +19,9 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                   a(show-tab) Sitemap
                 li#pages(ng-class="{true:'', false:'disabled'}[ShowPages()]")
                   a(show-tab) Pages
-                li#images.disabled
+                li#images(ng-class="{true:'', false:'disabled'}[ShowImages()]")
                   a(show-tab) Images
-                li#links.disabled
+                li#links.disabled(ng-class="{true:'', false:'disabled'}[ShowLinks()]")
                   a(show-tab) Links
         #hometab.navtabs(style="display:block")
           .row.mtop
@@ -165,6 +165,26 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                         span(ng-show="!value.headers.h345.length") -
                         span(ng-repeat="value in value.headers.h345 track by $index") {{value}}
                           br(ng-show=" ! $last ")
+        #imagestab.navtabs
+          .row.mtop(ng-if="ShowImages()")
+            .col-xs-12
+              pre
+                span(ng-repeat="value in crawl.website.images track by $index").nomar {{value}}
+                  span(ng-show=" ! $last ")
+                    br
+        #linkstab.navtabs
+          .row.mtop(ng-if="ShowExternal()")
+            .col-xs-12
+              pre
+                span(ng-repeat="value in crawl.website.external track by $index").nomar {{value}}
+                  span(ng-show=" ! $last ")
+                    br
+          .row.mtop(ng-if="ShowInternal()")
+            .col-xs-12
+              pre
+                span(ng-repeat="value in crawl.website.internal track by $index").nomar {{value}}
+                  span(ng-show=" ! $last ")
+                    br
     footer
     
     script(src="../resources/js/vendor/jquery.min.js")
