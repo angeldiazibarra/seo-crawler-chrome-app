@@ -126,6 +126,20 @@
         }
     };
     
+    $scope.crawlSitemaps = function(){
+        for (var i in web.sitemaps){
+          urlData.getData(web.sitemaps[i]).then(function(data){
+            $scope.parseSitemap(data);
+            for (var j in web.sitemaps){
+                urlData.getData(web.sitemaps[j]).then(function(data){
+                    $scope.parseSitemap(data);
+                    // $scope.$digest();
+                });
+            }
+          });
+        }
+    };
+    
     $scope.parseSitemap = function(data){
         var urlsArray1 = data.match(/(\<loc\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/loc\>)/gi);
         var urlsArray2 = data.match(/(\<link\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/link\>)/gi);
@@ -172,21 +186,11 @@
       web.robotsurl = robotsUrl;
       web.sitemaps.push(sitemapUrl);
       web.urls.push(url); 
+      $scope.crawlSitemaps();
       
       urlData.getData(robotsUrl).then(function(data){
         $scope.parseRobots(data);
-      }).then(function(){
-        for (var i in web.sitemaps){
-          urlData.getData(web.sitemaps[i]).then(function(data){
-            $scope.parseSitemap(data);
-            for (var j in web.sitemaps){
-                urlData.getData(web.sitemaps[j]).then(function(data){
-                    $scope.parseSitemap(data);
-                    // $scope.$digest();
-                });
-            }
-          });
-        }
+        $scope.crawlSitemaps();
       }).then(function(){
         // console.log(web);
       });
