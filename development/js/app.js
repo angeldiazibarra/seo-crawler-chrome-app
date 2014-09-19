@@ -206,12 +206,17 @@
     };
     
     $scope.DoCrawl = function(){
-      // console.log(web);
+
       web.urls = [];
       web.sitemaps = [];
       web.processed = [];
       web.pages = [];
-      web.robotstxt = null;
+      web.robotstxt = null;   
+      web.mapurls = [];
+      web.external = [];
+      web.internal = [];
+      web.images = [];
+      
       var url = web.protocol + web.hostname;
       var robotsUrl = web.protocol + web.hostname + '/robots.txt';
       var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
