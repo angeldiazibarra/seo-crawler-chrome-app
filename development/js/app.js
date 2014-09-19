@@ -222,7 +222,7 @@
 
       urlData.getData(statusurl).then(function(data){
           
-          console.log(data);
+          // console.log(data);
           
           url = data.target.replace(/\/$/, "");
           var robotsUrl = url + '/robots.txt';
