@@ -218,9 +218,9 @@
       web.images = [];
       
       var url = web.protocol + web.hostname;    
-      var statusurl = 'http://www.metricspot.com/api/status?url='+url;
+      var redirecturl = 'http://www.metricspot.com/api/redirect?url='+url;
 
-      urlData.getData(statusurl).then(function(data){
+      urlData.getData(redirecturl).then(function(data){
           
           console.log(data);
           
