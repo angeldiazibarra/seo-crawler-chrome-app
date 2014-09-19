@@ -324,14 +324,6 @@
                     data.cscore = "error";
                 }
                                 
-                if(data.author !== false){
-                    data.authormessage = false;
-                    data.ascore = "pass";
-                }else{
-                    data.authormessage = 'WARNING - Google+ author not set';
-                    data.ascore = "warning";
-                }
-                                
                 if(data.publisher !== false){
                     data.publishermessage = false;
                     data.pscore = "pass";
@@ -379,6 +371,10 @@
                     link.url = data.url;
                     link.displayurl = '...' + data.url.replace(mainurl,'');
                     
+                    if(link.rel.match(/author/i)!== null){
+                        data.author = link.href.replace(/(https\:\/\/plus\.google\.com\/)/,'');
+                    }
+                    
                     if(link.title==="-"){
                         link.score = "warning";
                     }else{
@@ -410,6 +406,14 @@
                     }
                     web.images.push(img); 
                 });
+                                
+                if(data.author !== false){
+                    data.authormessage = false;
+                    data.ascore = "pass";
+                }else{
+                    data.authormessage = 'WARNING - Google+ author not set';
+                    data.ascore = "warning";
+                }
                 
                 web.pages.push(data); 
             });
