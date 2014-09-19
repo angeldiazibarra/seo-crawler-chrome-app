@@ -161,12 +161,38 @@
         <div id="linkstab" class="navtabs">
           <div ng-if="ShowExternal()" class="row mtop">
             <div class="col-xs-12">
-              <pre><span ng-repeat="value in crawl.website.external track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
+              <div class="row titlerow">
+                <div class="col-xs-12 col-md-3"><span>HREF</span></div>
+                <div class="col-xs-12 col-md-2"><span>Anchor</span></div>
+                <div class="col-xs-12 col-md-2"><span>Title</span></div>
+                <div class="col-xs-12 col-md-2"><span>REL</span></div>
+                <div class="col-xs-12 col-md-3"><span>URL</span></div>
+              </div>
+              <div ng-repeat="value in crawl.website.external track by $index" ng-class="value.score" class="row crawlrow">
+                <div class="col-xs-12 col-md-3 crawl-line crawl-link"><a href="{{value.href}}" title="{{value.href}}" target="_blank">{{value.href}}</a></div>
+                <div class="col-xs-12 col-md-2 crawl-line"><span title="{{value.anchor}}">{{value.anchor}}</span></div>
+                <div class="col-xs-12 col-md-2 crawl-line"><span title="{{value.title}}">{{value.title}}</span></div>
+                <div class="col-xs-12 col-md-2 crawl-line"><span>{{value.rel}}</span></div>
+                <div class="col-xs-12 col-md-3 crawl-line crawl-link"><a href="{{value.url}}" title="{{value.url}}" target="_blank">{{value.displayurl}}</a></div>
+              </div>
             </div>
           </div>
           <div ng-if="ShowInternal()" class="row mtop">
             <div class="col-xs-12">
-              <pre><span ng-repeat="value in crawl.website.internal track by $index" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
+              <div class="row titlerow">
+                <div class="col-xs-12 col-md-3"><span>HREF</span></div>
+                <div class="col-xs-12 col-md-2"><span>Anchor</span></div>
+                <div class="col-xs-12 col-md-2"><span>Title</span></div>
+                <div class="col-xs-12 col-md-2"><span>REL</span></div>
+                <div class="col-xs-12 col-md-3"><span>URL</span></div>
+              </div>
+              <div ng-repeat="value in crawl.website.internal track by $index" ng-class="value.score" class="row crawlrow">
+                <div class="col-xs-12 col-md-3 crawl-line crawl-link"><a href="{{value.href}}" title="{{value.href}}" target="_blank">{{value.href}}</a></div>
+                <div class="col-xs-12 col-md-2 crawl-line"><span title="{{value.anchor}}">{{value.anchor}}</span></div>
+                <div class="col-xs-12 col-md-2 crawl-line"><span title="{{value.title}}">{{value.title}}</span></div>
+                <div class="col-xs-12 col-md-2 crawl-line"><span>{{value.rel}}</span></div>
+                <div class="col-xs-12 col-md-3 crawl-line crawl-link"><a href="{{value.url}}" title="{{value.url}}" target="_blank">{{value.displayurl}}</a></div>
+              </div>
             </div>
           </div>
         </div>

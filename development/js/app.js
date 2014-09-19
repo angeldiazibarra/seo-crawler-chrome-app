@@ -267,6 +267,8 @@
       web.processed = $scope.ArrayUnique(web.processed);
       if(web.urls.length !== 0 && web.processed.length <= 10){    
         // console.log(web.urls.length + ' ' + web.processed.length);
+        var mainurl = web.protocol + web.hostname;
+        
         web.urls.forEach(function(url){
           if(!$scope.IsInArray(url,web.processed)){
             web.processed.push(url); 
@@ -361,7 +363,16 @@
                 
                 data.links.internal.forEach(function(link){
                     link.url = data.url;
+                    link.displayurl = '...' + data.url.replace(mainurl,'');
+                    
+                    if(link.title==="-"){
+                        link.score = "warning";
+                    }else{
+                        link.score = "pass";
+                    }
+                    
                     web.internal.push(link); 
+                    
                     if(!$scope.IsInArray(link.href,web.processed) && !$scope.IsInArray(link.href,web.urls)){
                         web.urls.push(link.href); 
                     }
@@ -369,6 +380,14 @@
                 
                 data.links.external.forEach(function(link){
                     link.url = data.url;
+                    link.displayurl = '...' + data.url.replace(mainurl,'');
+                    
+                    if(link.title==="-"){
+                        link.score = "warning";
+                    }else{
+                        link.score = "pass";
+                    }
+                    
                     web.external.push(link); 
                 });
 
@@ -380,7 +399,6 @@
                     delete img['anchornum'];
                     img.url = data.url;
                     
-                    var mainurl = web.protocol + web.hostname;
                     img.displayurl = '...' + data.url.replace(mainurl,'');
                     
                     var filename = img.src.split('/');

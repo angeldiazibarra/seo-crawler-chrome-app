@@ -189,16 +189,52 @@ html(data-ng-app="myCrawler" data-ng-csp="")
         #linkstab.navtabs
           .row.mtop(ng-if="ShowExternal()")
             .col-xs-12
-              pre
-                span(ng-repeat="value in crawl.website.external track by $index").nomar {{value}}
-                  span(ng-show=" ! $last ")
-                    br
+              .row.titlerow
+                .col-xs-12.col-md-3
+                  span HREF
+                .col-xs-12.col-md-2
+                  span Anchor
+                .col-xs-12.col-md-2
+                  span Title
+                .col-xs-12.col-md-2
+                  span REL
+                .col-xs-12.col-md-3
+                  span URL
+              .row.crawlrow(ng-repeat="value in crawl.website.external track by $index",ng-class="value.score")
+                .col-xs-12.col-md-3.crawl-line.crawl-link
+                  a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
+                .col-xs-12.col-md-2.crawl-line
+                  span(title="{{value.anchor}}") {{value.anchor}}
+                .col-xs-12.col-md-2.crawl-line
+                  span(title="{{value.title}}") {{value.title}}
+                .col-xs-12.col-md-2.crawl-line
+                  span {{value.rel}}
+                .col-xs-12.col-md-3.crawl-line.crawl-link
+                  a(href="{{value.url}}",title="{{value.url}}",target="_blank") {{value.displayurl}}
           .row.mtop(ng-if="ShowInternal()")
             .col-xs-12
-              pre
-                span(ng-repeat="value in crawl.website.internal track by $index").nomar {{value}}
-                  span(ng-show=" ! $last ")
-                    br
+              .row.titlerow
+                .col-xs-12.col-md-3
+                  span HREF
+                .col-xs-12.col-md-2
+                  span Anchor
+                .col-xs-12.col-md-2
+                  span Title
+                .col-xs-12.col-md-2
+                  span REL
+                .col-xs-12.col-md-3
+                  span URL
+              .row.crawlrow(ng-repeat="value in crawl.website.internal track by $index",ng-class="value.score")
+                .col-xs-12.col-md-3.crawl-line.crawl-link
+                  a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
+                .col-xs-12.col-md-2.crawl-line
+                  span(title="{{value.anchor}}") {{value.anchor}}
+                .col-xs-12.col-md-2.crawl-line
+                  span(title="{{value.title}}") {{value.title}}
+                .col-xs-12.col-md-2.crawl-line
+                  span {{value.rel}}
+                .col-xs-12.col-md-3.crawl-line.crawl-link
+                  a(href="{{value.url}}",title="{{value.url}}",target="_blank") {{value.displayurl}}
     footer
     
     script(src="../resources/js/vendor/jquery.min.js")
