@@ -46,7 +46,7 @@
     this.navtab = tab;
     
     $scope.CheckUrl = function(){
-      var checkUrl = web.hostname;
+      var checkUrl = web.hostname.replace(/\/$/, "");
       // console.log(checkUrl);
       
       if(checkUrl.match(/^(http:\/\/)/i)){
@@ -217,19 +217,40 @@
       web.internal = [];
       web.images = [];
       
-      var url = web.protocol + web.hostname;
-      var robotsUrl = web.protocol + web.hostname + '/robots.txt';
-      var sitemapUrl = web.protocol + web.hostname + '/sitemap.xml';
-      web.robotsurl = robotsUrl;
-      web.sitemaps.push(sitemapUrl);
-      web.urls.push(url); 
-      $scope.crawlSitemaps();
-      
-      urlData.getData(robotsUrl).then(function(data){
-        $scope.parseRobots(data);
-        $scope.crawlSitemaps();
-      }).then(function(){
-        // console.log(web);
+      var url = web.protocol + web.hostname;    
+      var statusurl = 'http://www.metricspot.com/api/status?url='+url;
+
+      urlData.getData(statusurl).then(function(data){
+          
+          console.log(data);
+          
+          url = data.target.replace(/\/$/, "");
+          var robotsUrl = url + '/robots.txt';
+          var sitemapUrl = url + '/sitemap.xml';
+
+          web.robotsurl = robotsUrl;
+          web.sitemaps.push(sitemapUrl);
+          web.urls.push(data.target); 
+          $scope.crawlSitemaps();
+          
+          if(data.code === 200){
+              
+            urlData.getData(robotsUrl).then(function(data){
+              $scope.parseRobots(data);
+              $scope.crawlSitemaps();
+            }).then(function(){
+              // console.log(web);
+            });
+            
+          }else if(data.code === 301 || data.code === 302){
+            if(data.target.match(/^(http:\/\/)/i)){
+                web.protocol = 'http://';
+            }
+            if(data.target.match(/^(https:\/\/)/i)){
+                web.protocol = 'https://';
+            }
+            web.hostname = url.replace(web.protocol,'');
+          }
       });
     };
     
@@ -357,8 +378,13 @@
                 imgarray.forEach(function(img){
                     delete img['anchornum'];
                     img.url = data.url;
+                    
+                    var mainurl = web.protocol + web.hostname;
+                    img.displayurl = '...' + data.url.replace(mainurl,'');
+                    
                     var filename = img.src.split('/');
                     img.filename = filename[filename.length-1];
+                    
                     if(img.alt==="-"){
                         img.score = "error";
                     }else if(img.title==="-"){

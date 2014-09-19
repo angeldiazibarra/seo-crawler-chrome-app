@@ -144,16 +144,16 @@
           <div ng-if="ShowImages()" class="row mtop">
             <div class="col-xs-12">
               <div class="row">
-                <div class="col-xs-12 col-md-2"><b>Filename</b></div>
+                <div class="col-xs-12 col-md-3"><b>Filename</b></div>
                 <div class="col-xs-12 col-md-3"><b>Title</b></div>
                 <div class="col-xs-12 col-md-3"><b>Alt</b></div>
-                <div class="col-xs-12 col-md-4"><b>URL</b></div>
+                <div class="col-xs-12 col-md-3"><b>URL</b></div>
               </div>
               <div ng-repeat="value in crawl.website.images track by $index" ng-class="value.score" class="row crawlrow">
-                <div class="col-xs-12 col-md-2 crawl-line"><a href="{{value.src}}" title="{{value.src}}" target="_blank">{{value.filename}}</a></div>
+                <div class="col-xs-12 col-md-3 crawl-line crawl-link"><a href="{{value.src}}" title="{{value.src}}" target="_blank">{{value.filename}}</a></div>
                 <div class="col-xs-12 col-md-3 crawl-line"><span title="{{value.title}}">{{value.title}}</span></div>
                 <div class="col-xs-12 col-md-3 crawl-line"><span title="{{value.alt}}">{{value.alt}}</span></div>
-                <div class="col-xs-12 col-md-4 crawl-line"><a href="{{value.url}}" title="{{value.url}}" target="_blank">{{value.url}}</a></div>
+                <div class="col-xs-12 col-md-3 crawl-line crawl-link"><a href="{{value.url}}" title="{{value.url}}" target="_blank">{{value.displayurl}}</a></div>
               </div>
             </div>
           </div>

@@ -169,23 +169,23 @@ html(data-ng-app="myCrawler" data-ng-csp="")
           .row.mtop(ng-if="ShowImages()")
             .col-xs-12
               .row
-                .col-xs-12.col-md-2
+                .col-xs-12.col-md-3
                   b Filename
                 .col-xs-12.col-md-3
                   b Title
                 .col-xs-12.col-md-3
                   b Alt
-                .col-xs-12.col-md-4
+                .col-xs-12.col-md-3
                   b URL
               .row.crawlrow(ng-repeat="value in crawl.website.images track by $index",ng-class="value.score")
-                .col-xs-12.col-md-2.crawl-line
+                .col-xs-12.col-md-3.crawl-line.crawl-link
                   a(href="{{value.src}}",title="{{value.src}}",target="_blank") {{value.filename}}
                 .col-xs-12.col-md-3.crawl-line
                   span(title="{{value.title}}") {{value.title}}
                 .col-xs-12.col-md-3.crawl-line
                   span(title="{{value.alt}}") {{value.alt}}
-                .col-xs-12.col-md-4.crawl-line
-                  a(href="{{value.url}}",title="{{value.url}}",target="_blank") {{value.url}}
+                .col-xs-12.col-md-3.crawl-line.crawl-link
+                  a(href="{{value.url}}",title="{{value.url}}",target="_blank") {{value.displayurl}}
         #linkstab.navtabs
           .row.mtop(ng-if="ShowExternal()")
             .col-xs-12
