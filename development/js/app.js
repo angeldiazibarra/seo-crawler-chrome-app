@@ -328,7 +328,7 @@
                     data.authormessage = false;
                     data.ascore = "pass";
                 }else{
-                    data.authormessage = 'WARNING - Google+ authorship not set';
+                    data.authormessage = 'WARNING - Google+ author not set';
                     data.ascore = "warning";
                 }
                                 
