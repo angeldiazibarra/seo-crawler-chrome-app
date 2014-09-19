@@ -371,8 +371,8 @@
                     link.url = data.url;
                     link.displayurl = '...' + data.url.replace(mainurl,'');
                     
-                    if(link.rel.match(/author/i)!== null){
-                        data.author = link.href.replace(/(https\:\/\/plus\.google\.com\/)/,'');
+                    if(data.author === false && link.rel.match(/author/i)!== null){
+                        data.author = link.href.replace(/(https?\:\/\/plus\.google\.com\/)/,'');
                     }
                     
                     if(link.title==="-"){
