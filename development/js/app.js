@@ -292,7 +292,10 @@
                     data.tscore = "pass";
                 }
                 
-                if(data.metadescription.length === 0 || data.metadescription === false){
+                if(data.descriptioncount > 1){
+                    data.descriptionmessage = 'ERROR - Multiple META DESCRIPTIONS';
+                    data.dscore = "error";
+                }else if(data.metadescription.length === 0 || data.metadescription === false){
                     data.metadescription = false;
                     data.descriptionmessage = 'ERROR - Not set';
                     data.dscore = "error";
@@ -335,12 +338,6 @@
                 }else{
                     data.publishermessage = 'WARNING - Google+ publisher not set';
                     data.pscore = "warning";
-                }
-                
-                if(data.descriptioncount === 1){                    
-                    data.dcscore = "pass";
-                }else{
-                    data.dcscore = "error";                    
                 }
                 
                 if(data.encoding === false){                    

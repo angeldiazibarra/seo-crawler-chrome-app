@@ -92,75 +92,79 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     br
                   br
               .row
-                .col-xs-12.col-lg-6
+                .col-xs-12.col-md-6
                   .row
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.tscore")
+                    .col-xs-4.col-md-3.listit(ng-class="value.tscore")
                       b Title:
-                    .col-xs-8.col-md-10.col-lg-9
+                    .col-xs-8.col-md-9
                       p 
                         span(ng-show="value.title !== false") {{value.title.length}} characters
                         br(ng-show="value.titlemessage !== false && value.title !== false")
                         span.errormessage(ng-show="value.titlemessage !== false") {{value.titlemessage}}
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.dscore")
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.dscore")
                       b Description:
-                    .col-xs-8.col-md-10.col-lg-9
+                    .col-xs-8.col-md-9
                       p 
                         span(ng-show="value.metadescription !== false") {{value.metadescription.length}} characters
                         br(ng-show="value.descriptionmessage !== false && value.metadescription !== false")
-                        span.errormessage(ng-show="value.descriptionmessage !== false") {{value.descriptionmessage}}
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.dcscore")
-                      b Desc. Count:         
-                    .col-xs-8.col-md-10.col-lg-9
-                      p {{value.descriptioncount}}   
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.cscore")
+                        span.errormessage(ng-show="value.descriptionmessage !== false") {{value.descriptionmessage}} 
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.cscore")
                       b Canonical:          
-                    .col-xs-8.col-md-10.col-lg-9
+                    .col-xs-8.col-md-9
                       p 
                         span(ng-show="value.canonical !== false")
                           a(href="{{value.canonical}}",target="_blank") {{value.canonical}}
                         br(ng-show="value.canonicalmessage !== false && value.canonical !== false")
                         span.errormessage(ng-show="value.canonicalmessage !== false") {{value.canonicalmessage}}
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.ascore")
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.ascore")
                       b Author:         
-                    .col-xs-8.col-md-10.col-lg-9
+                    .col-xs-8.col-md-9
                       p 
                         span(ng-show="value.author !== false")
                           a(href="https://plus.google.com/{{value.author}}",target="_blank") {{value.author}}
                         span.errormessage(ng-show="value.authormessage !== false") {{value.authormessage}}  
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.pscore")
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.pscore")
                       b Publisher:         
-                    .col-xs-8.col-md-10.col-lg-9
+                    .col-xs-8.col-md-9
                       p 
                         span(ng-show="value.publisher !== false")
                           a(href="https://plus.google.com/{{value.publisher}}",target="_blank") {{value.publisher}}
                         span.errormessage(ng-show="value.publishermessage !== false") {{value.publishermessage}}     
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.escore")
-                      b Encoding:         
-                    .col-xs-8.col-md-10.col-lg-9
-                      p {{value.encoding}}          
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.lscore")
-                      b Language:         
-                    .col-xs-8.col-md-10.col-lg-9
-                      p {{value.language}}    
-                .col-xs-12.col-lg-6
                   .row
-                    .col-xs-4.col-md-2.col-lg-3.listit(ng-class="value.hscore")
+                    .col-xs-4.col-md-3.listit(ng-class="value.escore")
+                      b Encoding:         
+                    .col-xs-8.col-md-9
+                      p {{value.encoding}}          
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.lscore")
+                      b Language:         
+                    .col-xs-8.col-md-9
+                      p {{value.language}}    
+                .col-xs-12.col-md-6
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.hscore")
                       b H1:         
-                    .col-xs-8.col-md-10.col-lg-9
+                    .col-xs-8.col-md-9
                       p
                         span(ng-show="!value.headers.h1.length") -
                         span(ng-repeat="value in value.headers.h1 track by $index") {{value}}
                           br(ng-show=" ! $last ")
-                    .col-xs-4.col-md-2.col-lg-3.listit
+                  .row
+                    .col-xs-4.col-md-3.listit
                       b H2:         
-                    .col-xs-8.col-md-10.col-lg-9
+                    .col-xs-8.col-md-9
                       p
                         span(ng-show="!value.headers.h2.length") -
                         span(ng-repeat="value in value.headers.h2 track by $index") {{value}}
                           br(ng-show=" ! $last ")
-                    .col-xs-4.col-md-2.col-lg-3.listit
-                      b H3, H4 & H5:         
-                    .col-xs-8.col-md-10.col-lg-9
+                  .row
+                    .col-xs-4.col-md-3.listit
+                      b H3, H4, H5:         
+                    .col-xs-8.col-md-9
                       p
                         span(ng-show="!value.headers.h345.length") -
                         span(ng-repeat="value in value.headers.h345 track by $index") {{value}}
