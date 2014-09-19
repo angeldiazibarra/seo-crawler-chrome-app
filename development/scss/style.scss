@@ -101,3 +101,21 @@ ul.nav-tabs{
         background-image: url("../img/no-icon.png");    
     }
 }
+
+.crawl-line{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis; 
+}
+
+.crawlrow{
+    &.pass{
+        // background-color: #baffba;  
+    }
+    &.error{
+        background-color: #ffbbbb;  
+    }
+    &.warning{
+        background-color: #ffddbb;  
+    }
+}

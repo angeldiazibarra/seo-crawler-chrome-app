@@ -357,6 +357,15 @@
                 imgarray.forEach(function(img){
                     delete img['anchornum'];
                     img.url = data.url;
+                    var filename = img.src.split('/');
+                    img.filename = filename[filename.length-1];
+                    if(img.alt==="-"){
+                        img.score = "error";
+                    }else if(img.title==="-"){
+                        img.score = "warning";
+                    }else{
+                        img.score = "pass";
+                    }
                     web.images.push(img); 
                 });
                 
