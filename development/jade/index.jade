@@ -168,15 +168,15 @@ html(data-ng-app="myCrawler" data-ng-csp="")
         #imagestab.navtabs
           .row.mtop(ng-if="ShowImages()")
             .col-xs-12
-              .row
+              .row.titlerow
                 .col-xs-12.col-md-3
-                  b Filename
+                  span Filename
                 .col-xs-12.col-md-3
-                  b Title
+                  span Title
                 .col-xs-12.col-md-3
-                  b Alt
+                  span Alt
                 .col-xs-12.col-md-3
-                  b URL
+                  span URL
               .row.crawlrow(ng-repeat="value in crawl.website.images track by $index",ng-class="value.score")
                 .col-xs-12.col-md-3.crawl-line.crawl-link
                   a(href="{{value.src}}",title="{{value.src}}",target="_blank") {{value.filename}}

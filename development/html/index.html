@@ -143,11 +143,11 @@
         <div id="imagestab" class="navtabs">
           <div ng-if="ShowImages()" class="row mtop">
             <div class="col-xs-12">
-              <div class="row">
-                <div class="col-xs-12 col-md-3"><b>Filename</b></div>
-                <div class="col-xs-12 col-md-3"><b>Title</b></div>
-                <div class="col-xs-12 col-md-3"><b>Alt</b></div>
-                <div class="col-xs-12 col-md-3"><b>URL</b></div>
+              <div class="row titlerow">
+                <div class="col-xs-12 col-md-3"><span>Filename</span></div>
+                <div class="col-xs-12 col-md-3"><span>Title</span></div>
+                <div class="col-xs-12 col-md-3"><span>Alt</span></div>
+                <div class="col-xs-12 col-md-3"><span>URL</span></div>
               </div>
               <div ng-repeat="value in crawl.website.images track by $index" ng-class="value.score" class="row crawlrow">
                 <div class="col-xs-12 col-md-3 crawl-line crawl-link"><a href="{{value.src}}" title="{{value.src}}" target="_blank">{{value.filename}}</a></div>

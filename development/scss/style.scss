@@ -112,7 +112,14 @@ ul.nav-tabs{
     color: #428bca;
 }
 
+.titlerow{
+    border-bottom: 1px solid #ccc;
+    padding: 3px 0;
+}
+
 .crawlrow{
+    border-bottom: 1px dotted #ccc;
+    padding: 3px 0;
     &.pass{
         // background-color: #baffba;  
     }
