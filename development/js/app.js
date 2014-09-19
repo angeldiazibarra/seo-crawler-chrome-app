@@ -264,8 +264,9 @@
     
     setInterval(function(){
       web.urls = $scope.ArrayUnique(web.urls);
+      web.processed = $scope.ArrayUnique(web.processed);
       if(web.urls.length !== 0 && web.processed.length <= 10){    
-        // console.log(web.urls.length + ' ' + web.processed.length);           
+        // console.log(web.urls.length + ' ' + web.processed.length);
         web.urls.forEach(function(url){
           if(!$scope.IsInArray(url,web.processed)){
             web.processed.push(url); 
@@ -361,8 +362,8 @@
                 data.links.internal.forEach(function(link){
                     link.url = data.url;
                     web.internal.push(link); 
-                    if(!$scope.IsInArray(link.url,web.processed) && !$scope.IsInArray(link.url,web.urls)){
-                        web.urls.push(link.url); 
+                    if(!$scope.IsInArray(link.href,web.processed) && !$scope.IsInArray(link.href,web.urls)){
+                        web.urls.push(link.href); 
                     }
                 });
                 
