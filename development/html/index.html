@@ -108,7 +108,19 @@
                   <div class="row">
                     <div ng-class="value.cscore" class="col-xs-4 col-md-3 listit"><b>Canonical:          </b></div>
                     <div class="col-xs-8 col-md-9">
-                      <p><span ng-show="value.canonical !== false"><a href="{{value.canonical}}" target="_blank">{{value.canonical}}</a></span><br ng-show="value.canonicalmessage !== false &amp;&amp; value.canonical !== false"><span ng-show="value.canonicalmessage !== false" class="errormessage">{{value.canonicalmessage}}</span></p>
+                      <p><span ng-show="value.canonical !== false"><a href="{{value.canonical}}" target="_blank">{{value.canonical}}</a></span><br ng-show="value.canonicalmessage !== false &amp;&amp; value.canonical !== false"><span ng-show="value.canonicalmessage !== false" class="errormessage">{{value.canonicalmessage}}  </span></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div ng-class="value.escore" class="col-xs-4 col-md-3 listit"><b>Encoding:         </b></div>
+                    <div class="col-xs-8 col-md-9">
+                      <p><span ng-show="value.encoding !== false">{{value.encoding}}          </span><span ng-show="value.encodingmessage !== false" class="errormessage">{{value.encodingmessage}}     </span></p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div ng-class="value.lscore" class="col-xs-4 col-md-3 listit"><b>Language:         </b></div>
+                    <div class="col-xs-8 col-md-9">
+                      <p><span ng-show="value.language !== false">{{value.language}}    </span><span ng-show="value.languagemessage !== false" class="errormessage">{{value.languagemessage}}     </span></p>
                     </div>
                   </div>
                   <div class="row">
@@ -126,19 +138,7 @@
                   <div class="row">
                     <div ng-class="value.pscore" class="col-xs-4 col-md-3 listit"><b>Publisher:         </b></div>
                     <div class="col-xs-8 col-md-9">
-                      <p><span ng-show="value.publisher !== false"><a href="https://plus.google.com/{{value.publisher}}" target="_blank">{{value.publisher}}</a></span><span ng-show="value.publishermessage !== false" class="errormessage">{{value.publishermessage}}     </span></p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div ng-class="value.escore" class="col-xs-4 col-md-3 listit"><b>Encoding:         </b></div>
-                    <div class="col-xs-8 col-md-9">
-                      <p>{{value.encoding}}          </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div ng-class="value.lscore" class="col-xs-4 col-md-3 listit"><b>Language:         </b></div>
-                    <div class="col-xs-8 col-md-9">
-                      <p>{{value.language}}    </p>
+                      <p><span ng-show="value.publisher !== false"><a href="https://plus.google.com/{{value.publisher}}" target="_blank">{{value.publisher}}</a></span><span ng-show="value.publishermessage !== false" class="errormessage">{{value.publishermessage}}   </span></p>
                     </div>
                   </div>
                 </div>

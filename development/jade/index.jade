@@ -127,7 +127,21 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                         span(ng-show="value.canonical !== false")
                           a(href="{{value.canonical}}",target="_blank") {{value.canonical}}
                         br(ng-show="value.canonicalmessage !== false && value.canonical !== false")
-                        span.errormessage(ng-show="value.canonicalmessage !== false") {{value.canonicalmessage}}
+                        span.errormessage(ng-show="value.canonicalmessage !== false") {{value.canonicalmessage}}  
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.escore")
+                      b Encoding:         
+                    .col-xs-8.col-md-9
+                      p
+                        span(ng-show="value.encoding !== false") {{value.encoding}}          
+                        span.errormessage(ng-show="value.encodingmessage !== false") {{value.encodingmessage}}     
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.lscore")
+                      b Language:         
+                    .col-xs-8.col-md-9
+                      p
+                        span(ng-show="value.language !== false") {{value.language}}    
+                        span.errormessage(ng-show="value.languagemessage !== false") {{value.languagemessage}}     
                   .row
                     .col-xs-4.col-md-3.listit(ng-class="value.rscore")
                       b Robots:          
@@ -151,17 +165,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                       p 
                         span(ng-show="value.publisher !== false")
                           a(href="https://plus.google.com/{{value.publisher}}",target="_blank") {{value.publisher}}
-                        span.errormessage(ng-show="value.publishermessage !== false") {{value.publishermessage}}     
-                  .row
-                    .col-xs-4.col-md-3.listit(ng-class="value.escore")
-                      b Encoding:         
-                    .col-xs-8.col-md-9
-                      p {{value.encoding}}          
-                  .row
-                    .col-xs-4.col-md-3.listit(ng-class="value.lscore")
-                      b Language:         
-                    .col-xs-8.col-md-9
-                      p {{value.language}}    
+                        span.errormessage(ng-show="value.publishermessage !== false") {{value.publishermessage}}   
                 .col-xs-12.col-md-6
                   .row
                     .col-xs-4.col-md-3.listit(ng-class="value.hscore")

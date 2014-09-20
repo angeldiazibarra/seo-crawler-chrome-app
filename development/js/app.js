@@ -420,16 +420,20 @@
                     data.pscore = "warning";
                 }
                 
-                if(data.encoding === false){                    
-                    data.escore = "error";
+                if(data.encoding !== false){                    
+                    data.escore = "pass";
+                    data.encodingmessage = false;
                 }else{
-                    data.escore = "pass";                    
+                    data.escore = "error";                    
+                    data.encodingmessage = 'ERROR - encoding not set';
                 }
                 
-                if(data.language === false){                    
-                    data.lscore = "error";
+                if(data.language !== false){                    
+                    data.lscore = "pass";
+                    data.languagemessage = false;
                 }else{
-                    data.lscore = "pass";                    
+                    data.lscore = "error";                    
+                    data.languagemessage = 'ERROR - language not set';
                 }
                 
                 if(!data.headers.h1.length){                    
