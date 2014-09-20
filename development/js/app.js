@@ -365,7 +365,7 @@
                     data.titlemessage = 'ERROR - Not set';
                     data.tscore = "error";
                 }else if(data.title.length > 70){
-                    data.titlemessage = 'ERROR - Too long';
+                    data.titlemessage = 'ERROR - Title too long';
                     data.tscore = "error";
                 }else{
                     data.titlemessage = false;
@@ -380,13 +380,13 @@
                     data.descriptionmessage = 'ERROR - Not set';
                     data.dscore = "error";
                 }else if(data.metadescription.length > 155){
-                    data.descriptionmessage = 'ERROR - Too long';
+                    data.descriptionmessage = 'ERROR - Description too long';
                     data.dscore = "error";
                 }else if(data.metadescription.length < 70){
-                    data.descriptionmessage = 'ERROR - Too short';
+                    data.descriptionmessage = 'ERROR - Description too short';
                     data.dscore = "error";
                 }else if(data.metadescription.length > 145 && data.metadescription.length < 156){
-                    data.descriptionmessage = 'WARNING - Possibly cut';
+                    data.descriptionmessage = 'WARNING - Description possibly cut';
                     data.dscore = "warning";
                 }else{
                     data.descriptionmessage = false;
@@ -438,8 +438,10 @@
                 
                 if(!data.headers.h1.length){                    
                     data.hscore = "error";
+                    data.h1message = 'ERROR - H1 not set';
                 }else{
                     data.hscore = "pass";                    
+                    data.h1message = false;
                 }
                 
                 data.links.internal.forEach(function(link){

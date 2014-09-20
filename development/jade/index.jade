@@ -172,7 +172,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                       b H1:         
                     .col-xs-8.col-md-9
                       p
-                        span(ng-show="!value.headers.h1.length") -
+                        span.errormessage(ng-show="!value.headers.h1.length") {{value.h1message}}
                         span(ng-repeat="value in value.headers.h1 track by $index") {{value}}
                           br(ng-show=" ! $last ")
                   .row

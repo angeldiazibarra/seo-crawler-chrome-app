@@ -146,7 +146,7 @@
                   <div class="row">
                     <div ng-class="value.hscore" class="col-xs-4 col-md-3 listit"><b>H1:         </b></div>
                     <div class="col-xs-8 col-md-9">
-                      <p><span ng-show="!value.headers.h1.length">-</span><span ng-repeat="value in value.headers.h1 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
+                      <p><span ng-show="!value.headers.h1.length" class="errormessage">{{value.h1message}}</span><span ng-repeat="value in value.headers.h1 track by $index">{{value}}<br ng-show=" ! $last "></span></p>
                     </div>
                   </div>
                   <div class="row">
