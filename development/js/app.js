@@ -205,6 +205,54 @@
         return trimmedString;
     };
     
+    $scope.FormatCount = function(num) {
+        if(num > 999999){
+            num = num/1000000;
+            num = Math.floor(num);
+            num = '+'+num+'m';
+        }else if(num > 999){
+            num = num/1000;
+            num = Math.floor(num);
+            num = '+'+num+'k';
+        }
+        return num;
+    };
+    
+    $scope.Unformat = function(num) {
+        if(num.indexOf("m") > -1){
+            num = num.replace('m', '');
+            num = parseInt(num);
+            num = num*1000000;
+            return num;
+        }
+        if(num.indexOf("k") > -1){
+            num = num.replace('k', '');
+            num = parseInt(num);
+            num = num*1000;
+        }
+        return num;
+    };
+
+    $scope.GplusFormat = function(num) {
+        if(num.indexOf("m") > -1){
+            num = num.replace('m', '');
+            num = parseInt(num);
+            num = num*1000000;
+            return num;
+        }
+        if(num.indexOf("k") > -1){
+            num = num.replace('k', '');
+            num = parseInt(num);
+            num = num*1000;
+            return num;
+        }
+        if(num.indexOf(".") > -1){
+            num = num.replace('.', '');
+            num = parseInt(num);
+        }
+        return num;
+    };
+    
     $scope.DoCrawl = function(){
 
       web.urls = [];
@@ -275,6 +323,38 @@
             var crawlurl = 'http://www.metricspot.com/api/crawlurl?url='+url;
             urlData.getData(crawlurl).then(function(data){
                 web.processed.push(data.url); 
+
+                data.social = [];
+                data.social.fb = 0;
+                data.social.tw = 0;
+                data.social.gp = 0;
+                data.social.ln = 0;
+                
+                var fbapiurl = 'https://graph.facebook.com/fql?q=SELECT%20total_count%20FROM%20link_stat%20WHERE%20url=%27' +encodeURIComponent(data.url)+ '%27';
+                var twapiurl = 'http://cdn.api.twitter.com/1/urls/count.json?url='+data.url;
+                var gplusurl = 'https://plusone.google.com/_/+1/fastbutton?url=' + encodeURIComponent(data.url); 
+                var linkdurl = 'http://www.linkedin.com/countserv/count/share?url=' + data.url + '&format=json';
+                                
+                urlData.getData(fbapiurl).then(function(json){
+                    data.social.fb = $scope.FormatCount(json.data[0].total_count);
+                });
+
+                urlData.getData(twapiurl).then(function(json){
+                    data.social.tw = $scope.FormatCount(json.count);
+                });
+                
+                urlData.getData(gplusurl).then(function(json){
+                    var count = json.match(/<div id=\"aggregateCount\" class=\"Oy\">(.*?)<\/div>/);
+                    count = $scope.GplusFormat(count[1]);
+                    var formatted = $scope.FormatCount(count);
+                    var unformatted = $scope.Unformat(formatted);
+                    data.social.gp = formatted;
+                });
+                
+                urlData.getData(linkdurl).then(function(json){
+                    data.social.ln = $scope.FormatCount(json.count);
+                });              
+                
                 data.displayurl = data.url.replace(/^http:\/\//i, "");
                 
                 data.displaytitle = $scope.TrimString(data.title,70);

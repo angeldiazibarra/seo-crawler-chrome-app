@@ -91,6 +91,16 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     span.serpdesc(ng-show="value.metadescription.length > 155",title="{{value.metadescription}}") {{value.displaydescription}}               
                     br
                   br
+                .col-xs-12.col-md-6
+                  .socialdata
+                    .social.fb(title="{{value.social.fb}} Facebook Likes")
+                      span {{value.social.fb}}
+                    .social.tw(title="{{value.social.tw}} Tweets")
+                      span {{value.social.tw}}
+                    .social.gp(title="{{value.social.gp}} Google Plus Ones")
+                      span {{value.social.gp}}
+                    .social.ln(title="{{value.social.ln}} LinkedIn Shares")
+                      span {{value.social.ln}}
               .row
                 .col-xs-12.col-md-6
                   .row

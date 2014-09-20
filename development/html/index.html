@@ -82,6 +82,14 @@
                 <div class="col-xs-12 col-md-6">
                   <div class="serpdata"><a ng-hide="value.title.length &gt; 70" href="{{value.url}}" target="_blank" class="serptit">{{value.displaytitle}}</a><a ng-show="value.title.length &gt; 70" href="{{value.url}}" target="_blank" title="{{value.title}}" class="serptit">{{value.displaytitle}}</a><br><span class="serpurl">{{value.displayurl}}       </span><br><span ng-hide="value.metadescription.length &gt; 155" class="serpdesc">{{value.displaydescription}}               </span><span ng-show="value.metadescription.length &gt; 155" title="{{value.metadescription}}" class="serpdesc">{{value.displaydescription}}               </span><br></div><br>
                 </div>
+                <div class="col-xs-12 col-md-6">
+                  <div class="socialdata">
+                    <div title="{{value.social.fb}} Facebook Likes" class="social fb"><span>{{value.social.fb}}</span></div>
+                    <div title="{{value.social.tw}} Tweets" class="social tw"><span>{{value.social.tw}}</span></div>
+                    <div title="{{value.social.gp}} Google Plus Ones" class="social gp"><span>{{value.social.gp}}</span></div>
+                    <div title="{{value.social.ln}} LinkedIn Shares" class="social ln"><span>{{value.social.ln}}</span></div>
+                  </div>
+                </div>
               </div>
               <div class="row">
                 <div class="col-xs-12 col-md-6">
