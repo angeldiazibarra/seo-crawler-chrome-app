@@ -404,6 +404,14 @@
                     data.cscore = "error";
                 }
                                 
+                if(data.robots !== false){
+                    data.robotsmessage = false;
+                    data.rscore = "pass";
+                }else{
+                    data.robotsmessage = 'WARNING - Meta Robots not set';
+                    data.rscore = "warning";
+                }
+                                
                 if(data.publisher !== false){
                     data.publishermessage = false;
                     data.pscore = "pass";

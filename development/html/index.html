@@ -106,6 +106,12 @@
                     </div>
                   </div>
                   <div class="row">
+                    <div ng-class="value.rscore" class="col-xs-4 col-md-3 listit"><b>Robots:          </b></div>
+                    <div class="col-xs-8 col-md-9">
+                      <p><span ng-show="value.robots !== false">{{value.robots}}</span><br ng-show="value.robotsmessage !== false &amp;&amp; value.robots !== false"><span ng-show="value.robotsmessage !== false" class="errormessage">{{value.robotsmessage}}</span></p>
+                    </div>
+                  </div>
+                  <div class="row">
                     <div ng-class="value.cscore" class="col-xs-4 col-md-3 listit"><b>Canonical:          </b></div>
                     <div class="col-xs-8 col-md-9">
                       <p><span ng-show="value.canonical !== false"><a href="{{value.canonical}}" target="_blank">{{value.canonical}}</a></span><br ng-show="value.canonicalmessage !== false &amp;&amp; value.canonical !== false"><span ng-show="value.canonicalmessage !== false" class="errormessage">{{value.canonicalmessage}}</span></p>
