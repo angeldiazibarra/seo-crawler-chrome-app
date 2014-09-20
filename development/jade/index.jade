@@ -120,14 +120,6 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                         br(ng-show="value.descriptionmessage !== false && value.metadescription !== false")
                         span.errormessage(ng-show="value.descriptionmessage !== false") {{value.descriptionmessage}} 
                   .row
-                    .col-xs-4.col-md-3.listit(ng-class="value.rscore")
-                      b Robots:          
-                    .col-xs-8.col-md-9
-                      p 
-                        span(ng-show="value.robots !== false") {{value.robots}}
-                        br(ng-show="value.robotsmessage !== false && value.robots !== false")
-                        span.errormessage(ng-show="value.robotsmessage !== false") {{value.robotsmessage}}
-                  .row
                     .col-xs-4.col-md-3.listit(ng-class="value.cscore")
                       b Canonical:          
                     .col-xs-8.col-md-9
@@ -136,6 +128,14 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                           a(href="{{value.canonical}}",target="_blank") {{value.canonical}}
                         br(ng-show="value.canonicalmessage !== false && value.canonical !== false")
                         span.errormessage(ng-show="value.canonicalmessage !== false") {{value.canonicalmessage}}
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.rscore")
+                      b Robots:          
+                    .col-xs-8.col-md-9
+                      p 
+                        span(ng-show="value.robots !== false") {{value.robots}}
+                        br(ng-show="value.robotsmessage !== false && value.robots !== false")
+                        span.errormessage(ng-show="value.robotsmessage !== false") {{value.robotsmessage}}
                   .row
                     .col-xs-4.col-md-3.listit(ng-class="value.ascore")
                       b Author:         
