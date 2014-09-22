@@ -119,7 +119,13 @@ ul.nav-tabs{
 
 .crawlrow{
     border-bottom: 1px dotted #ccc;
+}
+
+.rowpad{
     padding: 3px 0;
+}
+
+.row{
     &.pass{
         // background-color: #baffba;  
     }
