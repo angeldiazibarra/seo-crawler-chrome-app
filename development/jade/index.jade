@@ -248,25 +248,31 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               .row.titlerow
                 .col-xs-12.col-md-3
                   span HREF
-                .col-xs-12.col-md-2
-                  span Anchor
-                .col-xs-12.col-md-2
-                  span Title
-                .col-xs-12.col-md-2
-                  span REL
+                .col-xs-12.col-md-9
+                  .row
+                    .col-xs-12.col-md-3
+                      span Anchor
+                    .col-xs-12.col-md-3
+                      span Title
+                    .col-xs-12.col-md-2
+                      span REL
+                    .col-xs-12.col-md-4
+                      span URL
+              .row.crawlrow(ng-repeat="value in crawl.website.internal track by $index")
                 .col-xs-12.col-md-3
-                  span URL
-              .row.crawlrow.rowpad(ng-repeat="value in crawl.website.internal track by $index",ng-class="value.score")
-                .col-xs-12.col-md-3.crawl-line.crawl-link
-                  a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
-                .col-xs-12.col-md-2.crawl-line
-                  span(title="{{value.anchor}}") {{value.anchor}}
-                .col-xs-12.col-md-2.crawl-line
-                  span(title="{{value.title}}") {{value.title}}
-                .col-xs-12.col-md-2.crawl-line
-                  span {{value.rel}}
-                .col-xs-12.col-md-3.crawl-line.crawl-link
-                  a(href="{{value.url}}",title="{{value.url}}",target="_blank") {{value.displayurl}}
+                  .row.rowpad
+                    .col-xs-12.crawl-line.crawl-link
+                      a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
+                .col-xs-12.col-md-9.crawl-line
+                  .row.rowpad(ng-class="value.data.score")
+                    .col-xs-12.col-md-3.crawl-line
+                      span(title="{{value.data.anchor}}") {{value.data.anchor}}
+                    .col-xs-12.col-md-3.crawl-line
+                      span(title="{{value.data.title}}") {{value.data.title}}
+                    .col-xs-12.col-md-2.crawl-line
+                      span {{value.data.rel}}
+                    .col-xs-12.col-md-4.crawl-line.crawl-link
+                      a(href="{{value.data.url}}",title="{{value.data.url}}",target="_blank") {{value.data.displayurl}}
     footer
     
     script(src="../resources/js/vendor/jquery.min.js")

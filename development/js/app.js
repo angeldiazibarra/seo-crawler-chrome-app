@@ -445,14 +445,25 @@
                 }
                 
                 data.links.internal.forEach(function(link){
-                    link.url = data.url;
-                    link.displayurl = '...' + data.url.replace(mainurl,'');
+                    
+                    link.data = [];
+                    link.data.anchor = link.anchor;
+                    link.data.title = link.title;
+                    link.data.url = data.url;
+                    link.data.displayurl = '...' + data.url.replace(mainurl,'');
+                    link.data.rel = link.rel;
                     
                     if(link.title==="-"){
-                        link.score = "warning";
+                        link.data.score = "warning";
                     }else{
-                        link.score = "pass";
+                        link.data.score = "pass";
                     }
+
+                    delete link['anchor'];
+                    delete link['title'];
+                    delete link['url'];
+                    delete link['displayurl'];
+                    delete link['rel'];
                     
                     web.internal.push(link); 
                     
@@ -487,7 +498,6 @@
                     delete link['rel'];
                     
                     web.external.push(link); 
-                    console.log(link);
                 });
 
                 var imgarray = $.map(data.images, function(value, index) {
