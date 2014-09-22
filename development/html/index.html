@@ -205,11 +205,11 @@
                   </div>
                 </div>
                 <div class="col-xs-12 col-md-9 crawl-line">
-                  <div ng-class="value.score" class="row rowpad">
-                    <div class="col-xs-12 col-md-3 crawl-line"><span title="{{value.anchor}}">{{value.anchor}}</span></div>
-                    <div class="col-xs-12 col-md-3 crawl-line"><span title="{{value.title}}">{{value.title}}</span></div>
-                    <div class="col-xs-12 col-md-2 crawl-line"><span>{{value.rel}}</span></div>
-                    <div class="col-xs-12 col-md-4 crawl-line crawl-link"><a href="{{value.url}}" title="{{value.url}}" target="_blank">{{value.displayurl}}</a></div>
+                  <div ng-class="value.data.score" class="row rowpad">
+                    <div class="col-xs-12 col-md-3 crawl-line"><span title="{{value.data.anchor}}">{{value.data.anchor}}</span></div>
+                    <div class="col-xs-12 col-md-3 crawl-line"><span title="{{value.data.title}}">{{value.data.title}}</span></div>
+                    <div class="col-xs-12 col-md-2 crawl-line"><span>{{value.data.rel}}</span></div>
+                    <div class="col-xs-12 col-md-4 crawl-line crawl-link"><a href="{{value.data.url}}" title="{{value.data.url}}" target="_blank">{{value.data.displayurl}}</a></div>
                   </div>
                 </div>
               </div>

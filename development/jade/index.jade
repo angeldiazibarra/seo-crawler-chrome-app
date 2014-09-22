@@ -234,15 +234,15 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     .col-xs-12.crawl-line.crawl-link
                       a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
                 .col-xs-12.col-md-9.crawl-line
-                  .row.rowpad(ng-class="value.score")
+                  .row.rowpad(ng-class="value.data.score")
                     .col-xs-12.col-md-3.crawl-line
-                      span(title="{{value.anchor}}") {{value.anchor}}
+                      span(title="{{value.data.anchor}}") {{value.data.anchor}}
                     .col-xs-12.col-md-3.crawl-line
-                      span(title="{{value.title}}") {{value.title}}
+                      span(title="{{value.data.title}}") {{value.data.title}}
                     .col-xs-12.col-md-2.crawl-line
-                      span {{value.rel}}
+                      span {{value.data.rel}}
                     .col-xs-12.col-md-4.crawl-line.crawl-link
-                      a(href="{{value.url}}",title="{{value.url}}",target="_blank") {{value.displayurl}}
+                      a(href="{{value.data.url}}",title="{{value.data.url}}",target="_blank") {{value.data.displayurl}}
           .row.mtop(ng-if="ShowInternal()")
             .col-xs-12
               .row.titlerow
