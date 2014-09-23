@@ -196,18 +196,26 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               .row.titlerow
                 .col-xs-12.col-md-3
                   span Filename
-                .col-xs-12.col-md-3
+                .col-xs-12.col-md-1
+                  span Status
+                .col-xs-12.col-md-1
+                  span Type
+                .col-xs-12.col-md-2
                   span Title
-                .col-xs-12.col-md-3
+                .col-xs-12.col-md-2
                   span Alt
                 .col-xs-12.col-md-3
                   span URL
               .row.crawlrow.rowpad(ng-repeat="value in crawl.website.images track by $index",ng-class="value.score")
                 .col-xs-12.col-md-3.crawl-line.crawl-link
                   a(href="{{value.src}}",title="{{value.src}}",target="_blank") {{value.filename}}
-                .col-xs-12.col-md-3.crawl-line
+                .col-xs-12.col-md-1.crawl-line
+                  span {{value.code}}
+                .col-xs-12.col-md-1.crawl-line
+                  span(title="{{value.type}}") {{value.type}}
+                .col-xs-12.col-md-2.crawl-line
                   span(title="{{value.title}}") {{value.title}}
-                .col-xs-12.col-md-3.crawl-line
+                .col-xs-12.col-md-2.crawl-line
                   span(title="{{value.alt}}") {{value.alt}}
                 .col-xs-12.col-md-3.crawl-line.crawl-link
                   a(href="{{value.url}}",title="{{value.url}}",target="_blank") {{value.displayurl}}
@@ -215,10 +223,10 @@ html(data-ng-app="myCrawler" data-ng-csp="")
           .row.mtop(ng-if="ShowExternal()")
             .col-xs-12
               .row.titlerow
-                .col-xs-12.col-md-1
-                  span Status
                 .col-xs-12.col-md-3
                   span HREF
+                .col-xs-12.col-md-1
+                  span Status
                 .col-xs-12.col-md-8
                   .row
                     .col-xs-12.col-md-3
@@ -230,14 +238,14 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     .col-xs-12.col-md-4
                       span URL
               .row.crawlrow(ng-repeat="value in crawl.website.external track by $index")
-                .col-xs-12.col-md-1
-                  .row.rowpad(ng-class="value.score")
-                    .col-xs-12.crawl-line
-                      span {{value.code}}
                 .col-xs-12.col-md-3
                   .row.rowpad(ng-class="value.score")
                     .col-xs-12.crawl-line.crawl-link
                       a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
+                .col-xs-12.col-md-1
+                  .row.rowpad(ng-class="value.score")
+                    .col-xs-12.crawl-line
+                      span {{value.code}}
                 .col-xs-12.col-md-8.crawl-line
                   .row.rowpad(ng-repeat="individual in value.data",ng-class="individual.score")
                     .col-xs-12.col-md-3.crawl-line
@@ -252,10 +260,10 @@ html(data-ng-app="myCrawler" data-ng-csp="")
           .row.mtop(ng-if="ShowInternal()")
             .col-xs-12
               .row.titlerow
-                .col-xs-12.col-md-1
-                  span Status
                 .col-xs-12.col-md-3
                   span HREF
+                .col-xs-12.col-md-1
+                  span Status
                 .col-xs-12.col-md-8
                   .row
                     .col-xs-12.col-md-3
@@ -267,14 +275,14 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     .col-xs-12.col-md-4
                       span URL
               .row.crawlrow(ng-repeat="value in crawl.website.internal track by $index")
-                .col-xs-12.col-md-1
-                  .row.rowpad(ng-class="value.score")
-                    .col-xs-12.crawl-line
-                      span {{value.code}}
                 .col-xs-12.col-md-3
                   .row.rowpad(ng-class="value.score")
                     .col-xs-12.crawl-line.crawl-link
                       a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
+                .col-xs-12.col-md-1
+                  .row.rowpad(ng-class="value.score")
+                    .col-xs-12.crawl-line
+                      span {{value.code}}
                 .col-xs-12.col-md-8.crawl-line
                   .row.rowpad(ng-repeat="individual in value.data",ng-class="individual.score")
                     .col-xs-12.col-md-3.crawl-line

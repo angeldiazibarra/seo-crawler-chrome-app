@@ -309,6 +309,7 @@
       web.internal = [];
       web.intlinks = [];
       web.images = [];
+      web.img = [];
       
       var url = web.protocol + web.hostname;    
       var statusurl = 'http://www.metricspot.com/api/status?url='+url;
@@ -488,6 +489,49 @@
                     data.hscore = "pass";                    
                     data.h1message = false;
                 }
+
+                var imgarray = $.map(data.images, function(value, index) {
+                    return [value];
+                });
+                
+                imgarray.forEach(function(img){
+                    delete img['anchornum'];
+                    img.url = data.url;
+                    
+                    img.displayurl = '...' + data.url.replace(mainurl,'');
+                    
+                    var filename = img.src.split('/');
+                    img.filename = filename[filename.length-1];
+                    
+                    if(img.alt==="-"){
+                        img.score = "error";
+                    }else if(img.title==="-"){
+                        img.score = "warning";
+                    }else{
+                        img.score = "pass";
+                    }   
+                    
+                    if(!$scope.IsInArray(img.src,web.img)){
+                        
+                        // var statusurl = 'http://www.metricspot.com/api/status?url='+link.href;
+                        var statusurl = 'http://www.metricspot.com/api/status';
+                        
+                        urlData.putData(statusurl,img.src).then(function(statusdata){
+                            img.code = statusdata.code;
+                            img.type = statusdata.type;
+                            var score = $scope.CodeScore(img.code);
+                            if(score !== "pass"){
+                                img.score = score;
+                            }
+                            web.img.push(img.src);
+                            web.images.push(img); 
+                            console.log(img);
+                        });
+                    }else{
+                        // console.log(link.href);
+                        // Find existing link and push linkdata
+                    }      
+                });
                 
                 data.links.external.forEach(function(link){
                     
@@ -593,29 +637,6 @@
                         web.urls.push(link.href); 
                     }
                 });
-
-                var imgarray = $.map(data.images, function(value, index) {
-                    return [value];
-                });
-                
-                imgarray.forEach(function(img){
-                    delete img['anchornum'];
-                    img.url = data.url;
-                    
-                    img.displayurl = '...' + data.url.replace(mainurl,'');
-                    
-                    var filename = img.src.split('/');
-                    img.filename = filename[filename.length-1];
-                    
-                    if(img.alt==="-"){
-                        img.score = "error";
-                    }else if(img.title==="-"){
-                        img.score = "warning";
-                    }else{
-                        img.score = "pass";
-                    }
-                    web.images.push(img); 
-                });
                                 
                 if(data.author !== false){
                     data.authormessage = false;
@@ -651,7 +672,8 @@
       extlinks: [],
       internal: [],
       intlinks: [],
-      images: []
+      images: [],
+      img: []
   };
     
 })();
