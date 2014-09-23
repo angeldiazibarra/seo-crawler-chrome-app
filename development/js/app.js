@@ -109,7 +109,9 @@
     };
     
     $scope.ShowLinks = function(){
-      if(web.internal.length === 0 && web.external.length === 0){
+      var sizeext = $scope.ObjectSize(web.external);
+      var sizeint = $scope.ObjectSize(web.internal);
+      if(sizeext === 0 && sizeint === 0){
         return('false');
       }else{
         return('true');
@@ -117,7 +119,8 @@
     };
     
     $scope.ShowExternal = function(){
-      if(web.external.length === 0){
+      var size = $scope.ObjectSize(web.external);
+      if(size === 0){
         return('false');
       }else{
         return('true');
@@ -125,11 +128,20 @@
     };
     
     $scope.ShowInternal = function(){
-      if(web.internal.length === 0){
+      var size = $scope.ObjectSize(web.internal);
+      if(size === 0){
         return('false');
       }else{
         return('true');
       }
+    };
+    
+    $scope.ObjectSize = function(obj) {
+      var size = 0, key;
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+      }
+      return size;
     };
     
     $scope.ArrayUnique = function(a) {
@@ -262,7 +274,9 @@
       web.robotstxt = null;   
       web.mapurls = [];
       web.external = [];
+      web.extlinks = [];
       web.internal = [];
+      web.intlinks = [];
       web.images = [];
       
       var url = web.protocol + web.hostname;    
@@ -447,16 +461,17 @@
                 data.links.internal.forEach(function(link){
                     
                     link.data = [];
-                    link.data.anchor = link.anchor;
-                    link.data.title = link.title;
-                    link.data.url = data.url;
-                    link.data.displayurl = '...' + data.url.replace(mainurl,'');
-                    link.data.rel = link.rel;
+                    var linkdata = [];
+                    linkdata.anchor = link.anchor;
+                    linkdata.title = link.title;
+                    linkdata.url = data.url;
+                    linkdata.displayurl = '...' + data.url.replace(mainurl,'');
+                    linkdata.rel = link.rel;
                     
                     if(link.title==="-"){
-                        link.data.score = "warning";
+                        linkdata.score = "warning";
                     }else{
-                        link.data.score = "pass";
+                        linkdata.score = "pass";
                     }
 
                     delete link['anchor'];
@@ -465,8 +480,23 @@
                     delete link['displayurl'];
                     delete link['rel'];
                     
-                    web.internal.push(link); 
+                    /*
+                    if(!web.internal[link.href]){
+                        web.internal[link.href] = link;
+                    }else{
+                        web.internal[link.href].data.push = link.data;
+                    }
+                    */
                     
+                    if(!$scope.IsInArray(link.href,web.intlinks)){
+                        web.intlinks.push(link.href);
+                        link.data.push(linkdata);
+                        web.internal.push(link);
+                    }else{
+                        // console.log(link.href);
+                        // Find existing link and push linkdata
+                    }
+                                        
                     if(!$scope.IsInArray(link.href,web.processed) && !$scope.IsInArray(link.href,web.urls)){
                         web.urls.push(link.href); 
                     }
@@ -475,20 +505,21 @@
                 data.links.external.forEach(function(link){
                     
                     link.data = [];
-                    link.data.anchor = link.anchor;
-                    link.data.title = link.title;
-                    link.data.url = data.url;
-                    link.data.displayurl = '...' + data.url.replace(mainurl,'');
-                    link.data.rel = link.rel;
+                    var linkdata = [];
+                    linkdata.anchor = link.anchor;
+                    linkdata.title = link.title;
+                    linkdata.url = data.url;
+                    linkdata.displayurl = '...' + data.url.replace(mainurl,'');
+                    linkdata.rel = link.rel;                   
                     
                     if(data.author === false && link.rel.match(/author/i)!== null){
                         data.author = link.href.replace(/(https?\:\/\/plus\.google\.com\/)/,'');
                     }
                     
                     if(link.title==="-"){
-                        link.data.score = "warning";
+                        linkdata.score = "warning";
                     }else{
-                        link.data.score = "pass";
+                        linkdata.score = "pass";
                     }
                     
                     delete link['anchor'];
@@ -497,7 +528,22 @@
                     delete link['displayurl'];
                     delete link['rel'];
                     
-                    web.external.push(link); 
+                    /*
+                    if(!web.external[link.href]){
+                        web.external[link.href] = link;
+                    }else{
+                        web.external[link.href].data.push = link.data;
+                    } 
+                    */
+                   
+                    if(!$scope.IsInArray(link.href,web.extlinks)){
+                        web.extlinks.push(link.href);
+                        link.data.push(linkdata);
+                        web.external.push(link);
+                    }else{
+                        // console.log(link.href);
+                        // Find existing link and push linkdata
+                    }
                 });
 
                 var imgarray = $.map(data.images, function(value, index) {
@@ -554,7 +600,9 @@
       processed: [],
       pages: [],
       external: [],
+      extlinks: [],
       internal: [],
+      intlinks: [],
       images: []
   };
     

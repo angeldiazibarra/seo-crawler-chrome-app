@@ -234,15 +234,15 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     .col-xs-12.crawl-line.crawl-link
                       a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
                 .col-xs-12.col-md-9.crawl-line
-                  .row.rowpad(ng-class="value.data.score")
+                  .row.rowpad(ng-repeat="individual in value.data",ng-class="individual.score")
                     .col-xs-12.col-md-3.crawl-line
-                      span(title="{{value.data.anchor}}") {{value.data.anchor}}
+                      span(title="{{individual.anchor}}") {{individual.anchor}}
                     .col-xs-12.col-md-3.crawl-line
-                      span(title="{{value.data.title}}") {{value.data.title}}
+                      span(title="{{individual.title}}") {{individual.title}}
                     .col-xs-12.col-md-2.crawl-line
-                      span {{value.data.rel}}
+                      span {{individual.rel}}
                     .col-xs-12.col-md-4.crawl-line.crawl-link
-                      a(href="{{value.data.url}}",title="{{value.data.url}}",target="_blank") {{value.data.displayurl}}
+                      a(href="{{individual.url}}",title="{{individual.url}}",target="_blank") {{individual.displayurl}}
           .row.mtop(ng-if="ShowInternal()")
             .col-xs-12
               .row.titlerow
@@ -264,15 +264,15 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     .col-xs-12.crawl-line.crawl-link
                       a(href="{{value.href}}",title="{{value.href}}",target="_blank") {{value.href}}
                 .col-xs-12.col-md-9.crawl-line
-                  .row.rowpad(ng-class="value.data.score")
+                  .row.rowpad(ng-repeat="individual in value.data",ng-class="individual.score")
                     .col-xs-12.col-md-3.crawl-line
-                      span(title="{{value.data.anchor}}") {{value.data.anchor}}
+                      span(title="{{individual.anchor}}") {{individual.anchor}}
                     .col-xs-12.col-md-3.crawl-line
-                      span(title="{{value.data.title}}") {{value.data.title}}
+                      span(title="{{individual.title}}") {{individual.title}}
                     .col-xs-12.col-md-2.crawl-line
-                      span {{value.data.rel}}
+                      span {{individual.rel}}
                     .col-xs-12.col-md-4.crawl-line.crawl-link
-                      a(href="{{value.data.url}}",title="{{value.data.url}}",target="_blank") {{value.data.displayurl}}
+                      a(href="{{individual.url}}",title="{{individual.url}}",target="_blank") {{individual.displayurl}}
     footer
     
     script(src="../resources/js/vendor/jquery.min.js")
