@@ -16,6 +16,20 @@
           deferred.reject(status);
         });
         return deferred.promise;
+      },
+      putData:function(apiurl,url){
+        var deferred = $q.defer();
+        $http({
+          url: apiurl,
+          method: "PUT",
+          data: { 'url' : url }
+        })
+        .then(function(response) {
+          deferred.resolve(response.data);
+        },function(error) {
+          deferred.reject(error.status);
+        });
+        return deferred.promise;
       }
     };
   });
@@ -503,14 +517,15 @@
                     if(!$scope.IsInArray(link.href,web.extlinks)){
                         web.extlinks.push(link.href);
                         
-                        var statusurl = 'http://www.metricspot.com/api/status?url='+link.href;
+                        // var statusurl = 'http://www.metricspot.com/api/status?url='+link.href;
+                        var statusurl = 'http://www.metricspot.com/api/status';
                         
-                        urlData.getData(statusurl).then(function(statusdata){
+                        urlData.putData(statusurl,link.href).then(function(statusdata){
                             link.code = statusdata.code;
-                            link.score = $scope.CodeScore(statusdata.code);
+                            link.score = $scope.CodeScore(link.code);
                             link.data.push(linkdata);
                             web.external.push(link);
-                            console.log(link);
+                            // console.log(link);
                         });
                     }else{
                         // console.log(link.href);
@@ -558,7 +573,7 @@
                             link.score = $scope.CodeScore(statusdata.code);
                             link.data.push(linkdata);
                             web.internal.push(link);
-                            console.log(link);
+                            // console.log(link);
                         });
                     }else{
                         // console.log(link.href);
