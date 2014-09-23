@@ -16,11 +16,11 @@
             <div class="col-xs-12">
               <ul role="tablist" class="nav nav-tabs nav-justified">
                 <li id="home" class="active"><a show-tab>Home</a></li>
-                <li id="robots" ng-class="{true:'', false:'disabled'}[ShowRobots()]"><a show-tab>Robots</a></li>
-                <li id="sitemap" ng-class="{true:'', false:'disabled'}[ShowSitemaps()]"><a show-tab>Sitemap</a></li>
+                <li id="robotsandsitemap" ng-class="{true:'', false:'disabled'}[ShowRandS()]"><a show-tab>Robots & Sitemap</a></li>
                 <li id="pages" ng-class="{true:'', false:'disabled'}[ShowPages()]"><a show-tab>Pages</a></li>
                 <li id="images" ng-class="{true:'', false:'disabled'}[ShowImages()]"><a show-tab>Images</a></li>
-                <li id="links" ng-class="{true:'', false:'disabled'}[ShowLinks()]" class="disabled"><a show-tab>Links</a></li>
+                <li id="extlinks" ng-class="{true:'', false:'disabled'}[ShowExternal()]" class="disabled"><a show-tab>Ext. Links</a></li>
+                <li id="intlinks" ng-class="{true:'', false:'disabled'}[ShowInternal()]" class="disabled"><a show-tab>Int. Links</a></li>
               </ul>
             </div>
           </div>
@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-        <div id="robotstab" class="navtabs">
+        <div id="robotsandsitemaptab" class="navtabs">
           <div ng-if="ShowRobots()" class="row mtop">
             <div class="col-xs-12">
               <p><a href="{{crawl.website.robotsurl}}" target="_blank">{{crawl.website.robotsurl}}</a></p>
@@ -62,8 +62,6 @@
               <pre><span ng-repeat="value in crawl.website.robotstxt track by $index" ng-class="CodeComment(value)" class="nomar">{{value}}<span ng-show=" ! $last "><br></span></span></pre>
             </div>
           </div>
-        </div>
-        <div id="sitemaptab" class="navtabs">
           <div ng-if="ShowSitemaps()" class="row mtop">
             <div class="col-xs-12">
               <p><span ng-repeat="value in crawl.website.sitemaps track by $index" class="nomar"><a href="{{value}}" target="_blank">{{value}}</a><span ng-show=" ! $last "><br></span></span></p>
@@ -184,7 +182,7 @@
             </div>
           </div>
         </div>
-        <div id="linkstab" class="navtabs">
+        <div id="extlinkstab" class="navtabs">
           <div ng-if="ShowExternal()" class="row mtop">
             <div class="col-xs-12">
               <div class="row titlerow">
@@ -221,6 +219,8 @@
               </div>
             </div>
           </div>
+        </div>
+        <div id="intlinkstab" class="navtabs">
           <div ng-if="ShowInternal()" class="row mtop">
             <div class="col-xs-12">
               <div class="row titlerow">

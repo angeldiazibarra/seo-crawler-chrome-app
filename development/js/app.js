@@ -88,6 +88,15 @@
       web.protocol = protocol;
     };
     
+    $scope.ShowRandS = function(){
+      web.sitemaps = $scope.ArrayUnique(web.sitemaps);
+      if(web.robotsurl === null && web.sitemaps.length === 0){
+        return('false');
+      }else{
+        return('true');
+      }
+    };
+    
     $scope.ShowRobots = function(){
       if(web.robotsurl === null){
         return('false');

@@ -13,16 +13,16 @@ html(data-ng-app="myCrawler" data-ng-csp="")
               ul.nav.nav-tabs.nav-justified(role="tablist")
                 li#home.active
                   a(show-tab) Home
-                li#robots(ng-class="{true:'', false:'disabled'}[ShowRobots()]")
-                  a(show-tab) Robots
-                li#sitemap(ng-class="{true:'', false:'disabled'}[ShowSitemaps()]")
-                  a(show-tab) Sitemap
+                li#robotsandsitemap(ng-class="{true:'', false:'disabled'}[ShowRandS()]")
+                  a(show-tab) Robots & Sitemap
                 li#pages(ng-class="{true:'', false:'disabled'}[ShowPages()]")
                   a(show-tab) Pages
                 li#images(ng-class="{true:'', false:'disabled'}[ShowImages()]")
                   a(show-tab) Images
-                li#links.disabled(ng-class="{true:'', false:'disabled'}[ShowLinks()]")
-                  a(show-tab) Links
+                li#extlinks.disabled(ng-class="{true:'', false:'disabled'}[ShowExternal()]")
+                  a(show-tab) Ext. Links
+                li#intlinks.disabled(ng-class="{true:'', false:'disabled'}[ShowInternal()]")
+                  a(show-tab) Int. Links
         #hometab.navtabs(style="display:block")
           .row.mtop
             .col-xs-12.col-md-6.col-md-offset-3
@@ -51,7 +51,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                   a(href="{{value}}",target="_blank") {{value}}
                   span(ng-show=" ! $last ")
                     br
-        #robotstab.navtabs
+        #robotsandsitemaptab.navtabs
           .row.mtop(ng-if="ShowRobots()")
             .col-xs-12
               p
@@ -62,7 +62,6 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                 span(ng-repeat="value in crawl.website.robotstxt track by $index",ng-class="CodeComment(value)").nomar {{value}}
                   span(ng-show=" ! $last ")
                     br
-        #sitemaptab.navtabs
           .row.mtop(ng-if="ShowSitemaps()")
             .col-xs-12
               p
@@ -212,7 +211,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                   span(title="{{value.alt}}") {{value.alt}}
                 .col-xs-12.col-md-3.crawl-line.crawl-link
                   a(href="{{value.url}}",title="{{value.url}}",target="_blank") {{value.displayurl}}
-        #linkstab.navtabs
+        #extlinkstab.navtabs
           .row.mtop(ng-if="ShowExternal()")
             .col-xs-12
               .row.titlerow
@@ -249,6 +248,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                       span {{individual.rel}}
                     .col-xs-12.col-md-4.crawl-line.crawl-link
                       a(href="{{individual.url}}",title="{{individual.url}}",target="_blank") {{individual.displayurl}}
+        #intlinkstab.navtabs
           .row.mtop(ng-if="ShowInternal()")
             .col-xs-12
               .row.titlerow
