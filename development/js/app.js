@@ -563,7 +563,7 @@
                     if(!web.external[link.href]){
                         web.external[link.href] = link;
                     }else{
-                        web.external[link.href].data.push = link.data;
+                        web.external[link.href].data.push(link.data);
                     } 
                     */
                    
@@ -612,7 +612,7 @@
                     if(!web.internal[link.href]){
                         web.internal[link.href] = link;
                     }else{
-                        web.internal[link.href].data.push = link.data;
+                        web.internal[link.href].data.push(link.data);
                     }
                     */
                     
