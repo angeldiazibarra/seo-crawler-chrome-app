@@ -188,8 +188,9 @@
           <div ng-if="ShowExternal()" class="row mtop">
             <div class="col-xs-12">
               <div class="row titlerow">
+                <div class="col-xs-12 col-md-1"><span>Status</span></div>
                 <div class="col-xs-12 col-md-3"><span>HREF</span></div>
-                <div class="col-xs-12 col-md-9">
+                <div class="col-xs-12 col-md-8">
                   <div class="row">
                     <div class="col-xs-12 col-md-3"><span>Anchor</span></div>
                     <div class="col-xs-12 col-md-3"><span>Title</span></div>
@@ -199,12 +200,17 @@
                 </div>
               </div>
               <div ng-repeat="value in crawl.website.external track by $index" class="row crawlrow">
+                <div class="col-xs-12 col-md-1">
+                  <div ng-class="value.score" class="row rowpad">
+                    <div class="col-xs-12 crawl-line"><span>{{value.code}}</span></div>
+                  </div>
+                </div>
                 <div class="col-xs-12 col-md-3">
-                  <div class="row rowpad">
+                  <div ng-class="value.score" class="row rowpad">
                     <div class="col-xs-12 crawl-line crawl-link"><a href="{{value.href}}" title="{{value.href}}" target="_blank">{{value.href}}</a></div>
                   </div>
                 </div>
-                <div class="col-xs-12 col-md-9 crawl-line">
+                <div class="col-xs-12 col-md-8 crawl-line">
                   <div ng-repeat="individual in value.data" ng-class="individual.score" class="row rowpad">
                     <div class="col-xs-12 col-md-3 crawl-line"><span title="{{individual.anchor}}">{{individual.anchor}}</span></div>
                     <div class="col-xs-12 col-md-3 crawl-line"><span title="{{individual.title}}">{{individual.title}}</span></div>
@@ -218,8 +224,9 @@
           <div ng-if="ShowInternal()" class="row mtop">
             <div class="col-xs-12">
               <div class="row titlerow">
+                <div class="col-xs-12 col-md-1"><span>Status</span></div>
                 <div class="col-xs-12 col-md-3"><span>HREF</span></div>
-                <div class="col-xs-12 col-md-9">
+                <div class="col-xs-12 col-md-8">
                   <div class="row">
                     <div class="col-xs-12 col-md-3"><span>Anchor</span></div>
                     <div class="col-xs-12 col-md-3"><span>Title</span></div>
@@ -229,12 +236,17 @@
                 </div>
               </div>
               <div ng-repeat="value in crawl.website.internal track by $index" class="row crawlrow">
+                <div class="col-xs-12 col-md-1">
+                  <div ng-class="value.score" class="row rowpad">
+                    <div class="col-xs-12 crawl-line"><span>{{value.code}}</span></div>
+                  </div>
+                </div>
                 <div class="col-xs-12 col-md-3">
-                  <div class="row rowpad">
+                  <div ng-class="value.score" class="row rowpad">
                     <div class="col-xs-12 crawl-line crawl-link"><a href="{{value.href}}" title="{{value.href}}" target="_blank">{{value.href}}</a></div>
                   </div>
                 </div>
-                <div class="col-xs-12 col-md-9 crawl-line">
+                <div class="col-xs-12 col-md-8 crawl-line">
                   <div ng-repeat="individual in value.data" ng-class="individual.score" class="row rowpad">
                     <div class="col-xs-12 col-md-3 crawl-line"><span title="{{individual.anchor}}">{{individual.anchor}}</span></div>
                     <div class="col-xs-12 col-md-3 crawl-line"><span title="{{individual.title}}">{{individual.title}}</span></div>

@@ -264,6 +264,14 @@
         }
         return num;
     };
+
+    $scope.CodeScore = function(code) {
+        if(code === 200){
+            return("pass");
+        }else{
+            return("warning");
+        }
+    };
     
     $scope.DoCrawl = function(){
 
@@ -458,50 +466,6 @@
                     data.h1message = false;
                 }
                 
-                data.links.internal.forEach(function(link){
-                    
-                    link.data = [];
-                    var linkdata = [];
-                    linkdata.anchor = link.anchor;
-                    linkdata.title = link.title;
-                    linkdata.url = data.url;
-                    linkdata.displayurl = '...' + data.url.replace(mainurl,'');
-                    linkdata.rel = link.rel;
-                    
-                    if(link.title==="-"){
-                        linkdata.score = "warning";
-                    }else{
-                        linkdata.score = "pass";
-                    }
-
-                    delete link['anchor'];
-                    delete link['title'];
-                    delete link['url'];
-                    delete link['displayurl'];
-                    delete link['rel'];
-                    
-                    /*
-                    if(!web.internal[link.href]){
-                        web.internal[link.href] = link;
-                    }else{
-                        web.internal[link.href].data.push = link.data;
-                    }
-                    */
-                    
-                    if(!$scope.IsInArray(link.href,web.intlinks)){
-                        web.intlinks.push(link.href);
-                        link.data.push(linkdata);
-                        web.internal.push(link);
-                    }else{
-                        // console.log(link.href);
-                        // Find existing link and push linkdata
-                    }
-                                        
-                    if(!$scope.IsInArray(link.href,web.processed) && !$scope.IsInArray(link.href,web.urls)){
-                        web.urls.push(link.href); 
-                    }
-                });
-                
                 data.links.external.forEach(function(link){
                     
                     link.data = [];
@@ -538,11 +502,71 @@
                    
                     if(!$scope.IsInArray(link.href,web.extlinks)){
                         web.extlinks.push(link.href);
-                        link.data.push(linkdata);
-                        web.external.push(link);
+                        
+                        var statusurl = 'http://www.metricspot.com/api/status?url='+link.href;
+                        
+                        urlData.getData(statusurl).then(function(statusdata){
+                            link.code = statusdata.code;
+                            link.score = $scope.CodeScore(statusdata.code);
+                            link.data.push(linkdata);
+                            web.external.push(link);
+                            console.log(link);
+                        });
                     }else{
                         // console.log(link.href);
                         // Find existing link and push linkdata
+                    }
+                });
+                
+                data.links.internal.forEach(function(link){
+                    
+                    link.data = [];
+                    var linkdata = [];
+                    linkdata.anchor = link.anchor;
+                    linkdata.title = link.title;
+                    linkdata.url = data.url;
+                    linkdata.displayurl = '...' + data.url.replace(mainurl,'');
+                    linkdata.rel = link.rel;
+                    
+                    if(link.title==="-"){
+                        linkdata.score = "warning";
+                    }else{
+                        linkdata.score = "pass";
+                    }
+
+                    delete link['anchor'];
+                    delete link['title'];
+                    delete link['url'];
+                    delete link['displayurl'];
+                    delete link['rel'];
+                    
+                    /*
+                    if(!web.internal[link.href]){
+                        web.internal[link.href] = link;
+                    }else{
+                        web.internal[link.href].data.push = link.data;
+                    }
+                    */
+                    
+                    if(!$scope.IsInArray(link.href,web.intlinks)){
+                        web.intlinks.push(link.href);
+                        
+                        var statusurl = 'http://www.metricspot.com/api/status?url='+link.href;
+                        
+                        urlData.getData(statusurl).then(function(statusdata){
+                            link.code = statusdata.code;
+                            link.score = $scope.CodeScore(statusdata.code);
+                            link.data.push(linkdata);
+                            web.internal.push(link);
+                            console.log(link);
+                        });
+                    }else{
+                        // console.log(link.href);
+                        // Find existing link and push linkdata
+                    }
+                                        
+                    if(!$scope.IsInArray(link.href,web.processed) && !$scope.IsInArray(link.href,web.urls)){
+                        web.urls.push(link.href); 
                     }
                 });
 
