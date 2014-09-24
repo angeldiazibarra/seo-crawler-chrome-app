@@ -530,17 +530,25 @@
                     if(matcharray){
                         matcharray.data.push(imgdata);
                     }else{
+                        img.code = 100;
+                        img.type = '-';
+                        img.score = 'pass';
+                        web.images.push(img); 
                         var statusurl = 'http://www.metricspot.com/api/status';
                         urlData.putData(statusurl,img.src).then(function(statusdata){
                             img.code = statusdata.code;
                             img.type = statusdata.type;
                             var score = $scope.CodeScore(img.code);
-                            if(score !== "pass"){
+                            if(score !== 'pass'){
                                 img.score = score;
                             }
                             
-                            img.data.push(imgdata);
-                            web.images.push(img); 
+                            var match = _.find(web.images, function(item){
+                                return item.src === img.src;
+                            });
+                            if(match){
+                                match.data.push(imgdata);
+                            }
                         });
                     }               
                 });
