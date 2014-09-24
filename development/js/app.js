@@ -545,7 +545,7 @@
                             return item.src === img.src;
                         });
                         if (match) {
-                            console.log(match);
+                            // console.log(match);
                             match.data.push(imgdata);
                         }
                     }
