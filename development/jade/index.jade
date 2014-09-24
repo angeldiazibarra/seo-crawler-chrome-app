@@ -208,7 +208,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                       span Alt
                     .col-xs-12.col-md-4
                       span URL
-              .row.crawlrow(ng-repeat="value in crawl.website.images track by $index",ng-show="value.status !== 0")
+              .row.crawlrow(ng-repeat="value in crawl.website.images track by $index",ng-show="value.code !== 0")
                 .col-xs-12.col-md-3
                   .row.rowpad(ng-class="value.score")
                     .col-xs-12.crawl-line.crawl-link
@@ -247,7 +247,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                       span REL
                     .col-xs-12.col-md-4
                       span URL
-              .row.crawlrow(ng-repeat="value in crawl.website.external track by $index",ng-show="value.status !== 0")
+              .row.crawlrow(ng-repeat="value in crawl.website.external track by $index",ng-show="value.code !== 0")
                 .col-xs-12.col-md-3
                   .row.rowpad(ng-class="value.score")
                     .col-xs-12.crawl-line.crawl-link
@@ -284,7 +284,7 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                       span REL
                     .col-xs-12.col-md-4
                       span URL
-              .row.crawlrow(ng-repeat="value in crawl.website.internal track by $index",ng-show="value.status !== 0")
+              .row.crawlrow(ng-repeat="value in crawl.website.internal track by $index",ng-show="value.code !== 0")
                 .col-xs-12.col-md-3
                   .row.rowpad(ng-class="value.score")
                     .col-xs-12.crawl-line.crawl-link
