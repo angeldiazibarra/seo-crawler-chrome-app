@@ -530,7 +530,7 @@
                     if(matcharray){
                         matcharray.data.push(imgdata);
                     }else{
-                        img.code = 100;
+                        img.code = 0;
                         img.type = '-';
                         img.score = 'pass';
                         web.images.push(img); 
