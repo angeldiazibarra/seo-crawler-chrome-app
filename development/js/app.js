@@ -560,15 +560,8 @@
                     delete link['url'];
                     delete link['displayurl'];
                     delete link['rel'];
+                       
                     
-                    /*
-                    if(!web.external[link.href]){
-                        web.external[link.href] = link;
-                    }else{
-                        web.external[link.href].data.push(link.data);
-                    } 
-                    */
-                   
                     if(!$scope.IsInArray(link.href,web.extlinks)){
                         web.extlinks.push(link.href);
                         
@@ -585,11 +578,9 @@
                         var match = _.find(web.external, function(item){
                             return item.href === link.href;
                         });
-                        console.log(match);
                         if (match) {
                             match.data.push(linkdata);
                         }
-                        // console.log(web.external);
                     }
                 });
                 
@@ -615,13 +606,6 @@
                     delete link['displayurl'];
                     delete link['rel'];
                     
-                    /*
-                    if(!web.internal[link.href]){
-                        web.internal[link.href] = link;
-                    }else{
-                        web.internal[link.href].data.push(link.data);
-                    }
-                    */
                     
                     if(!$scope.IsInArray(link.href,web.intlinks)){
                         web.intlinks.push(link.href);
