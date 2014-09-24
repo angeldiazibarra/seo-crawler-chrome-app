@@ -309,7 +309,6 @@
       web.robotstxt = null;   
       web.mapurls = [];
       web.external = [];
-      web.extlinks = [];
       web.internal = [];
       web.intlinks = [];
       web.images = [];
@@ -579,26 +578,32 @@
                     delete link['displayurl'];
                     delete link['rel'];
                        
-                    
-                    if(!$scope.IsInArray(link.href,web.extlinks)){
-                        web.extlinks.push(link.href);
-                        
+                    var matcharray = _.find(web.external, function(item){
+                        return item.href === link.href;
+                    });
+                    if(matcharray){
+                        matcharray.data.push(linkdata);
+                    }else{
+                        link.code = 0;
+                        link.score = 'pass';
+                        link.data.push(linkdata);
+                        web.external.push(link);
+                            
                         var statusurl = 'http://www.metricspot.com/api/status';
                         
                         urlData.putData(statusurl,link.href).then(function(statusdata){
                             link.code = statusdata.code;
                             link.score = $scope.CodeScore(link.code);
-                            link.data.push(linkdata);
+                            
                             web.external.push(link);
+                            
+                            var match = _.find(web.external, function(item){
+                                return item.href === link.href;
+                            });
+                            if(match){
+                                match.data.push(linkdata);
+                            }                            
                         });
-                    }else{
-                        var match = _.find(web.external, function(item){
-                            return item.href === link.href;
-                        });
-                        if (match) {
-                            // console.log(match);
-                            match.data.push(linkdata);
-                        }
                     }
                 });
                 
@@ -682,7 +687,6 @@
       processed: [],
       pages: [],
       external: [],
-      extlinks: [],
       internal: [],
       intlinks: [],
       images: []
