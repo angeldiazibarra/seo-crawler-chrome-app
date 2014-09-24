@@ -499,25 +499,34 @@
                 });
                 
                 imgarray.forEach(function(img){
-                    delete img['anchornum'];
-                    img.url = data.url;
                     
-                    img.displayurl = '...' + data.url.replace(mainurl,'');
+                    img.data = [];
+                    var imgdata = [];
+                    
+                    imgdata.url = data.url;
+                    imgdata.displayurl = '...' + data.url.replace(mainurl,'');
+                    
+                    imgdata.title = img.title;
+                    imgdata.alt = img.alt;
                     
                     var filename = img.src.split('/');
                     img.filename = filename[filename.length-1];
                     
                     if(img.alt==="-"){
-                        img.score = "error";
+                        imgdata.score = "error";
                     }else if(img.title==="-"){
-                        img.score = "warning";
+                        imgdata.score = "warning";
                     }else{
-                        img.score = "pass";
-                    }   
+                        imgdata.score = "pass";
+                    }    
+
+                    delete img['anchornum'];
+                    delete img['title'];
+                    delete img['alt'];           
                     
                     if(!$scope.IsInArray(img.src,web.img)){
+                        web.img.push(img.src);
                         
-                        // var statusurl = 'http://www.metricspot.com/api/status?url='+link.href;
                         var statusurl = 'http://www.metricspot.com/api/status';
                         
                         urlData.putData(statusurl,img.src).then(function(statusdata){
@@ -527,12 +536,20 @@
                             if(score !== "pass"){
                                 img.score = score;
                             }
-                            web.img.push(img.src);
+                            
+                            img.data.push(imgdata);
                             web.images.push(img); 
                         });
                     }else{
-                        // Find existing image and push linkdata
-                    }      
+                        var match = _.find(web.images, function(item){
+                            return item.src === img.src;
+                        });
+                        if (match) {
+                            console.log(match);
+                            match.data.push(imgdata);
+                        }
+                    }
+                    
                 });
                 
                 data.links.external.forEach(function(link){
@@ -565,7 +582,6 @@
                     if(!$scope.IsInArray(link.href,web.extlinks)){
                         web.extlinks.push(link.href);
                         
-                        // var statusurl = 'http://www.metricspot.com/api/status?url='+link.href;
                         var statusurl = 'http://www.metricspot.com/api/status';
                         
                         urlData.putData(statusurl,link.href).then(function(statusdata){
@@ -579,6 +595,7 @@
                             return item.href === link.href;
                         });
                         if (match) {
+                            // console.log(match);
                             match.data.push(linkdata);
                         }
                     }
@@ -610,18 +627,22 @@
                     if(!$scope.IsInArray(link.href,web.intlinks)){
                         web.intlinks.push(link.href);
                         
-                        var statusurl = 'http://www.metricspot.com/api/status?url='+link.href;
+                        var statusurl = 'http://www.metricspot.com/api/status';
                         
-                        urlData.getData(statusurl).then(function(statusdata){
+                        urlData.putData(statusurl,link.href).then(function(statusdata){
                             link.code = statusdata.code;
-                            link.score = $scope.CodeScore(statusdata.code);
+                            link.score = $scope.CodeScore(link.code);
                             link.data.push(linkdata);
                             web.internal.push(link);
-                            // console.log(link);
                         });
                     }else{
-                        // console.log(link.href);
-                        // Find existing link and push linkdata
+                        var match = _.find(web.internal, function(item){
+                            return item.href === link.href;
+                        });
+                        if (match) {
+                            // console.log(match);
+                            match.data.push(linkdata);
+                        }
                     }
                                         
                     if(!$scope.IsInArray(link.href,web.processed) && !$scope.IsInArray(link.href,web.urls)){
