@@ -405,7 +405,31 @@
                 
                 urlData.getData(linkdurl).then(function(json){
                     data.social.ln = $scope.FormatCount(json.count);
-                });              
+                }); 
+                
+                
+                /* TO DO: Refactor and resolve undefined conflict */
+                
+                if(data.code !== 'undefined' && data.code !== null){
+                    // var statusid = data.code.substring(0,1);
+                  
+                    if(data.code === 301 || data.code === 302){
+                        data.cscore = "warning";
+                        data.cmessage = 'WARNING - Redirects from: ' + data.url;
+                        data.url = data.target;
+                    /*
+                    }else if(statusid === 4){
+                        data.cscore = "error";
+                        data.cmessage = 'ERROR - Page not found: ' + data.url; 
+                    }else if(statusid === 5){
+                        data.cscore = "error";
+                        data.cmessage = 'ERROR - Server error: ' + data.url; 
+                    */
+                    }else{
+                        data.cscore = "pass";                    
+                        data.cmessage = false; 
+                    }
+                }             
                 
                 data.displayurl = data.url.replace(/^http:\/\//i, "");
                 

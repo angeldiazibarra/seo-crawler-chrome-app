@@ -164,7 +164,15 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                       p 
                         span(ng-show="value.publisher !== false")
                           a(href="https://plus.google.com/{{value.publisher}}",target="_blank") {{value.publisher}}
-                        span.errormessage(ng-show="value.publishermessage !== false") {{value.publishermessage}}   
+                        span.errormessage(ng-show="value.publishermessage !== false") {{value.publishermessage}} 
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.cscore")
+                      b Status Code:         
+                    .col-xs-8.col-md-9
+                      p 
+                        span {{value.code}}
+                        br(ng-show="value.cmessage !== false && value.code !== 200")
+                        span.errormessage(ng-show="value.cmessage !== false") {{value.cmessage}}   
                 .col-xs-12.col-md-6
                   .row
                     .col-xs-4.col-md-3.listit(ng-class="value.hscore")
