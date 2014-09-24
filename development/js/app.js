@@ -36,7 +36,7 @@
   
   app.directive('showTab', function () {
     return {
-      link: function (scope, element, attrs) {
+      link: function (scope, element) {
         element.click(function(e) {
           e.preventDefault();
           if(!element.parent().hasClass('disabled')){
@@ -53,7 +53,7 @@
 
 
 
-  app.controller('CrawlerController', function($scope,urlData,showTab){
+  app.controller('CrawlerController', function($scope,urlData){
     // console.log('CrawlerController load');
     
     this.website = web;
@@ -525,11 +525,9 @@
                             }
                             web.img.push(img.src);
                             web.images.push(img); 
-                            console.log(img);
                         });
                     }else{
-                        // console.log(link.href);
-                        // Find existing link and push linkdata
+                        // Find existing image and push linkdata
                     }      
                 });
                 
@@ -578,11 +576,16 @@
                             link.score = $scope.CodeScore(link.code);
                             link.data.push(linkdata);
                             web.external.push(link);
-                            // console.log(link);
                         });
                     }else{
-                        // console.log(link.href);
-                        // Find existing link and push linkdata
+                        var match = _.find(web.external, function(item){
+                            return item.href === link.href;
+                        });
+                        console.log(match);
+                        if (match) {
+                            match.data.push(linkdata);
+                        }
+                        // console.log(web.external);
                     }
                 });
                 
