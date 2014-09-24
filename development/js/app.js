@@ -539,7 +539,10 @@
                             img.code = 0;
                             img.type = '-';
                             img.score = 'pass';
-                            web.images.push(img); 
+
+                            if(web.images.length < maxdatalength){
+                                web.images.push(img); 
+                            }
 
                             var statusurl = 'http://www.metricspot.com/api/status';
 
