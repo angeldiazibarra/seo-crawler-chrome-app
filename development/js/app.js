@@ -1,7 +1,11 @@
 (function(){ 
   "use strict";
-    
-  var app = angular.module('myCrawler', [ ]);
+  
+  angular.module('underscore', []).factory('_', function() {
+    return window._; // assumes underscore has already been loaded on the page
+  });
+
+  var app = angular.module('myCrawler', ['underscore']);
   // console.log('app.js load');
   
   app.factory('urlData', function($http,$q) {
@@ -53,7 +57,7 @@
 
 
 
-  app.controller('CrawlerController', function($scope,urlData){
+  app.controller('CrawlerController', function($scope,urlData,_){
     // console.log('CrawlerController load');
     
     this.website = web;
