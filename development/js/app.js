@@ -310,7 +310,6 @@
       web.mapurls = [];
       web.external = [];
       web.internal = [];
-      web.intlinks = [];
       web.images = [];
       
       var url = web.protocol + web.hostname;    
@@ -630,25 +629,32 @@
                     delete link['rel'];
                     
                     
-                    if(!$scope.IsInArray(link.href,web.intlinks)){
-                        web.intlinks.push(link.href);
-                        
+                    var matcharray = _.find(web.internal, function(item){
+                        return item.href === link.href;
+                    });
+                    if(matcharray){
+                        matcharray.data.push(linkdata);
+                    }else{
+                        link.code = 0;
+                        link.score = 'pass';
+                        link.data.push(linkdata);
+                        web.internal.push(link);
+                            
                         var statusurl = 'http://www.metricspot.com/api/status';
                         
                         urlData.putData(statusurl,link.href).then(function(statusdata){
                             link.code = statusdata.code;
                             link.score = $scope.CodeScore(link.code);
-                            link.data.push(linkdata);
+                            
                             web.internal.push(link);
+                            
+                            var match = _.find(web.internal, function(item){
+                                return item.href === link.href;
+                            });
+                            if(match){
+                                match.data.push(linkdata);
+                            }                            
                         });
-                    }else{
-                        var match = _.find(web.internal, function(item){
-                            return item.href === link.href;
-                        });
-                        if (match) {
-                            // console.log(match);
-                            match.data.push(linkdata);
-                        }
                     }
                                         
                     if(!$scope.IsInArray(link.href,web.processed) && !$scope.IsInArray(link.href,web.urls)){
@@ -688,7 +694,6 @@
       pages: [],
       external: [],
       internal: [],
-      intlinks: [],
       images: []
   };
     
