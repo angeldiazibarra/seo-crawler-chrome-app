@@ -313,39 +313,37 @@
       web.images = [];
       
       var url = web.protocol + web.hostname;    
-      var statusurl = 'http://www.metricspot.com/api/status?url='+url;
 
-      urlData.getData(statusurl).then(function(data){
-          
-          // console.log(data);
-          
-          url = data.target.replace(/\/$/, "");
-          var robotsUrl = url + '/robots.txt';
-          var sitemapUrl = url + '/sitemap.xml';
+      var statusurl = 'http://www.metricspot.com/api/status';
 
-          web.robotsurl = robotsUrl;
-          web.sitemaps.push(sitemapUrl);
-          web.urls.push(data.target); 
-          $scope.crawlSitemaps();
-          
-          if(data.code === 200){
-              
-            urlData.getData(robotsUrl).then(function(data){
-              $scope.parseRobots(data);
-              $scope.crawlSitemaps();
-            }).then(function(){
-              // console.log(web);
-            });
-            
-          }else if(data.code === 301 || data.code === 302){
-            if(data.target.match(/^(http:\/\/)/i)){
-                web.protocol = 'http://';
-            }
-            if(data.target.match(/^(https:\/\/)/i)){
-                web.protocol = 'https://';
-            }
-            web.hostname = url.replace(web.protocol,'');
+      urlData.putData(statusurl,url).then(function(data){
+        url = data.target.replace(/\/$/, "");
+        var robotsUrl = url + '/robots.txt';
+        var sitemapUrl = url + '/sitemap.xml';
+
+        web.robotsurl = robotsUrl;
+        web.sitemaps.push(sitemapUrl);
+        web.urls.push(data.target); 
+        $scope.crawlSitemaps();
+
+        if(data.code === 200){
+
+          urlData.getData(robotsUrl).then(function(data){
+            $scope.parseRobots(data);
+            $scope.crawlSitemaps();
+          }).then(function(){
+            // console.log(web);
+          });
+
+        }else if(data.code === 301 || data.code === 302){
+          if(data.target.match(/^(http:\/\/)/i)){
+              web.protocol = 'http://';
           }
+          if(data.target.match(/^(https:\/\/)/i)){
+              web.protocol = 'https://';
+          }
+          web.hostname = url.replace(web.protocol,'');
+        }                          
       });
     };
     
@@ -360,7 +358,7 @@
     setInterval(function(){
       web.urls = $scope.ArrayUnique(web.urls);
       web.processed = $scope.ArrayUnique(web.processed);
-      if(web.urls.length !== 0 && web.processed.length <= 10){    
+      if(web.urls.length !== 0 && web.processed.length <= 100){    
         // console.log(web.urls.length + ' ' + web.processed.length);
         var mainurl = web.protocol + web.hostname;
         
