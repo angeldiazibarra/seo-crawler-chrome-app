@@ -532,7 +532,9 @@
                         img.type = '-';
                         img.score = 'pass';
                         web.images.push(img); 
+                        
                         var statusurl = 'http://www.metricspot.com/api/status';
+                        
                         urlData.putData(statusurl,img.src).then(function(statusdata){
                             img.code = statusdata.code;
                             img.type = statusdata.type;
@@ -593,9 +595,7 @@
                         urlData.putData(statusurl,link.href).then(function(statusdata){
                             link.code = statusdata.code;
                             link.score = $scope.CodeScore(link.code);
-                            
-                            web.external.push(link);
-                            
+                                                        
                             var match = _.find(web.external, function(item){
                                 return item.href === link.href;
                             });
@@ -645,9 +645,7 @@
                         urlData.putData(statusurl,link.href).then(function(statusdata){
                             link.code = statusdata.code;
                             link.score = $scope.CodeScore(link.code);
-                            
-                            web.internal.push(link);
-                            
+                                                        
                             var match = _.find(web.internal, function(item){
                                 return item.href === link.href;
                             });
