@@ -179,7 +179,7 @@
                   </div>
                 </div>
               </div>
-              <div ng-repeat="value in crawl.website.images track by $index" class="row crawlrow">
+              <div ng-repeat="value in crawl.website.images track by $index" ng-show="value.status !== 0" class="row crawlrow">
                 <div class="col-xs-12 col-md-3">
                   <div ng-class="value.score" class="row rowpad">
                     <div class="col-xs-12 crawl-line crawl-link"><a href="{{value.src}}" title="{{value.src}}" target="_blank">{{value.filename}}</a></div>
@@ -221,7 +221,7 @@
                   </div>
                 </div>
               </div>
-              <div ng-repeat="value in crawl.website.external track by $index" class="row crawlrow">
+              <div ng-repeat="value in crawl.website.external track by $index" ng-show="value.status !== 0" class="row crawlrow">
                 <div class="col-xs-12 col-md-3">
                   <div ng-class="value.score" class="row rowpad">
                     <div class="col-xs-12 crawl-line crawl-link"><a href="{{value.href}}" title="{{value.href}}" target="_blank">{{value.href}}</a></div>
@@ -259,7 +259,7 @@
                   </div>
                 </div>
               </div>
-              <div ng-repeat="value in crawl.website.internal track by $index" class="row crawlrow">
+              <div ng-repeat="value in crawl.website.internal track by $index" ng-show="value.status !== 0" class="row crawlrow">
                 <div class="col-xs-12 col-md-3">
                   <div ng-class="value.score" class="row rowpad">
                     <div class="col-xs-12 crawl-line crawl-link"><a href="{{value.href}}" title="{{value.href}}" target="_blank">{{value.href}}</a></div>
