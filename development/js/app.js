@@ -313,7 +313,6 @@
       web.internal = [];
       web.intlinks = [];
       web.images = [];
-      web.img = [];
       
       var url = web.protocol + web.hostname;    
       var statusurl = 'http://www.metricspot.com/api/status?url='+url;
@@ -524,11 +523,14 @@
                     delete img['title'];
                     delete img['alt'];           
                     
-                    if(!$scope.IsInArray(img.src,web.img)){
-                        web.img.push(img.src);
-                        
+                    var matcharray = _.find(web.images, function(item){
+                        return item.src === img.src;
+                    });
+                    
+                    if(matcharray){
+                        matcharray.data.push(imgdata);
+                    }else{
                         var statusurl = 'http://www.metricspot.com/api/status';
-                        
                         urlData.putData(statusurl,img.src).then(function(statusdata){
                             img.code = statusdata.code;
                             img.type = statusdata.type;
@@ -540,16 +542,7 @@
                             img.data.push(imgdata);
                             web.images.push(img); 
                         });
-                    }else{
-                        var match = _.find(web.images, function(item){
-                            return item.src === img.src;
-                        });
-                        if (match) {
-                            // console.log(match);
-                            match.data.push(imgdata);
-                        }
-                    }
-                    
+                    }               
                 });
                 
                 data.links.external.forEach(function(link){
@@ -684,8 +677,7 @@
       extlinks: [],
       internal: [],
       intlinks: [],
-      images: [],
-      img: []
+      images: []
   };
     
 })();
