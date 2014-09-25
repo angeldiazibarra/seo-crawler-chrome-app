@@ -515,6 +515,14 @@
                     data.publishermessage = 'WARNING - Google+ publisher not set';
                     data.pscore = "warning";
                 }
+                                
+                if(data.frames === false){
+                    data.framesmessage = false;
+                    data.fscore = "pass";
+                }else{
+                    data.framesmessage = 'WARNING - Frames/iFrames found';
+                    data.fscore = "warning";
+                }
                 
                 if(data.encoding !== false){                    
                     data.escore = "pass";
@@ -542,6 +550,21 @@
 
                 var imgarray = $.map(data.images, function(value, index) {
                     return [value];
+                });
+                
+                data.imgstats = [];
+                data.imgstats.total = 0;
+                data.imgstats.noalt = 0;
+                data.imgstats.notit = 0;
+                
+                imgarray.forEach(function(img){
+                    data.imgstats.total++;
+                    if(img.alt==="-"){
+                        data.imgstats.noalt++;
+                    }
+                    if(img.title==="-"){
+                        data.imgstats.notit++;
+                    } 
                 });
                 
                 if(web.images.length < maxdatalength){
@@ -609,6 +632,29 @@
                     }
                   });
                 }
+                
+                data.linkstats = [];
+                data.linkstats.total = 0;
+                data.linkstats.external = 0;
+                data.linkstats.internal = 0;
+                data.linkstats.intnofollow = 0;
+                data.linkstats.extnofollow = 0;
+                
+                data.links.external.forEach(function(link){
+                    data.linkstats.total++;
+                    data.linkstats.external++;
+                    if(link.rel.indexOf("nofollow") > -1){
+                        data.linkstats.extnofollow++;
+                    };
+                });
+                
+                data.links.internal.forEach(function(link){
+                    data.linkstats.total++;
+                    data.linkstats.internal++;
+                    if(link.rel.indexOf("nofollow") > -1){
+                        data.linkstats.intnofollow++;
+                    };
+                });
                 
                 data.links.external.forEach(function(link){
                     
@@ -740,6 +786,7 @@
                 
                 if(web.pages.length < maxpagelength){
                     web.pages.push(data); 
+                    console.log(data);
                 }
             });
           }
