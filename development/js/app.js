@@ -1,6 +1,9 @@
 (function(){ 
   "use strict";
   
+  var maxpagelength = 50;
+  var maxdatalength = 200;
+  
   angular.module('underscore', []).factory('_', function() {
     return window._; // assumes underscore has already been loaded on the page
   });
@@ -215,26 +218,30 @@
         var urlsArray1 = data.match(/(\<loc\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/loc\>)/gi);
         var urlsArray2 = data.match(/(\<link\>)([a-z0-9:\/\-\.\?\=\#\_])*(\<\/link\>)/gi);
         for (var i in urlsArray1){
-            var item = urlsArray1[i].trim();
-            var unit = item.replace(/\<\/?loc\>/gi,'').trim();
-            if(unit.match(/(\.xml)$/i)){
-              web.sitemaps.push(unit); 
-              if(web.sitemaps.indexOf(unit) === -1){
-                web.sitemaps.push(unit);
-              }
-            }else{
-              if(web.urls.indexOf(unit) === -1){
-                web.urls.push(unit);
-                web.mapurls.push(unit);
-              }
+            if(web.urls.length <= maxpagelength){
+                var item = urlsArray1[i].trim();
+                var unit = item.replace(/\<\/?loc\>/gi,'').trim();
+                if(unit.match(/(\.xml)$/i)){
+                  web.sitemaps.push(unit); 
+                  if(web.sitemaps.indexOf(unit) === -1){
+                    web.sitemaps.push(unit);
+                  }
+                }else{
+                  if(web.urls.indexOf(unit) === -1){
+                    web.urls.push(unit);
+                    web.mapurls.push(unit);
+                  }
+                }
             }
         }
         for (var i in urlsArray2){
-            var item = urlsArray2[i].trim();
-            var unit = item.replace(/\<\/?link\>/gi,'').trim();
-            if(web.urls.indexOf(unit) === -1){
-              web.urls.push(unit);
-              web.mapurls.push(unit);
+            if(web.urls.length <= maxpagelength){
+                var item = urlsArray2[i].trim();
+                var unit = item.replace(/\<\/?link\>/gi,'').trim();
+                if(web.urls.indexOf(unit) === -1){
+                  web.urls.push(unit);
+                  web.mapurls.push(unit);
+                }
             }
         }
     };
@@ -325,6 +332,8 @@
         web.sitemaps.push(sitemapUrl);
         web.urls.push(data.target); 
         $scope.crawlSitemaps();
+        
+        console.log(data);
 
         if(data.code === 200){
 
@@ -343,7 +352,21 @@
               web.protocol = 'https://';
           }
           web.hostname = url.replace(web.protocol,'');
-        }                          
+          url = web.protocol + web.hostname;  
+          robotsUrl = url + '/robots.txt';
+          sitemapUrl = url + '/sitemap.xml';
+          web.robotsurl = robotsUrl;
+          web.sitemaps.push(sitemapUrl);
+          
+          urlData.getData(robotsUrl).then(function(data){
+            $scope.parseRobots(data);
+            $scope.crawlSitemaps();
+          }).then(function(){
+            // console.log(web);
+          });
+        }else{
+            // console.log(web);
+        }                        
       });
     };
     
@@ -356,9 +379,6 @@
     },true);
     
     setInterval(function(){
-        
-      var maxpagelength = 20;
-      var maxdatalength = 100;
         
       web.urls = $scope.ArrayUnique(web.urls);
       web.processed = $scope.ArrayUnique(web.processed);
