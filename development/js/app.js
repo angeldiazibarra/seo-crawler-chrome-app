@@ -1,8 +1,8 @@
 (function(){ 
   "use strict";
   
-  var maxpagelength = 50;
-  var maxdatalength = 200;
+  var maxpagelength = 20;
+  var maxdatalength = 50;
   
   angular.module('underscore', []).factory('_', function() {
     return window._; // assumes underscore has already been loaded on the page

@@ -220,7 +220,8 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                 .col-xs-12.col-md-3
                   .row.rowpad(ng-class="value.score")
                     .col-xs-12.crawl-line.crawl-link
-                      a(href="{{value.src}}",title="{{value.src}}",target="_blank") {{value.filename}}
+                      a(href="{{value.src}}",title="{{value.filename}}",target="_blank")
+                        img(src="{{value.src}}",alt="{{value.filename}}",class="crawlimg")
                 .col-xs-12.col-md-1.crawl-line
                   .row.rowpad(ng-class="value.score")
                     .col-xs-12.crawl-line
