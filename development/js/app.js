@@ -656,6 +656,19 @@
                     };
                 });
                 
+                data.linkstats.intdofollow = data.linkstats.internal - data.linkstats.intnofollow;
+                data.linkstats.extdofollow = data.linkstats.external - data.linkstats.extnofollow;
+                
+                if(data.linkstats.total === 0){
+                    data.linkstats.nofollowbar = 0;
+                    data.linkstats.dofollowbar = 0;
+                    data.linkstats.intlinksbar = 100;
+                }else{
+                    data.linkstats.nofollowbar = (data.linkstats.extnofollow/data.linkstats.total)*100;
+                    data.linkstats.dofollowbar = (data.linkstats.extdofollow/data.linkstats.total)*100;
+                    data.linkstats.intlinksbar = (data.linkstats.internal/data.linkstats.total)*100;
+                }
+                
                 data.links.external.forEach(function(link){
                     
                     link.data = [];

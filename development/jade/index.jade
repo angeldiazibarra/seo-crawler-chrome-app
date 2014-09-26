@@ -91,15 +91,18 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                     br
                   br
                 .col-xs-12.col-md-6
-                  .socialdata
-                    .social.fb(title="{{value.social.fb}} Facebook Likes")
-                      span {{value.social.fb}}
-                    .social.tw(title="{{value.social.tw}} Tweets")
-                      span {{value.social.tw}}
-                    .social.gp(title="{{value.social.gp}} Google Plus Ones")
-                      span {{value.social.gp}}
-                    .social.ln(title="{{value.social.ln}} LinkedIn Shares")
-                      span {{value.social.ln}}
+                  .row
+                    .col-xs-4.col-md-3
+                    .col-xs-4.col-md-9
+                      .socialdata
+                        .social.fb(title="{{value.social.fb}} Facebook Likes")
+                          span {{value.social.fb}}
+                        .social.tw(title="{{value.social.tw}} Tweets")
+                          span {{value.social.tw}}
+                        .social.gp(title="{{value.social.gp}} Google Plus Ones")
+                          span {{value.social.gp}}
+                        .social.ln(title="{{value.social.ln}} LinkedIn Shares")
+                          span {{value.social.ln}}
               .row
                 .col-xs-12.col-md-6
                   .row
@@ -181,6 +184,14 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                         br(ng-show="value.cmessage !== false && value.code !== 200")
                         span.errormessage(ng-show="value.cmessage !== false") {{value.cmessage}}   
                 .col-xs-12.col-md-6
+                  .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.lscore")
+                      b Links:         
+                    .col-xs-8.col-md-9
+                      .linkbar
+                        .nofollow(style="width:{{value.linkstats.nofollowbar}}%",title="{{value.linkstats.extnofollow}} nofollow external links")
+                        .dofollow(style="width:{{value.linkstats.dofollowbar}}%",title="{{value.linkstats.extdofollow}} dofollow external liks")
+                        .intlinks(style="width:{{value.linkstats.intlinksbar}}%",title="{{value.linkstats.internal}} internal links")
                   .row
                     .col-xs-4.col-md-3.listit(ng-class="value.hscore")
                       b H1:         
