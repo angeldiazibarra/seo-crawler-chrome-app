@@ -200,7 +200,7 @@ ul.nav-tabs{
     }
 }
 
-.linkbar{
+.linkbar,.imgbar{
     background-color: #aaa;
     height: 30px;
     width: 100%;
@@ -208,11 +208,14 @@ ul.nav-tabs{
     border-radius: 3px;
     margin-top: -5px;
     margin-bottom: 20px;
+}
+.linkbar{
+    .nofollow,.dofollow,.intlinks{
+        height:24px;
+        float: left;      
+    }
     .nofollow{
         background-color: #335588;
-        height:24px;
-        width:1px;
-        float: left;
     }
     .nofollow:hover{
         cursor:crosshair;
@@ -220,9 +223,6 @@ ul.nav-tabs{
     }
     .dofollow{
         background-color: #ddd;
-        height:24px;
-        width:1px;
-        float: left;
     }
     .dofollow:hover{
         cursor:crosshair;
@@ -230,12 +230,43 @@ ul.nav-tabs{
     }
     .intlinks{
         background-color: #aaa;
-        height:24px;
-        width:1px;
-        float: left;
     }
     .intlinks:hover{
         cursor:crosshair;
         background-color: #bbb;
+    }
+}
+.imgbar{
+    .noalttit,.noalt,.notit,.correct{
+        height:24px;
+        float: left;  
+    }
+    .noalttit{
+        background-color: #335588;
+    }
+    .noalttit:hover{
+        cursor:crosshair;
+        background-color: #334488;
+    }
+    .noalt{
+        background-color: #335588;
+    }
+    .noalt:hover{
+        cursor:crosshair;
+        background-color: #334488;
+    }
+    .notit{
+        background-color: #335588;
+    }
+    .notit:hover{
+        cursor:crosshair;
+        background-color: #334488;
+    }
+    .correct{
+        background-color: #335588;
+    }
+    .correct:hover{
+        cursor:crosshair;
+        background-color: #334488;
     }
 }

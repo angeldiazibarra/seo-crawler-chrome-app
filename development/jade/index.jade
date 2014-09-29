@@ -193,6 +193,15 @@ html(data-ng-app="myCrawler" data-ng-csp="")
                         .dofollow(style="width:{{value.linkstats.dofollowbar}}%",title="{{value.linkstats.extdofollow}} dofollow external liks")
                         .intlinks(style="width:{{value.linkstats.intlinksbar}}%",title="{{value.linkstats.internal}} internal links")
                   .row
+                    .col-xs-4.col-md-3.listit(ng-class="value.iscore")
+                      b Images:         
+                    .col-xs-8.col-md-9
+                      .imgbar
+                        .noalttit(style="width:{{value.imgstats.noalttit}}%",title="{{value.imgstats.noalttit}} no ALT & TITLE")
+                        .noalt(style="width:{{value.imgstats.noalt}}%",title="{{value.imgstats.noalt}} no ALT")
+                        .notit(style="width:{{value.imgstats.notit}}%",title="{{value.imgstats.notit}} no TITLE")
+                        .correct(style="width:{{value.imgstats.correct}}%",title="{{value.imgstats.correct}} correct")
+                  .row
                     .col-xs-4.col-md-3.listit(ng-class="value.hscore")
                       b H1:         
                     .col-xs-8.col-md-9
