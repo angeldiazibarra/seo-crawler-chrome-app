@@ -560,7 +560,7 @@
                 data.imgstats.correct = 0;
                 data.iscore = "pass";
                 
-                imgarray.forEach(function(img){
+                imgarray.forEach(function(img){                   
                     data.imgstats.total++;
                     if(img.alt==='-' && img.tit==='-'){
                         data.imgstats.noalttit++;
@@ -575,10 +575,6 @@
                 
                 if(data.imgstats.correct > 0){
                     data.imgstats.correctperc = (data.imgstats.correct/data.imgstats.total)*100;
-                }
-                
-                if(data.imgstats.total === 0){
-                    data.imgstats.correctperc = 100;
                 }
                 
                 if(data.imgstats.notit > 0){
